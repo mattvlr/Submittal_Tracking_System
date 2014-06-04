@@ -36,10 +36,12 @@ namespace Submittal_Tracking_System
             catch(DirectoryNotFoundException err)
             {
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: the specified directory does not exist. {0}");
+                forceScroll();
             }
-
+            JobEntry newJob = new JobEntry();
+            newJob.Show();
             createDatabase();
-
+            
         }
         private void createDatabase()
         {
@@ -62,16 +64,16 @@ namespace Submittal_Tracking_System
             SqlCeCommand ConsultantCMD;
 
             string sql = "create table Submittals ("
-            + "ReceivedDate datetime, "
+            + "ReceivedDate nvarchar (40), "
             + "SectionNum integer, "
             + "SubmittalNum smallint, "
             + "Description nvarchar (200), "
             + "NumReceived smallint, "
             + "Consultant nvarchar (200), "
-            + "ToConsultantDate datetime, "
+            + "ToConsultantDate nvarchar (40), "
             + "ConsultantVia nvarchar (40), "
-            + "FromConsultantDate datetime, "
-            + "ToContractorDate datetime, "
+            + "FromConsultantDate nvarchar (40), "
+            + "ToContractorDate nvarchar (40), "
             + "Quantity smallint, " 
             + "ContractorVia nvarchar (40), "
             + "Action nvarchar (40), "
@@ -113,9 +115,7 @@ namespace Submittal_Tracking_System
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            tabControl1.Hide();
-            
-            
+            tabControl1.Hide();    
         }
         private void cAddButton_Click(object sender, EventArgs e)
         {
@@ -123,36 +123,74 @@ namespace Submittal_Tracking_System
             int flagCounter = 0;
             string AddressLine2;
 
-                if (cNameText.Text == "")
-                    cErrorBox.Text = DateTime.Now.ToLongTimeString() + " | Error: No name entered!\n"; // NAME
-                else
-                    flagCounter++;
+            if (cNameText.Text == "")
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No name entered!\n"); // NAME
+                forceScroll();
+                cNameText.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                flagCounter++;
+                cNameText.BackColor = Color.White;
+            }
 
-                if (cAddress1Text.Text == "")
-                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No address entered!\n"); //ADDRESS
-                else
-                    flagCounter++;
+            if (cAddress1Text.Text == "")
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No address entered!\n"); //ADDRESS
+                forceScroll();
+                cAddress1Text.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                flagCounter++;
+                cAddress1Text.BackColor = Color.White;
+            }
 
-                if (cCityText.Text == "")
-                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No city entered!\n"); //CITY
-                else
-                    flagCounter++;
-
-                if (cStateText.Text == "")
-                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No state entered!\n"); //STATE
-                else
-                    flagCounter++;
-
-                if (cZipcodeText.Text == "")
-                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No zipcode entered!\n"); //ZIPCODE
-                else 
-                    flagCounter++;
-
-                if (cContactText.Text == "")
-                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No contact person entered!\n"); // CONTACT PERSON
-                else
-                    flagCounter++;
-                
+            if (cCityText.Text == "")
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No city entered!\n"); //CITY
+                forceScroll();
+                cCityText.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                flagCounter++;
+                cCityText.BackColor = Color.White;
+            }
+            if (cStateText.Text == "")
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No state entered!\n"); //STATE
+                forceScroll();
+                cStateText.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                flagCounter++;
+                cStateText.BackColor = Color.White;
+            }
+            if (cZipcodeText.Text == "")
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No zipcode entered!\n"); //ZIPCODE
+                forceScroll();
+                cZipcodeText.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                flagCounter++;
+                cZipcodeText.BackColor = Color.White;
+            }
+            if (cContactText.Text == "")
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No contact person entered!\n"); // CONTACT PERSON
+                forceScroll();
+                cContactText.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                flagCounter++;
+                cContactText.BackColor = Color.White;
+            }
                 if(cAddress2Text.Text == "") //ADDRESS LINE 2
                     AddressLine2 = "";
                 else
@@ -185,7 +223,8 @@ namespace Submittal_Tracking_System
                         cmd.Parameters.AddWithValue("@zipcode", cZipcodeText.Text);
                         cmd.Parameters.AddWithValue("@contactperson", cContactText.Text);
                         cmd.ExecuteNonQuery();
-                        cErrorBox.AppendText("Success: Consultant added to database!\n");
+                        cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant added to database!\n");
+                        forceScroll();
                     }
                     catch (SqlCeException sqlexception)
                     {
@@ -212,13 +251,75 @@ namespace Submittal_Tracking_System
             if (File.Exists("ContractorDB.sdf"))
             {
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Setting " + Globals.filepath + "\\ContractorDB.sdf as working directory.\n");
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Found ContractorDB.sdf in working directory.\n");
+                forceScroll();
                 tabControl1.Visible = true;
+                Globals.connectionString = "DataSource=\"ContractorDB.sdf\"; Password=\"password\"";
             }
             else
             {
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: 'ContractorDB.sdf' was not found, please try another location.\n");
+                forceScroll();
+            }
+   
+        }
+        private void consultantBox_Click(object sender, EventArgs e)
+        {
+            consultantBox.Items.Clear();
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionString);
+
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand cmd;
+
+            string sql = "SELECT Name FROM Consultant";
+            try
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Retrieving Consultants from database.\n");
+                forceScroll();
+                cmd = new SqlCeCommand(sql, cn);
+                using (SqlCeDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        consultantBox.Items.Add(oReader["Name"].ToString());
+                    }
+                }
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Dropdown populated!\n");
+                forceScroll();
             }
         }
+
+        private void logSubmittalButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void forceScroll()
+        {
+            cErrorBox.SelectionStart = cErrorBox.Text.Length;
+            cErrorBox.ScrollToCaret();
+        }
+        
+
+
+
 
     }
 
@@ -227,7 +328,9 @@ namespace Submittal_Tracking_System
         public static string filepath { get; set; }
         public static string connectionString { get; set; }
         public static string jobTitle { get; set; }
+        public static int jobNumber { get; set; }
     }
 
+    
 
 }
