@@ -58,12 +58,12 @@
             this.tabSubmittals = new System.Windows.Forms.TabPage();
             this.logSubmittalButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.sCommentBox = new System.Windows.Forms.TextBox();
+            this.sNameBox = new System.Windows.Forms.TextBox();
+            this.sActionBox = new System.Windows.Forms.ComboBox();
+            this.sQuantityReturnedBox = new System.Windows.Forms.TextBox();
+            this.sReturnedCBox = new System.Windows.Forms.DateTimePicker();
+            this.sContractorViaBox = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -71,22 +71,24 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label26 = new System.Windows.Forms.Label();
+            this.sConsultantDateDueBox = new System.Windows.Forms.DateTimePicker();
+            this.sFromConsultantDateBox = new System.Windows.Forms.DateTimePicker();
+            this.sQuantityConsultantBox = new System.Windows.Forms.TextBox();
+            this.sConsultantViaBox = new System.Windows.Forms.ComboBox();
+            this.sToConsultantDateBox = new System.Windows.Forms.DateTimePicker();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.consultantBox = new System.Windows.Forms.ComboBox();
+            this.sConsultantBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.sSubmittalDateBox = new System.Windows.Forms.DateTimePicker();
+            this.sSubmittalNumBox = new System.Windows.Forms.TextBox();
+            this.sDescriptionBox = new System.Windows.Forms.TextBox();
+            this.sNumReceivedBox = new System.Windows.Forms.TextBox();
+            this.sSpecNumBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -98,6 +100,12 @@
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ContractorDB = new System.Windows.Forms.OpenFileDialog();
+            this.LRefresh = new System.Windows.Forms.Button();
+            this.ztablelayout1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ztablelayout2 = new System.Windows.Forms.TableLayoutPanel();
+            this.CRefresh = new System.Windows.Forms.Button();
+            this.SubmittalsView = new System.Windows.Forms.DataGridView();
+            this.ConsultantView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabConsultant.SuspendLayout();
@@ -105,7 +113,13 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabLog.SuspendLayout();
+            this.tabList.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.ztablelayout1.SuspendLayout();
+            this.ztablelayout2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -375,7 +389,7 @@
             this.logSubmittalButton.AutoSize = true;
             this.logSubmittalButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.logSubmittalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logSubmittalButton.Location = new System.Drawing.Point(799, 48);
+            this.logSubmittalButton.Location = new System.Drawing.Point(832, 89);
             this.logSubmittalButton.Name = "logSubmittalButton";
             this.logSubmittalButton.Size = new System.Drawing.Size(127, 53);
             this.logSubmittalButton.TabIndex = 5;
@@ -386,12 +400,12 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.textBox9);
-            this.panel3.Controls.Add(this.textBox8);
-            this.panel3.Controls.Add(this.comboBox3);
-            this.panel3.Controls.Add(this.textBox7);
-            this.panel3.Controls.Add(this.dateTimePicker3);
-            this.panel3.Controls.Add(this.comboBox2);
+            this.panel3.Controls.Add(this.sCommentBox);
+            this.panel3.Controls.Add(this.sNameBox);
+            this.panel3.Controls.Add(this.sActionBox);
+            this.panel3.Controls.Add(this.sQuantityReturnedBox);
+            this.panel3.Controls.Add(this.sReturnedCBox);
+            this.panel3.Controls.Add(this.sContractorViaBox);
             this.panel3.Controls.Add(this.label25);
             this.panel3.Controls.Add(this.label24);
             this.panel3.Controls.Add(this.label23);
@@ -403,63 +417,64 @@
             this.panel3.Size = new System.Drawing.Size(754, 143);
             this.panel3.TabIndex = 4;
             // 
-            // textBox9
+            // sCommentBox
             // 
-            this.textBox9.Location = new System.Drawing.Point(174, 116);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(300, 20);
-            this.textBox9.TabIndex = 15;
+            this.sCommentBox.Location = new System.Drawing.Point(174, 116);
+            this.sCommentBox.Name = "sCommentBox";
+            this.sCommentBox.Size = new System.Drawing.Size(300, 20);
+            this.sCommentBox.TabIndex = 15;
             // 
-            // textBox8
+            // sNameBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(174, 90);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(300, 20);
-            this.textBox8.TabIndex = 14;
+            this.sNameBox.Location = new System.Drawing.Point(174, 90);
+            this.sNameBox.Name = "sNameBox";
+            this.sNameBox.Size = new System.Drawing.Size(300, 20);
+            this.sNameBox.TabIndex = 14;
             // 
-            // comboBox3
+            // sActionBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.sActionBox.FormattingEnabled = true;
+            this.sActionBox.Items.AddRange(new object[] {
             "Accepted",
             "Approved As Noted",
             "Revise and Resubmit",
             "Not Accepted",
             "Resubmittal Received"});
-            this.comboBox3.Location = new System.Drawing.Point(174, 63);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(173, 21);
-            this.comboBox3.TabIndex = 13;
+            this.sActionBox.Location = new System.Drawing.Point(174, 63);
+            this.sActionBox.Name = "sActionBox";
+            this.sActionBox.Size = new System.Drawing.Size(173, 21);
+            this.sActionBox.TabIndex = 13;
             // 
-            // textBox7
+            // sQuantityReturnedBox
             // 
-            this.textBox7.Location = new System.Drawing.Point(174, 37);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(54, 20);
-            this.textBox7.TabIndex = 12;
+            this.sQuantityReturnedBox.Location = new System.Drawing.Point(174, 37);
+            this.sQuantityReturnedBox.Name = "sQuantityReturnedBox";
+            this.sQuantityReturnedBox.Size = new System.Drawing.Size(54, 20);
+            this.sQuantityReturnedBox.TabIndex = 12;
             // 
-            // dateTimePicker3
+            // sReturnedCBox
             // 
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(174, 11);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(100, 20);
-            this.dateTimePicker3.TabIndex = 11;
+            this.sReturnedCBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sReturnedCBox.Location = new System.Drawing.Point(174, 11);
+            this.sReturnedCBox.Name = "sReturnedCBox";
+            this.sReturnedCBox.Size = new System.Drawing.Size(100, 20);
+            this.sReturnedCBox.TabIndex = 11;
             // 
-            // comboBox2
+            // sContractorViaBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.sContractorViaBox.FormattingEnabled = true;
+            this.sContractorViaBox.Items.AddRange(new object[] {
             "Delivered",
+            "Email",
             "US Mail",
             "Fedex",
-            "UPS?",
+            "UPS",
             "Courier Service",
             "Picked Up"});
-            this.comboBox2.Location = new System.Drawing.Point(353, 10);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 10;
+            this.sContractorViaBox.Location = new System.Drawing.Point(353, 10);
+            this.sContractorViaBox.Name = "sContractorViaBox";
+            this.sContractorViaBox.Size = new System.Drawing.Size(121, 21);
+            this.sContractorViaBox.TabIndex = 10;
             // 
             // label25
             // 
@@ -518,57 +533,77 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.textBox6);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.comboBox1);
-            this.panel2.Controls.Add(this.dateTimePicker2);
+            this.panel2.Controls.Add(this.label26);
+            this.panel2.Controls.Add(this.sConsultantDateDueBox);
+            this.panel2.Controls.Add(this.sFromConsultantDateBox);
+            this.panel2.Controls.Add(this.sQuantityConsultantBox);
+            this.panel2.Controls.Add(this.sConsultantViaBox);
+            this.panel2.Controls.Add(this.sToConsultantDateBox);
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.label19);
             this.panel2.Controls.Add(this.label18);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.consultantBox);
+            this.panel2.Controls.Add(this.sConsultantBox);
             this.panel2.Location = new System.Drawing.Point(39, 205);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(754, 124);
             this.panel2.TabIndex = 4;
             // 
-            // textBox6
+            // label26
             // 
-            this.textBox6.Location = new System.Drawing.Point(174, 91);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 11;
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(280, 45);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(59, 13);
+            this.label26.TabIndex = 13;
+            this.label26.Text = "Date Due: ";
             // 
-            // textBox3
+            // sConsultantDateDueBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(174, 65);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 10;
+            this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sConsultantDateDueBox.Location = new System.Drawing.Point(353, 39);
+            this.sConsultantDateDueBox.Name = "sConsultantDateDueBox";
+            this.sConsultantDateDueBox.Size = new System.Drawing.Size(100, 20);
+            this.sConsultantDateDueBox.TabIndex = 12;
             // 
-            // comboBox1
+            // sFromConsultantDateBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sFromConsultantDateBox.Location = new System.Drawing.Point(174, 91);
+            this.sFromConsultantDateBox.Name = "sFromConsultantDateBox";
+            this.sFromConsultantDateBox.Size = new System.Drawing.Size(100, 20);
+            this.sFromConsultantDateBox.TabIndex = 11;
+            // 
+            // sQuantityConsultantBox
+            // 
+            this.sQuantityConsultantBox.Location = new System.Drawing.Point(174, 65);
+            this.sQuantityConsultantBox.Name = "sQuantityConsultantBox";
+            this.sQuantityConsultantBox.Size = new System.Drawing.Size(100, 20);
+            this.sQuantityConsultantBox.TabIndex = 10;
+            // 
+            // sConsultantViaBox
+            // 
+            this.sConsultantViaBox.FormattingEnabled = true;
+            this.sConsultantViaBox.Items.AddRange(new object[] {
             "Delivered",
             "US Mail",
             "Fedex",
             "UPS?",
             "Courier Service",
             "Picked Up"});
-            this.comboBox1.Location = new System.Drawing.Point(353, 39);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 9;
+            this.sConsultantViaBox.Location = new System.Drawing.Point(353, 65);
+            this.sConsultantViaBox.Name = "sConsultantViaBox";
+            this.sConsultantViaBox.Size = new System.Drawing.Size(121, 21);
+            this.sConsultantViaBox.TabIndex = 9;
             // 
-            // dateTimePicker2
+            // sToConsultantDateBox
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(174, 39);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(100, 20);
-            this.dateTimePicker2.TabIndex = 8;
+            this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sToConsultantDateBox.Location = new System.Drawing.Point(174, 39);
+            this.sToConsultantDateBox.Name = "sToConsultantDateBox";
+            this.sToConsultantDateBox.Size = new System.Drawing.Size(100, 20);
+            this.sToConsultantDateBox.TabIndex = 8;
             // 
             // label20
             // 
@@ -591,7 +626,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(280, 45);
+            this.label18.Location = new System.Drawing.Point(280, 68);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(67, 13);
             this.label18.TabIndex = 4;
@@ -615,24 +650,24 @@
             this.label15.TabIndex = 1;
             this.label15.Text = "Consultant Name:";
             // 
-            // consultantBox
+            // sConsultantBox
             // 
-            this.consultantBox.FormattingEnabled = true;
-            this.consultantBox.Location = new System.Drawing.Point(174, 12);
-            this.consultantBox.Name = "consultantBox";
-            this.consultantBox.Size = new System.Drawing.Size(300, 21);
-            this.consultantBox.TabIndex = 0;
-            this.consultantBox.Click += new System.EventHandler(this.consultantBox_Click);
+            this.sConsultantBox.FormattingEnabled = true;
+            this.sConsultantBox.Location = new System.Drawing.Point(174, 12);
+            this.sConsultantBox.Name = "sConsultantBox";
+            this.sConsultantBox.Size = new System.Drawing.Size(300, 21);
+            this.sConsultantBox.TabIndex = 0;
+            this.sConsultantBox.Click += new System.EventHandler(this.consultantBox_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.sSubmittalDateBox);
+            this.panel1.Controls.Add(this.sSubmittalNumBox);
+            this.panel1.Controls.Add(this.sDescriptionBox);
+            this.panel1.Controls.Add(this.sNumReceivedBox);
+            this.panel1.Controls.Add(this.sSpecNumBox);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label12);
@@ -643,41 +678,41 @@
             this.panel1.Size = new System.Drawing.Size(754, 151);
             this.panel1.TabIndex = 3;
             // 
-            // dateTimePicker1
+            // sSubmittalDateBox
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(174, 89);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(100, 20);
-            this.dateTimePicker1.TabIndex = 7;
+            this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sSubmittalDateBox.Location = new System.Drawing.Point(174, 89);
+            this.sSubmittalDateBox.Name = "sSubmittalDateBox";
+            this.sSubmittalDateBox.Size = new System.Drawing.Size(100, 20);
+            this.sSubmittalDateBox.TabIndex = 7;
             // 
-            // textBox5
+            // sSubmittalNumBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(174, 37);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 9;
+            this.sSubmittalNumBox.Location = new System.Drawing.Point(174, 37);
+            this.sSubmittalNumBox.Name = "sSubmittalNumBox";
+            this.sSubmittalNumBox.Size = new System.Drawing.Size(100, 20);
+            this.sSubmittalNumBox.TabIndex = 9;
             // 
-            // textBox4
+            // sDescriptionBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(174, 63);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(300, 20);
-            this.textBox4.TabIndex = 8;
+            this.sDescriptionBox.Location = new System.Drawing.Point(174, 63);
+            this.sDescriptionBox.Name = "sDescriptionBox";
+            this.sDescriptionBox.Size = new System.Drawing.Size(300, 20);
+            this.sDescriptionBox.TabIndex = 8;
             // 
-            // textBox2
+            // sNumReceivedBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(174, 115);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 6;
+            this.sNumReceivedBox.Location = new System.Drawing.Point(174, 115);
+            this.sNumReceivedBox.Name = "sNumReceivedBox";
+            this.sNumReceivedBox.Size = new System.Drawing.Size(100, 20);
+            this.sNumReceivedBox.TabIndex = 6;
             // 
-            // textBox1
+            // sSpecNumBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(174, 11);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 5;
+            this.sSpecNumBox.Location = new System.Drawing.Point(174, 11);
+            this.sSpecNumBox.Name = "sSpecNumBox";
+            this.sSpecNumBox.Size = new System.Drawing.Size(100, 20);
+            this.sSpecNumBox.TabIndex = 5;
             // 
             // label14
             // 
@@ -736,6 +771,7 @@
             // 
             // tabLog
             // 
+            this.tabLog.Controls.Add(this.ztablelayout1);
             this.tabLog.Location = new System.Drawing.Point(4, 22);
             this.tabLog.Name = "tabLog";
             this.tabLog.Padding = new System.Windows.Forms.Padding(3);
@@ -746,6 +782,7 @@
             // 
             // tabList
             // 
+            this.tabList.Controls.Add(this.ztablelayout2);
             this.tabList.Location = new System.Drawing.Point(4, 22);
             this.tabList.Name = "tabList";
             this.tabList.Padding = new System.Windows.Forms.Padding(3);
@@ -785,6 +822,76 @@
             // 
             this.ContractorDB.FileName = " ContractorDB.sdf";
             // 
+            // LRefresh
+            // 
+            this.LRefresh.Location = new System.Drawing.Point(3, 451);
+            this.LRefresh.Name = "LRefresh";
+            this.LRefresh.Size = new System.Drawing.Size(152, 44);
+            this.LRefresh.TabIndex = 0;
+            this.LRefresh.Text = "Refresh";
+            this.LRefresh.UseVisualStyleBackColor = true;
+            this.LRefresh.Click += new System.EventHandler(this.LRefresh_Click);
+            // 
+            // ztablelayout1
+            // 
+            this.ztablelayout1.ColumnCount = 1;
+            this.ztablelayout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ztablelayout1.Controls.Add(this.LRefresh, 0, 1);
+            this.ztablelayout1.Controls.Add(this.SubmittalsView, 0, 0);
+            this.ztablelayout1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ztablelayout1.Location = new System.Drawing.Point(3, 3);
+            this.ztablelayout1.Name = "ztablelayout1";
+            this.ztablelayout1.RowCount = 2;
+            this.ztablelayout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.ztablelayout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ztablelayout1.Size = new System.Drawing.Size(1300, 498);
+            this.ztablelayout1.TabIndex = 0;
+            // 
+            // ztablelayout2
+            // 
+            this.ztablelayout2.ColumnCount = 1;
+            this.ztablelayout2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ztablelayout2.Controls.Add(this.CRefresh, 0, 1);
+            this.ztablelayout2.Controls.Add(this.ConsultantView, 0, 0);
+            this.ztablelayout2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ztablelayout2.Location = new System.Drawing.Point(3, 3);
+            this.ztablelayout2.Name = "ztablelayout2";
+            this.ztablelayout2.RowCount = 2;
+            this.ztablelayout2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.ztablelayout2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ztablelayout2.Size = new System.Drawing.Size(1300, 498);
+            this.ztablelayout2.TabIndex = 1;
+            // 
+            // CRefresh
+            // 
+            this.CRefresh.Location = new System.Drawing.Point(3, 451);
+            this.CRefresh.Name = "CRefresh";
+            this.CRefresh.Size = new System.Drawing.Size(152, 44);
+            this.CRefresh.TabIndex = 0;
+            this.CRefresh.Text = "Refresh";
+            this.CRefresh.UseVisualStyleBackColor = true;
+            this.CRefresh.Click += new System.EventHandler(this.CRefresh_Click);
+            // 
+            // SubmittalsView
+            // 
+            this.SubmittalsView.AllowUserToOrderColumns = true;
+            this.SubmittalsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SubmittalsView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SubmittalsView.Location = new System.Drawing.Point(3, 3);
+            this.SubmittalsView.Name = "SubmittalsView";
+            this.SubmittalsView.Size = new System.Drawing.Size(1294, 442);
+            this.SubmittalsView.TabIndex = 1;
+            // 
+            // ConsultantView
+            // 
+            this.ConsultantView.AllowUserToOrderColumns = true;
+            this.ConsultantView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ConsultantView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConsultantView.Location = new System.Drawing.Point(3, 3);
+            this.ConsultantView.Name = "ConsultantView";
+            this.ConsultantView.Size = new System.Drawing.Size(1294, 442);
+            this.ConsultantView.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -809,7 +916,13 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabLog.ResumeLayout(false);
+            this.tabList.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.ztablelayout1.ResumeLayout(false);
+            this.ztablelayout2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -859,22 +972,21 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox consultantBox;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.TextBox sSubmittalNumBox;
+        private System.Windows.Forms.TextBox sDescriptionBox;
+        private System.Windows.Forms.TextBox sNumReceivedBox;
+        private System.Windows.Forms.TextBox sSpecNumBox;
+        private System.Windows.Forms.ComboBox sConsultantBox;
+        private System.Windows.Forms.TextBox sQuantityConsultantBox;
+        private System.Windows.Forms.ComboBox sConsultantViaBox;
+        private System.Windows.Forms.DateTimePicker sToConsultantDateBox;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DateTimePicker sSubmittalDateBox;
+        private System.Windows.Forms.ComboBox sContractorViaBox;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
@@ -882,11 +994,20 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button logSubmittalButton;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.TextBox sCommentBox;
+        private System.Windows.Forms.TextBox sNameBox;
+        private System.Windows.Forms.ComboBox sActionBox;
+        private System.Windows.Forms.TextBox sQuantityReturnedBox;
+        private System.Windows.Forms.DateTimePicker sReturnedCBox;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.DateTimePicker sConsultantDateDueBox;
+        private System.Windows.Forms.DateTimePicker sFromConsultantDateBox;
+        private System.Windows.Forms.Button LRefresh;
+        private System.Windows.Forms.TableLayoutPanel ztablelayout1;
+        private System.Windows.Forms.DataGridView SubmittalsView;
+        private System.Windows.Forms.TableLayoutPanel ztablelayout2;
+        private System.Windows.Forms.Button CRefresh;
+        private System.Windows.Forms.DataGridView ConsultantView;
     }
 }
 

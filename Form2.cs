@@ -19,11 +19,40 @@ namespace Submittal_Tracking_System
 
         private void okayBut_Click(object sender, EventArgs e)
         {
-            string title = "";
-            string number = "";
-            title = jobTitleBox.Text;
-            number = JobNumberBox.Text;
+            int count = 0;
+            if (jobTitleBox.Text == "")
+            {
+                jobTitleBox.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                jobTitleBox.BackColor = Color.White;
+                Globals.jobTitle = jobTitleBox.Text;
+                count++;
+            }
 
+            if(JobNumberBox.Text == "")
+            {
+                JobNumberBox.BackColor = Color.MistyRose;
+
+            }
+            else
+            {
+                JobNumberBox.BackColor = Color.White;
+                Globals.jobTitle = JobNumberBox.Text;
+                count++;
+            }
+
+            if (count == 2)
+            {
+                this.Close();
+            }
+        }
+
+        private void cancelBut_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
+
 }

@@ -33,6 +33,7 @@
             this.jobTitleBox = new System.Windows.Forms.TextBox();
             this.JobNumberBox = new System.Windows.Forms.TextBox();
             this.okayBut = new System.Windows.Forms.Button();
+            this.cancelBut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -71,17 +72,28 @@
             // 
             this.okayBut.Location = new System.Drawing.Point(99, 87);
             this.okayBut.Name = "okayBut";
-            this.okayBut.Size = new System.Drawing.Size(170, 23);
+            this.okayBut.Size = new System.Drawing.Size(80, 23);
             this.okayBut.TabIndex = 4;
             this.okayBut.Text = "Submit";
             this.okayBut.UseVisualStyleBackColor = true;
             this.okayBut.Click += new System.EventHandler(this.okayBut_Click);
+            // 
+            // cancelBut
+            // 
+            this.cancelBut.Location = new System.Drawing.Point(189, 87);
+            this.cancelBut.Name = "cancelBut";
+            this.cancelBut.Size = new System.Drawing.Size(80, 23);
+            this.cancelBut.TabIndex = 5;
+            this.cancelBut.Text = "Cancel";
+            this.cancelBut.UseVisualStyleBackColor = true;
+            this.cancelBut.Click += new System.EventHandler(this.cancelBut_Click);
             // 
             // JobEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(297, 122);
+            this.Controls.Add(this.cancelBut);
             this.Controls.Add(this.okayBut);
             this.Controls.Add(this.JobNumberBox);
             this.Controls.Add(this.jobTitleBox);
@@ -101,5 +113,6 @@
         private System.Windows.Forms.TextBox jobTitleBox;
         private System.Windows.Forms.TextBox JobNumberBox;
         private System.Windows.Forms.Button okayBut;
+        private System.Windows.Forms.Button cancelBut;
     }
 }
