@@ -19,11 +19,33 @@ namespace Submittal_Tracking_System
         {
             InitializeComponent();
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            tabControl1.Hide();
+            cErrorBox.Hide();
+        }
         private void closeMenu_Click(object sender, EventArgs e)
         {
-            this.Close();
+         Globals.Consultantfilepath = "";
+         Globals.Projectfilepath = "";
+         Globals.connectionStringConsultant = "";
+         Globals.connectionStringProject = "";
+         Globals.jobTitle = "";
+         Globals.jobNumber = "";
+         tabControl1.Visible = false;
+         cErrorBox.Visible = false;
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+        public void forceScroll()
+        {
+            cErrorBox.SelectionStart = cErrorBox.Text.Length;
+            cErrorBox.ScrollToCaret();
         }
 
+        //Create Database methods
         private void createProjectDatabase()
         {
             string filename = "DB.sdf";
@@ -97,11 +119,57 @@ namespace Submittal_Tracking_System
                 cn.Close();  
             }
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void createConsultantDatabase()
         {
-            tabControl1.Hide();
-            cErrorBox.Hide();
+            string filename = "ConsultantDB.sdf";
+
+            if (File.Exists(filename))
+                File.Delete(filename);
+
+            Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
+            SqlCeEngine en = new SqlCeEngine(Globals.connectionStringConsultant);
+            en.CreateDatabase();
+
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringConsultant);
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand ConsultantCMD;
+
+            string sql = "create table Consultant ( "
+            + "Name nvarchar (200), "
+            + "Address nvarchar (200), "
+            + "Address2 nvarchar (200), "
+            + "City nvarchar (200), "
+            + "State nvarchar (2), "
+            + "Zipcode nvarchar (10), "
+            + "ContactPerson nvarchar (200) )";
+
+            ConsultantCMD = new SqlCeCommand(sql, cn);
+            try
+            {
+                ConsultantCMD.ExecuteNonQuery();
+                MessageBox.Show("Consultant database successfully created! \n Located in directory: " + Globals.Consultantfilepath);
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "SQL Error.",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Other Error.", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
+
+        //Consultant Tab methods
         private void cAddButton_Click(object sender, EventArgs e)
         {
     
@@ -210,6 +278,7 @@ namespace Submittal_Tracking_System
                         cmd.ExecuteNonQuery();
                         cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant added to database!\n");
                         forceScroll();
+                        ConsultantRefresh();
                     }
                     catch (SqlCeException sqlexception)
                     {
@@ -222,11 +291,37 @@ namespace Submittal_Tracking_System
                     finally
                     {
                          cn.Close();
+
                     }
                     
                 }
         }
+        private void cDeleteButton_Click(object sender, EventArgs e)
+        {
 
+        }
+        private void cClearButton_Click(object sender, EventArgs e)
+        {
+            if (cNameText.Text != "")
+                cNameText.Text = "";
+            if (cAddress1Text.Text != "")
+                cAddress1Text.Text = "";
+            if (cAddress2Text.Text != "")
+                cAddress2Text.Text = "";
+            if (cCityText.Text != "")
+                cCityText.Text = "";
+            if (cStateText.Text != "")
+                cStateText.Text = "";
+            if (cZipcodeText.Text != "")
+                cZipcodeText.Text = "";
+            if (cContactText.Text != "")
+                cContactText.Text = "";
+            cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Form cleared.\n"); // NAME
+            forceScroll();
+
+        }
+
+        //File I/O methods
         private void openMenu_Click(object sender, EventArgs e)
         {
             if (setDirectory.ShowDialog() == DialogResult.OK)
@@ -319,6 +414,14 @@ namespace Submittal_Tracking_System
                                 ConsultantRefresh();
                             }
                         }
+                        else // if the answer to the messagebox was not yes
+                        {
+                            tabControl1.Visible = true;
+                            cErrorBox.Visible = true;
+                            wConsultantLoc.BackColor = Color.MistyRose;
+                            zlabel29.Text = "Please browse to ConsultantDB.sdf or make a new one.";
+                            wConsultantLoc.Focus();
+                        }
                     }
                 else
                 {
@@ -330,6 +433,113 @@ namespace Submittal_Tracking_System
                 }
             }
         }
+        private void consultantDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (setDirectory.ShowDialog() == DialogResult.OK)
+                Globals.Consultantfilepath = setDirectory.SelectedPath;
+
+            wConsultantLoc.Text = Globals.Consultantfilepath;
+            try
+            {
+                if (File.Exists("ConsultantDB.sdf"))
+                {
+                    MessageBox.Show("ConsultantDB.sdf already exists in " + Globals.Consultantfilepath + " please pick another location.");
+                }
+                else
+                {
+                    Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                    tabControl1.Visible = true;
+                    cErrorBox.Visible = true;
+                    createConsultantDatabase();
+
+                }
+
+            }
+            catch (DirectoryNotFoundException err)
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: The specified directory does not exist. {0}");
+                forceScroll();
+            }
+        }
+        private void submittalDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (setDirectory.ShowDialog() == DialogResult.OK)
+                Globals.Projectfilepath = setDirectory.SelectedPath;
+
+            wProjectLoc.Text = Globals.Projectfilepath;
+            try
+            {
+                if (File.Exists("DB.sdf"))
+                {
+                    MessageBox.Show("DB.sdf already exists in " + Globals.Projectfilepath + " please pick another location.");
+                }
+                else
+                {
+                    Directory.SetCurrentDirectory(Globals.Projectfilepath);
+                    tabControl1.Visible = true;
+                    cErrorBox.Visible = true;
+                    createProjectDatabase();
+                    zlabel29.Text = "Please browse to ConsultantDB.sdf or make a new one.";
+                    wConsultantLoc.Focus();
+                    wConsultantLoc.BackColor = Color.MistyRose;
+                    tabControl1.SelectedIndex = 0;
+
+
+                }
+
+            }
+            catch (DirectoryNotFoundException err)
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: the specified directory does not exist. {0}");
+                forceScroll();
+            }
+
+        }
+        private void wBrowseConsultant_Click(object sender, EventArgs e)
+        {
+            if (setDirectory.ShowDialog() == DialogResult.OK)
+            {
+                Globals.Consultantfilepath = setDirectory.SelectedPath;
+                Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                if (File.Exists("ConsultantDB.sdf") == true)
+                {
+                    wConsultantLoc.Text = Globals.Consultantfilepath;
+                    Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'ConsultantDB.sdf' is now: " + Globals.Projectfilepath + "\n");
+                    forceScroll();
+                }
+                else
+                {
+                    MessageBox.Show("Could not find 'DB.sdf' in that location, please browse again or create a new one.");
+                }
+            }
+        }
+        private void wBrowseProject_Click(object sender, EventArgs e)
+        {
+            if (setDirectory.ShowDialog() == DialogResult.OK)
+            {
+                Globals.Projectfilepath = setDirectory.SelectedPath;
+                Directory.SetCurrentDirectory(Globals.Projectfilepath);
+                if (File.Exists("DB.sdf") == true)
+                {
+                    wProjectLoc.Text = Globals.Projectfilepath;
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'DB.sdf' is now: " + Globals.Projectfilepath + "\n");
+                    forceScroll();
+                }
+                else
+                {
+                    MessageBox.Show("Could not find 'DB.sdf' in that location, please browse again or create a new one.");
+                }
+            }
+        }
+
+        private void wConsultantLoc_TextChanged(object sender, EventArgs e)
+        {
+            zlabel29.Text = "Path to ConsultantDB.sdf: ";
+            wConsultantLoc.BackColor = Color.White;
+        }
+
+        //Submittal Tab methods
         private void consultantBox_Click(object sender, EventArgs e)
         {
             sConsultantBox.Items.Clear();
@@ -372,7 +582,6 @@ namespace Submittal_Tracking_System
                 forceScroll();
             }
         }
-
         private void logSubmittalButton_Click(object sender, EventArgs e)
         {
             
@@ -432,13 +641,56 @@ namespace Submittal_Tracking_System
                 
                 
         }
-
-        public void forceScroll()
+        private void sSubmittalDropdown_Click(object sender, EventArgs e)
         {
-            cErrorBox.SelectionStart = cErrorBox.Text.Length;
-            cErrorBox.ScrollToCaret();
+            sSubmittalDropdown.Items.Clear();
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+            Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand cmd;
+
+            string sql = "SELECT SubmittalNum FROM Submittals";
+            try
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Retrieving Submittals from database.\n");
+                forceScroll();
+                cmd = new SqlCeCommand(sql, cn);
+                using (SqlCeDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        sSubmittalDropdown.Items.Add(oReader["SubmittalNum"].ToString());
+                    }
+                }
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Dropdown populated!\n");
+                forceScroll();
+            }
+
+
+        }
+        private void sSubmittalDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Test");
         }
 
+        //Database Tab button methods
         private void LRefresh_Click(object sender, EventArgs e)
         {
             SubmittalRefresh();
@@ -447,7 +699,47 @@ namespace Submittal_Tracking_System
         {
             ConsultantRefresh();
         }
+        private void subDeletebtn_Click(object sender, EventArgs e)
+        {
+            int count = 0;
 
+            string text = "Are you should you want to delete " + count + " rows?";
+            string caption = "Delete selected rows.";
+            MessageBoxButtons button = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Information;
+
+            if (MessageBox.Show(text, caption, button, icon) == System.Windows.Forms.DialogResult.Yes)
+            {
+
+                int yCoord = SubmittalsView.CurrentCellAddress.Y;
+                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+                Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+
+
+                foreach (DataGridViewRow row in SubmittalsView.SelectedRows)
+                {
+
+                    SqlCeCommand cmd;
+                    int y = SubmittalsView.CurrentCellAddress.Y;
+                    string sql = "DELETE * FROM Submittals where SubmittalNum = " + y;
+
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Deleting row: " + y + " from table.\n");
+                    forceScroll();
+                    cmd = new SqlCeCommand(sql, cn);
+                    cmd.ExecuteNonQuery();
+                }
+
+                SubmittalRefresh();
+            }
+
+        }
+
+        //Database refreshers
         private void SubmittalRefresh()
         {
             Directory.SetCurrentDirectory(Globals.Projectfilepath);
@@ -505,144 +797,7 @@ namespace Submittal_Tracking_System
             }
         }
 
-        private void consultantDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (setDirectory.ShowDialog() == DialogResult.OK)
-                Globals.Consultantfilepath = setDirectory.SelectedPath;
-
-            wConsultantLoc.Text = Globals.Consultantfilepath;
-            try
-            {
-                if (File.Exists("ConsultantDB.sdf"))
-                {
-                    MessageBox.Show("ConsultantDB.sdf already exists in " + Globals.Consultantfilepath + " please pick another location.");
-                }
-                else
-                {
-                    Directory.SetCurrentDirectory(Globals.Consultantfilepath);
-                    tabControl1.Visible = true;
-                    cErrorBox.Visible = true;
-                    createConsultantDatabase();
-
-                }
-
-            }
-            catch (DirectoryNotFoundException err)
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: The specified directory does not exist. {0}");
-                forceScroll();
-            }           
-        }
-        private void createConsultantDatabase()
-        {
-            string filename = "ConsultantDB.sdf";
-
-            if (File.Exists(filename))
-                File.Delete(filename);
-
-            Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
-            SqlCeEngine en = new SqlCeEngine(Globals.connectionStringConsultant);
-            en.CreateDatabase();
-
-            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringConsultant);
-            if (cn.State == ConnectionState.Closed)
-            {
-                cn.Open();
-            }
-
-            SqlCeCommand ConsultantCMD;
-
-            string sql = "create table Consultant ( "
-            + "Name nvarchar (200), "
-            + "Address nvarchar (200), "
-            + "Address2 nvarchar (200), "
-            + "City nvarchar (200), "
-            + "State nvarchar (2), "
-            + "Zipcode nvarchar (10), "
-            + "ContactPerson nvarchar (200) )";
-
-            ConsultantCMD = new SqlCeCommand(sql, cn);
-            try
-            {
-                ConsultantCMD.ExecuteNonQuery();
-                MessageBox.Show("Consultant database successfully created! \n Located in directory: " + Globals.Consultantfilepath);
-            }
-            catch (SqlCeException sqlexception)
-            {
-                MessageBox.Show(sqlexception.Message, "SQL Error.",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Other Error.", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-            }
-            finally
-            {
-                cn.Close();
-            }
-        }
-
-        private void submittalDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (setDirectory.ShowDialog() == DialogResult.OK)
-                Globals.Projectfilepath = setDirectory.SelectedPath;
-
-            wProjectLoc.Text = Globals.Projectfilepath;
-            try
-            {
-                if (File.Exists("DB.sdf"))
-                {
-                    MessageBox.Show("DB.sdf already exists in " + Globals.Projectfilepath + " please pick another location.");
-                }
-                else
-                {
-                    Directory.SetCurrentDirectory(Globals.Projectfilepath);
-                    tabControl1.Visible = true;
-                    cErrorBox.Visible = true;
-                    createProjectDatabase();
-                    zlabel29.Text = "Please browse to ConsultantDB.sdf or make a new one.";
-                    wConsultantLoc.Focus();
-                    wConsultantLoc.BackColor = Color.MistyRose;
-                    tabControl1.SelectedIndex = 0;
-                    
-                    
-                }
-
-            }
-            catch (DirectoryNotFoundException err)
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: the specified directory does not exist. {0}");
-                forceScroll();
-            }      
-
-        }
-
-        private void wBrowseConsultant_Click(object sender, EventArgs e)
-        {
-            if (setDirectory.ShowDialog() == DialogResult.OK)
-            {
-                Globals.Consultantfilepath = setDirectory.SelectedPath;
-                Directory.SetCurrentDirectory(Globals.Consultantfilepath);
-                wConsultantLoc.Text = Globals.Consultantfilepath;
-                Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'DB.sdf' is now: " + Globals.Projectfilepath + "\n");
-                forceScroll();
-            }
-        }
-
-        private void wBrowseProject_Click(object sender, EventArgs e)
-        {
-            if (setDirectory.ShowDialog() == DialogResult.OK)
-            {
-                Globals.Projectfilepath = setDirectory.SelectedPath;
-                Directory.SetCurrentDirectory(Globals.Projectfilepath);
-                wProjectLoc.Text = Globals.Projectfilepath;
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'DB.sdf' is now: " + Globals.Projectfilepath + "\n");
-                forceScroll();
-            }
-        }
-
+        //Misc Database methods
         private void SubmittalsView_DoubleClick(object sender, EventArgs e)
         {
             int yCoord = SubmittalsView.CurrentCellAddress.Y;
@@ -706,114 +861,16 @@ namespace Submittal_Tracking_System
             }
 
         }
-
-        private void subDeletebtn_Click(object sender, EventArgs e)
-        {
-            int count = 0;
-
-            string text = "Are you should you want to delete " + count + " rows?";
-            string caption = "Delete selected rows.";
-            MessageBoxButtons button = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Information;
-
-            if (MessageBox.Show(text, caption, button, icon) == System.Windows.Forms.DialogResult.Yes)
-            {
-
-                int yCoord = SubmittalsView.CurrentCellAddress.Y;
-                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-                Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
-                if (cn.State == ConnectionState.Closed)
-                {
-                    cn.Open();
-                }
-
-
-                foreach (DataGridViewRow row in SubmittalsView.SelectedRows)
-                {
-
-                    SqlCeCommand cmd;
-                    int y = SubmittalsView.CurrentCellAddress.Y;
-                    string sql = "DELETE * FROM Submittals where SubmittalNum = " + y;
-
-                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Deleting row: " + y + " from table.\n");
-                    forceScroll();
-                    cmd = new SqlCeCommand(sql, cn);
-                    cmd.ExecuteNonQuery();
-                }
-
-                SubmittalRefresh();
-            }
-            
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
-        }
-
-        private void sSubmittalDropdown_Click(object sender, EventArgs e)
-        {
-            sSubmittalDropdown.Items.Clear();
-            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-            Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
-            if (cn.State == ConnectionState.Closed)
-            {
-                cn.Open();
-            }
-
-            SqlCeCommand cmd;
-
-            string sql = "SELECT SubmittalNum FROM Submittals";
-            try
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Retrieving Submittals from database.\n");
-                forceScroll();
-                cmd = new SqlCeCommand(sql, cn);
-                using (SqlCeDataReader oReader = cmd.ExecuteReader())
-                {
-                    while (oReader.Read())
-                    {
-                        sSubmittalDropdown.Items.Add(oReader["SubmittalNum"].ToString());
-                    }
-                }
-            }
-            catch (SqlCeException sqlexception)
-            {
-                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                cn.Close();
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Dropdown populated!\n");
-                forceScroll();
-            }
-
-
-        }
-
-        private void sSubmittalDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("Test");
-        }
-
-        private void wConsultantLoc_TextChanged(object sender, EventArgs e)
-        {
-            zlabel29.Text = "Path to ConsultantDB.sdf: ";
-            wConsultantLoc.BackColor = Color.White;
-        }
-
-
+      
+        //Tab locker
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (wConsultantLoc.Text == "")
                 tabControl1.SelectedIndex = 0;
+            if (wProjectLoc.Text == "")
+                tabControl1.SelectedIndex = 0;
         }
+
 
 
 
@@ -829,7 +886,7 @@ namespace Submittal_Tracking_System
         public static string connectionStringConsultant { get; set; }
         public static string connectionStringProject { get; set; }
         public static string jobTitle { get; set; }
-        public static int jobNumber { get; set; }
+        public static string jobNumber { get; set; }
     }
 
     
