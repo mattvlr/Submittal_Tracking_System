@@ -48,7 +48,7 @@ namespace Submittal_Tracking_System
             string sql = "create table Submittals ("
             + "ReceivedDate nvarchar (40), "
             + "SectionNum nvarchar (40), "
-            + "SubmittalNum nvarchar (40), "
+            + "SubmittalNum INT IDENTITY(1,1) PRIMARY KEY, "
             + "Description nvarchar (200), "
             + "NumReceived nvarchar (40), "
             + "Consultant nvarchar (200), "
@@ -101,6 +101,7 @@ namespace Submittal_Tracking_System
         {
             tabControl1.Hide();
             cErrorBox.Hide();
+
         }
         private void cAddButton_Click(object sender, EventArgs e)
         {
@@ -240,9 +241,9 @@ namespace Submittal_Tracking_System
                     cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Setting " + Globals.Projectfilepath + "\\DB.sdf as working directory.\n");
                     cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Found DB.sdf in working directory.\n");
                     forceScroll();
-                    tabControl1.Visible = true;
-                    cErrorBox.Visible = true;
+
                     Globals.connectionStringProject = "DataSource=\"DB.sdf\"; Password=\"password\"";
+                    SubmittalRefresh();
 
                     if (Globals.connectionStringConsultant == null)
                     {
@@ -255,17 +256,61 @@ namespace Submittal_Tracking_System
                         {
                             if (setDirectory.ShowDialog() == DialogResult.OK)
                                 Globals.Consultantfilepath = setDirectory.SelectedPath;
+
+                            wConsultantLoc.Text = Globals.Consultantfilepath;
+                            Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                            Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
+
                             try
                             {
                                 if (File.Exists("ConsultantDB.sdf"))
                                 {
-                                    MessageBox.Show("ConsultantDB.sdf already exists in " + Globals.Consultantfilepath + " please pick another location.");
+                                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Path set for ConsultantDB.sdf  " + Globals.Consultantfilepath + "\n");
+                                    forceScroll();
+                                    tabControl1.Visible = true;
+                                    cErrorBox.Visible = true;
+                                    ConsultantRefresh();
                                 }
-                               // else RIGHT HERE IS WHERE I STOPPED NEED TO LOCK OUT TABS TILL CONSULTANTDB HAS A FILEPATH
+                                else
+                                {
+                                    string messageBoxText2 = "Could no find ConsultantDB.sdf in the chosen directory, would you like to create a new one?";
+                                    string caption2 = "Create new ConsultantaDB.sdf";
+
+                                    if (MessageBox.Show(messageBoxText2, caption2, button, icon) == System.Windows.Forms.DialogResult.Yes)
+                                    {
+                                        if (setDirectory.ShowDialog() == DialogResult.OK)
+                                            Globals.Consultantfilepath = setDirectory.SelectedPath;
+
+                                        wConsultantLoc.Text = Globals.Consultantfilepath;
+                                        try
+                                        {
+                                            if (File.Exists("ConsultantDB.sdf"))
+                                            {
+                                                MessageBox.Show("ConsultantDB.sdf already exists in " + Globals.Consultantfilepath + " please pick another location. ");
+                                            }
+                                            else
+                                            {
+                                                Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                                                tabControl1.Visible = true;
+                                                cErrorBox.Visible = true;
+                                                createConsultantDatabase();
+
+                                            }
+
+                                        }
+                                        catch (DirectoryNotFoundException err)
+                                        {
+                                            cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: The specified directory does not exist. {0} \n");
+                                            forceScroll();
+                                        }
+                                    }
+
+                                }
+
                             }
                             catch (DirectoryNotFoundException err)
                             {
-                                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: The specified directory does not exist. {0}");
+                                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: The specified directory does not exist. {0} \n");
                                 forceScroll();
                             }
 
@@ -342,15 +387,15 @@ namespace Submittal_Tracking_System
             SqlCeCommand cmd;
 
             string sql = "insert into Submittals "
-            + "(ReceivedDate, SectionNum, SubmittalNum, Description, NumReceived, Consultant, DateDue, ToConsultantDate, QuantityToConsultant, ConsultantVia, FromConsultantDate, ToContractorDate, Quantity, ContractorVia, Action, Name, Comments) "
-            + "values (@ReceivedDate, @SectionNum, @SubmittalNum, @Description, @NumReceived, @Consultant, @DateDue, @ToConsultantDate, @QuantityToConsultant, @ConsultantVia, @FromConsultantDate, @ToContractorDate, @Quantity, @ContractorVia, @Action, @Name, @Comments) ";
+            + "(ReceivedDate, SectionNum, Description, NumReceived, Consultant, DateDue, ToConsultantDate, QuantityToConsultant, ConsultantVia, FromConsultantDate, ToContractorDate, Quantity, ContractorVia, Action, Name, Comments) "
+            + "values (@ReceivedDate, @SectionNum, @Description, @NumReceived, @Consultant, @DateDue, @ToConsultantDate, @QuantityToConsultant, @ConsultantVia, @FromConsultantDate, @ToContractorDate, @Quantity, @ContractorVia, @Action, @Name, @Comments) ";
 
             try
             {
                 cmd = new SqlCeCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@ReceivedDate", sSubmittalDateBox.Text);
                 cmd.Parameters.AddWithValue("@SectionNum", sSpecNumBox.Text);
-                cmd.Parameters.AddWithValue("@SubmittalNum", sSubmittalNumBox.Text);
+                //cmd.Parameters.AddWithValue("@SubmittalNum", sSubmittalNumBox.Text);
                 cmd.Parameters.AddWithValue("@Description", sDescriptionBox.Text);
                 cmd.Parameters.AddWithValue("@NumReceived", sNumReceivedBox.Text);
                 cmd.Parameters.AddWithValue("@Consultant", sConsultantBox.Text);
@@ -394,59 +439,14 @@ namespace Submittal_Tracking_System
 
         private void LRefresh_Click(object sender, EventArgs e)
         {
-            Directory.SetCurrentDirectory(Globals.Projectfilepath);
-            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-            if (cn.State == ConnectionState.Closed)
-            {
-                cn.Open();
-            }
-
-            try
-            {
-                SqlCeCommand cmd = new SqlCeCommand("Submittals", cn);
-                cmd.CommandType = CommandType.TableDirect;
-
-                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
-
-               SubmittalsView.DataSource = rs;
-            }
-            catch (SqlCeException sqlexception)
-            {
-                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-  
+            SubmittalRefresh();
         }
+
+
 
         private void CRefresh_Click(object sender, EventArgs e)
         {
-            Directory.SetCurrentDirectory(Globals.Consultantfilepath);
-            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringConsultant);
-            if (cn.State == ConnectionState.Closed)
-            {
-                cn.Open();
-            }
-
-            try
-            {
-                SqlCeCommand cmd = new SqlCeCommand("Consultant", cn);
-                cmd.CommandType = CommandType.TableDirect;
-
-                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
-
-                ConsultantView.DataSource = rs;
-            }
-            catch (SqlCeException sqlexception)
-            {
-                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ConsultantRefresh();
         }
 
         private void SubmittalRefresh()
@@ -464,7 +464,7 @@ namespace Submittal_Tracking_System
                 cmd.CommandType = CommandType.TableDirect;
 
                 SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal table was loaded.\n");
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal table was refreshed.\n");
                 SubmittalsView.DataSource = rs;
             }
             catch (SqlCeException sqlexception)
@@ -491,7 +491,7 @@ namespace Submittal_Tracking_System
                 cmd.CommandType = CommandType.TableDirect;
 
                 SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant table was loaded.\n");
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant table was refreshed.\n");
                 forceScroll();
                 ConsultantView.DataSource = rs;
             }
@@ -612,6 +612,96 @@ namespace Submittal_Tracking_System
             }      
 
         }
+
+        private void wBrowseConsultant_Click(object sender, EventArgs e)
+        {
+            if (setDirectory.ShowDialog() == DialogResult.OK)
+            {
+                Globals.Consultantfilepath = setDirectory.SelectedPath;
+                Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                wConsultantLoc.Text = Globals.Consultantfilepath;
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'DB.sdf' is now: " + Globals.Projectfilepath + "\n");
+                forceScroll();
+            }
+        }
+
+        private void wBrowseProject_Click(object sender, EventArgs e)
+        {
+            if (setDirectory.ShowDialog() == DialogResult.OK)
+            {
+                Globals.Projectfilepath = setDirectory.SelectedPath;
+                Directory.SetCurrentDirectory(Globals.Projectfilepath);
+                wProjectLoc.Text = Globals.Projectfilepath;
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'DB.sdf' is now: " + Globals.Projectfilepath + "\n");
+                forceScroll();
+            }
+        }
+
+        private void SubmittalsView_DoubleClick(object sender, EventArgs e)
+        {
+            int yCoord = SubmittalsView.CurrentCellAddress.Y;
+
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+            Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+            
+            this.tabControl1.SelectedIndex = 3;
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand cmd;
+
+            string sql = "SELECT * FROM Submittals where SubmittalNum = " + yCoord;
+
+            try
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Retrieving row contents from database.\n");
+                forceScroll();
+                cmd = new SqlCeCommand(sql, cn);
+                using (SqlCeDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        sSubmittalDateBox.Text = oReader["ReceivedDate"].ToString();
+                        sSubmittalNumBox.Text = oReader["SubmittalNum"].ToString();
+                        sDescriptionBox.Text = oReader["Description"].ToString();
+                        sNumReceivedBox.Text = oReader["NumReceived"].ToString();
+                        sConsultantBox.Text = oReader["Consultant"].ToString();
+                        sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
+                        sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
+                        sQuantityConsultantBox.Text = oReader["QuantityToConsultant"].ToString();
+                        sConsultantViaBox.Text = oReader["ConsultantVia"].ToString();
+                        sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
+                        sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
+                        sQuantityReturnedBox.Text = oReader["Quantity"].ToString();
+                        sContractorViaBox.Text = oReader["ContractorVia"].ToString();
+                        sActionBox.Text = oReader["Action"].ToString();
+                        sNameBox.Text = oReader["Name"].ToString();
+                        sCommentBox.Text = oReader["Comments"].ToString();
+                    }
+                }
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal tab populated!\n");
+                forceScroll();
+            }
+
+        }
+
+
 
 
 

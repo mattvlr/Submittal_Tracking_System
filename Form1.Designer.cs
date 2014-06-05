@@ -31,14 +31,20 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultantDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.submittalDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultantDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.closeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setDirectory = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
+            this.wBrowseProject = new System.Windows.Forms.Button();
+            this.wBrowseConsultant = new System.Windows.Forms.Button();
+            this.wProjectLoc = new System.Windows.Forms.TextBox();
+            this.zlabel28 = new System.Windows.Forms.Label();
+            this.wConsultantLoc = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.tabConsultant = new System.Windows.Forms.TabPage();
             this.cDeleteButton = new System.Windows.Forms.Button();
@@ -108,10 +114,6 @@
             this.ConsultantView = new System.Windows.Forms.DataGridView();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.ContractorDB = new System.Windows.Forms.OpenFileDialog();
-            this.wConsultantLoc = new System.Windows.Forms.TextBox();
-            this.zlabel28 = new System.Windows.Forms.Label();
-            this.wProjectLoc = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
@@ -133,7 +135,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.exportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1320, 24);
@@ -153,18 +156,11 @@
             // newMenu
             // 
             this.newMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consultantDatabaseToolStripMenuItem,
-            this.submittalDatabaseToolStripMenuItem});
+            this.submittalDatabaseToolStripMenuItem,
+            this.consultantDatabaseToolStripMenuItem});
             this.newMenu.Name = "newMenu";
-            this.newMenu.Size = new System.Drawing.Size(103, 22);
+            this.newMenu.Size = new System.Drawing.Size(140, 22);
             this.newMenu.Text = "New";
-            // 
-            // consultantDatabaseToolStripMenuItem
-            // 
-            this.consultantDatabaseToolStripMenuItem.Name = "consultantDatabaseToolStripMenuItem";
-            this.consultantDatabaseToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.consultantDatabaseToolStripMenuItem.Text = "Consultant Database";
-            this.consultantDatabaseToolStripMenuItem.Click += new System.EventHandler(this.consultantDatabaseToolStripMenuItem_Click);
             // 
             // submittalDatabaseToolStripMenuItem
             // 
@@ -173,17 +169,24 @@
             this.submittalDatabaseToolStripMenuItem.Text = "Submittal Database";
             this.submittalDatabaseToolStripMenuItem.Click += new System.EventHandler(this.submittalDatabaseToolStripMenuItem_Click);
             // 
+            // consultantDatabaseToolStripMenuItem
+            // 
+            this.consultantDatabaseToolStripMenuItem.Name = "consultantDatabaseToolStripMenuItem";
+            this.consultantDatabaseToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.consultantDatabaseToolStripMenuItem.Text = "Consultant Database";
+            this.consultantDatabaseToolStripMenuItem.Click += new System.EventHandler(this.consultantDatabaseToolStripMenuItem_Click);
+            // 
             // openMenu
             // 
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(152, 22);
+            this.openMenu.Size = new System.Drawing.Size(140, 22);
             this.openMenu.Text = "Open DB.sdf";
             this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
             // 
             // closeMenu
             // 
             this.closeMenu.Name = "closeMenu";
-            this.closeMenu.Size = new System.Drawing.Size(103, 22);
+            this.closeMenu.Size = new System.Drawing.Size(140, 22);
             this.closeMenu.Text = "Close";
             this.closeMenu.Click += new System.EventHandler(this.closeMenu_Click);
             // 
@@ -192,6 +195,12 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.exportToolStripMenuItem.Text = "Export";
             // 
             // tabControl1
             // 
@@ -209,6 +218,8 @@
             // 
             // welcomeTab
             // 
+            this.welcomeTab.Controls.Add(this.wBrowseProject);
+            this.welcomeTab.Controls.Add(this.wBrowseConsultant);
             this.welcomeTab.Controls.Add(this.wProjectLoc);
             this.welcomeTab.Controls.Add(this.zlabel28);
             this.welcomeTab.Controls.Add(this.wConsultantLoc);
@@ -221,14 +232,55 @@
             this.welcomeTab.Text = "Welcome";
             this.welcomeTab.UseVisualStyleBackColor = true;
             // 
+            // wBrowseProject
+            // 
+            this.wBrowseProject.Location = new System.Drawing.Point(1058, 117);
+            this.wBrowseProject.Name = "wBrowseProject";
+            this.wBrowseProject.Size = new System.Drawing.Size(25, 23);
+            this.wBrowseProject.TabIndex = 5;
+            this.wBrowseProject.Text = "...";
+            this.wBrowseProject.UseVisualStyleBackColor = true;
+            this.wBrowseProject.Click += new System.EventHandler(this.wBrowseProject_Click);
+            // 
+            // wBrowseConsultant
+            // 
+            this.wBrowseConsultant.Location = new System.Drawing.Point(1058, 91);
+            this.wBrowseConsultant.Name = "wBrowseConsultant";
+            this.wBrowseConsultant.Size = new System.Drawing.Size(25, 23);
+            this.wBrowseConsultant.TabIndex = 4;
+            this.wBrowseConsultant.Text = "...";
+            this.wBrowseConsultant.UseVisualStyleBackColor = true;
+            this.wBrowseConsultant.Click += new System.EventHandler(this.wBrowseConsultant_Click);
+            // 
+            // wProjectLoc
+            // 
+            this.wProjectLoc.Location = new System.Drawing.Point(287, 119);
+            this.wProjectLoc.Name = "wProjectLoc";
+            this.wProjectLoc.Size = new System.Drawing.Size(765, 20);
+            this.wProjectLoc.TabIndex = 3;
+            // 
+            // zlabel28
+            // 
+            this.zlabel28.AutoSize = true;
+            this.zlabel28.Location = new System.Drawing.Point(133, 122);
+            this.zlabel28.Name = "zlabel28";
+            this.zlabel28.Size = new System.Drawing.Size(0, 13);
+            this.zlabel28.TabIndex = 2;
+            // 
+            // wConsultantLoc
+            // 
+            this.wConsultantLoc.Location = new System.Drawing.Point(287, 93);
+            this.wConsultantLoc.Name = "wConsultantLoc";
+            this.wConsultantLoc.Size = new System.Drawing.Size(765, 20);
+            this.wConsultantLoc.TabIndex = 1;
+            // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(146, 96);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(135, 13);
+            this.label27.Size = new System.Drawing.Size(0, 13);
             this.label27.TabIndex = 0;
-            this.label27.Text = "Location of Consultant List:";
             // 
             // tabConsultant
             // 
@@ -844,12 +896,17 @@
             // SubmittalsView
             // 
             this.SubmittalsView.AllowUserToOrderColumns = true;
+            this.SubmittalsView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.SubmittalsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SubmittalsView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SubmittalsView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.SubmittalsView.Location = new System.Drawing.Point(3, 3);
             this.SubmittalsView.Name = "SubmittalsView";
             this.SubmittalsView.Size = new System.Drawing.Size(1294, 442);
             this.SubmittalsView.TabIndex = 1;
+            this.SubmittalsView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.SubmittalsView_CellBeginEdit);
+            this.SubmittalsView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.SubmittalsView_CellValidating);
+            this.SubmittalsView.DoubleClick += new System.EventHandler(this.SubmittalsView_DoubleClick);
             // 
             // tabList
             // 
@@ -924,33 +981,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1320, 631);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // ContractorDB
-            // 
-            this.ContractorDB.FileName = " ContractorDB.sdf";
-            // 
-            // wConsultantLoc
-            // 
-            this.wConsultantLoc.Location = new System.Drawing.Point(287, 93);
-            this.wConsultantLoc.Name = "wConsultantLoc";
-            this.wConsultantLoc.Size = new System.Drawing.Size(765, 20);
-            this.wConsultantLoc.TabIndex = 1;
-            // 
-            // zlabel28
-            // 
-            this.zlabel28.AutoSize = true;
-            this.zlabel28.Location = new System.Drawing.Point(133, 122);
-            this.zlabel28.Name = "zlabel28";
-            this.zlabel28.Size = new System.Drawing.Size(148, 13);
-            this.zlabel28.TabIndex = 2;
-            this.zlabel28.Text = "Location of Project Database:";
-            // 
-            // wProjectLoc
-            // 
-            this.wProjectLoc.Location = new System.Drawing.Point(287, 119);
-            this.wProjectLoc.Name = "wProjectLoc";
-            this.wProjectLoc.Size = new System.Drawing.Size(765, 20);
-            this.wProjectLoc.TabIndex = 3;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1020,8 +1050,6 @@
         private System.Windows.Forms.Button cAddButton;
         private System.Windows.Forms.RichTextBox cErrorBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TabPage welcomeTab;
-        private System.Windows.Forms.OpenFileDialog ContractorDB;
         private System.Windows.Forms.TabPage tabLog;
         private System.Windows.Forms.TabPage tabList;
         private System.Windows.Forms.Panel panel3;
@@ -1071,10 +1099,14 @@
         private System.Windows.Forms.DataGridView ConsultantView;
         private System.Windows.Forms.ToolStripMenuItem consultantDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem submittalDatabaseToolStripMenuItem;
-        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TabPage welcomeTab;
+        private System.Windows.Forms.Button wBrowseProject;
+        private System.Windows.Forms.Button wBrowseConsultant;
         private System.Windows.Forms.TextBox wProjectLoc;
         private System.Windows.Forms.Label zlabel28;
         private System.Windows.Forms.TextBox wConsultantLoc;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
     }
 }
 
