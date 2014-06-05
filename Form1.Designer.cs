@@ -40,6 +40,8 @@
             this.setDirectory = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
+            this.zlabel30 = new System.Windows.Forms.Label();
+            this.zlabel29 = new System.Windows.Forms.Label();
             this.wBrowseProject = new System.Windows.Forms.Button();
             this.wBrowseConsultant = new System.Windows.Forms.Button();
             this.wProjectLoc = new System.Windows.Forms.TextBox();
@@ -93,8 +95,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.sConsultantBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.sSubmittalDropdown = new System.Windows.Forms.ComboBox();
             this.sSubmittalDateBox = new System.Windows.Forms.DateTimePicker();
-            this.sSubmittalNumBox = new System.Windows.Forms.TextBox();
             this.sDescriptionBox = new System.Windows.Forms.TextBox();
             this.sNumReceivedBox = new System.Windows.Forms.TextBox();
             this.sSpecNumBox = new System.Windows.Forms.TextBox();
@@ -106,14 +108,18 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.ztablelayout1 = new System.Windows.Forms.TableLayoutPanel();
-            this.LRefresh = new System.Windows.Forms.Button();
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.subAddbtn = new System.Windows.Forms.Button();
+            this.LRefresh = new System.Windows.Forms.Button();
+            this.subDeletebtn = new System.Windows.Forms.Button();
             this.tabList = new System.Windows.Forms.TabPage();
             this.ztablelayout2 = new System.Windows.Forms.TableLayoutPanel();
             this.CRefresh = new System.Windows.Forms.Button();
             this.ConsultantView = new System.Windows.Forms.DataGridView();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.quickTestbtn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
@@ -125,6 +131,9 @@
             this.tabLog.SuspendLayout();
             this.ztablelayout1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.tabList.SuspendLayout();
             this.ztablelayout2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).BeginInit();
@@ -215,9 +224,12 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1314, 530);
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // welcomeTab
             // 
+            this.welcomeTab.Controls.Add(this.zlabel30);
+            this.welcomeTab.Controls.Add(this.zlabel29);
             this.welcomeTab.Controls.Add(this.wBrowseProject);
             this.welcomeTab.Controls.Add(this.wBrowseConsultant);
             this.welcomeTab.Controls.Add(this.wProjectLoc);
@@ -232,11 +244,31 @@
             this.welcomeTab.Text = "Welcome";
             this.welcomeTab.UseVisualStyleBackColor = true;
             // 
+            // zlabel30
+            // 
+            this.zlabel30.AutoSize = true;
+            this.zlabel30.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zlabel30.Location = new System.Drawing.Point(34, 96);
+            this.zlabel30.Name = "zlabel30";
+            this.zlabel30.Size = new System.Drawing.Size(165, 26);
+            this.zlabel30.TabIndex = 7;
+            this.zlabel30.Text = "Path to DB.sdf :";
+            // 
+            // zlabel29
+            // 
+            this.zlabel29.AutoSize = true;
+            this.zlabel29.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zlabel29.Location = new System.Drawing.Point(34, 29);
+            this.zlabel29.Name = "zlabel29";
+            this.zlabel29.Size = new System.Drawing.Size(275, 26);
+            this.zlabel29.TabIndex = 6;
+            this.zlabel29.Text = "Path to ConsultantDB.sdf : ";
+            // 
             // wBrowseProject
             // 
-            this.wBrowseProject.Location = new System.Drawing.Point(1058, 117);
+            this.wBrowseProject.Location = new System.Drawing.Point(810, 123);
             this.wBrowseProject.Name = "wBrowseProject";
-            this.wBrowseProject.Size = new System.Drawing.Size(25, 23);
+            this.wBrowseProject.Size = new System.Drawing.Size(50, 23);
             this.wBrowseProject.TabIndex = 5;
             this.wBrowseProject.Text = "...";
             this.wBrowseProject.UseVisualStyleBackColor = true;
@@ -244,9 +276,10 @@
             // 
             // wBrowseConsultant
             // 
-            this.wBrowseConsultant.Location = new System.Drawing.Point(1058, 91);
+            this.wBrowseConsultant.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wBrowseConsultant.Location = new System.Drawing.Point(810, 55);
             this.wBrowseConsultant.Name = "wBrowseConsultant";
-            this.wBrowseConsultant.Size = new System.Drawing.Size(25, 23);
+            this.wBrowseConsultant.Size = new System.Drawing.Size(50, 23);
             this.wBrowseConsultant.TabIndex = 4;
             this.wBrowseConsultant.Text = "...";
             this.wBrowseConsultant.UseVisualStyleBackColor = true;
@@ -254,7 +287,7 @@
             // 
             // wProjectLoc
             // 
-            this.wProjectLoc.Location = new System.Drawing.Point(287, 119);
+            this.wProjectLoc.Location = new System.Drawing.Point(39, 125);
             this.wProjectLoc.Name = "wProjectLoc";
             this.wProjectLoc.Size = new System.Drawing.Size(765, 20);
             this.wProjectLoc.TabIndex = 3;
@@ -269,10 +302,11 @@
             // 
             // wConsultantLoc
             // 
-            this.wConsultantLoc.Location = new System.Drawing.Point(287, 93);
+            this.wConsultantLoc.Location = new System.Drawing.Point(39, 58);
             this.wConsultantLoc.Name = "wConsultantLoc";
             this.wConsultantLoc.Size = new System.Drawing.Size(765, 20);
             this.wConsultantLoc.TabIndex = 1;
+            this.wConsultantLoc.TextChanged += new System.EventHandler(this.wConsultantLoc_TextChanged);
             // 
             // label27
             // 
@@ -751,8 +785,8 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.sSubmittalDropdown);
             this.panel1.Controls.Add(this.sSubmittalDateBox);
-            this.panel1.Controls.Add(this.sSubmittalNumBox);
             this.panel1.Controls.Add(this.sDescriptionBox);
             this.panel1.Controls.Add(this.sNumReceivedBox);
             this.panel1.Controls.Add(this.sSpecNumBox);
@@ -766,6 +800,16 @@
             this.panel1.Size = new System.Drawing.Size(754, 151);
             this.panel1.TabIndex = 3;
             // 
+            // sSubmittalDropdown
+            // 
+            this.sSubmittalDropdown.FormattingEnabled = true;
+            this.sSubmittalDropdown.Location = new System.Drawing.Point(174, 37);
+            this.sSubmittalDropdown.Name = "sSubmittalDropdown";
+            this.sSubmittalDropdown.Size = new System.Drawing.Size(300, 21);
+            this.sSubmittalDropdown.TabIndex = 9;
+            this.sSubmittalDropdown.SelectedIndexChanged += new System.EventHandler(this.sSubmittalDropdown_SelectedIndexChanged);
+            this.sSubmittalDropdown.Click += new System.EventHandler(this.sSubmittalDropdown_Click);
+            // 
             // sSubmittalDateBox
             // 
             this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -773,13 +817,6 @@
             this.sSubmittalDateBox.Name = "sSubmittalDateBox";
             this.sSubmittalDateBox.Size = new System.Drawing.Size(100, 20);
             this.sSubmittalDateBox.TabIndex = 7;
-            // 
-            // sSubmittalNumBox
-            // 
-            this.sSubmittalNumBox.Location = new System.Drawing.Point(174, 37);
-            this.sSubmittalNumBox.Name = "sSubmittalNumBox";
-            this.sSubmittalNumBox.Size = new System.Drawing.Size(100, 20);
-            this.sSubmittalNumBox.TabIndex = 9;
             // 
             // sDescriptionBox
             // 
@@ -872,26 +909,17 @@
             // 
             this.ztablelayout1.ColumnCount = 1;
             this.ztablelayout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ztablelayout1.Controls.Add(this.LRefresh, 0, 1);
             this.ztablelayout1.Controls.Add(this.SubmittalsView, 0, 0);
+            this.ztablelayout1.Controls.Add(this.splitContainer1, 0, 1);
             this.ztablelayout1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ztablelayout1.Location = new System.Drawing.Point(3, 3);
             this.ztablelayout1.Name = "ztablelayout1";
             this.ztablelayout1.RowCount = 2;
             this.ztablelayout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.ztablelayout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ztablelayout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.ztablelayout1.Size = new System.Drawing.Size(1300, 498);
             this.ztablelayout1.TabIndex = 0;
-            // 
-            // LRefresh
-            // 
-            this.LRefresh.Location = new System.Drawing.Point(3, 451);
-            this.LRefresh.Name = "LRefresh";
-            this.LRefresh.Size = new System.Drawing.Size(152, 44);
-            this.LRefresh.TabIndex = 0;
-            this.LRefresh.Text = "Refresh";
-            this.LRefresh.UseVisualStyleBackColor = true;
-            this.LRefresh.Click += new System.EventHandler(this.LRefresh_Click);
             // 
             // SubmittalsView
             // 
@@ -903,10 +931,58 @@
             this.SubmittalsView.Location = new System.Drawing.Point(3, 3);
             this.SubmittalsView.Name = "SubmittalsView";
             this.SubmittalsView.Size = new System.Drawing.Size(1294, 442);
+            this.SubmittalsView.StandardTab = true;
             this.SubmittalsView.TabIndex = 1;
-            this.SubmittalsView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.SubmittalsView_CellBeginEdit);
-            this.SubmittalsView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.SubmittalsView_CellValidating);
             this.SubmittalsView.DoubleClick += new System.EventHandler(this.SubmittalsView_DoubleClick);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 451);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.subAddbtn);
+            this.splitContainer1.Panel1.Controls.Add(this.LRefresh);
+            this.splitContainer1.Panel1.Controls.Add(this.subDeletebtn);
+            this.splitContainer1.Size = new System.Drawing.Size(1294, 44);
+            this.splitContainer1.SplitterDistance = 431;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // subAddbtn
+            // 
+            this.subAddbtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.subAddbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subAddbtn.Location = new System.Drawing.Point(314, 0);
+            this.subAddbtn.Name = "subAddbtn";
+            this.subAddbtn.Size = new System.Drawing.Size(117, 44);
+            this.subAddbtn.TabIndex = 2;
+            this.subAddbtn.Text = "Add";
+            this.subAddbtn.UseVisualStyleBackColor = true;
+            // 
+            // LRefresh
+            // 
+            this.LRefresh.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LRefresh.Location = new System.Drawing.Point(0, 0);
+            this.LRefresh.Name = "LRefresh";
+            this.LRefresh.Size = new System.Drawing.Size(152, 44);
+            this.LRefresh.TabIndex = 0;
+            this.LRefresh.Text = "Refresh";
+            this.LRefresh.UseVisualStyleBackColor = true;
+            this.LRefresh.Click += new System.EventHandler(this.LRefresh_Click);
+            // 
+            // subDeletebtn
+            // 
+            this.subDeletebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subDeletebtn.Location = new System.Drawing.Point(158, 0);
+            this.subDeletebtn.Name = "subDeletebtn";
+            this.subDeletebtn.Size = new System.Drawing.Size(150, 44);
+            this.subDeletebtn.TabIndex = 1;
+            this.subDeletebtn.Text = "Delete";
+            this.subDeletebtn.UseVisualStyleBackColor = true;
+            this.subDeletebtn.Click += new System.EventHandler(this.subDeletebtn_Click);
             // 
             // tabList
             // 
@@ -981,16 +1057,27 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1320, 631);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
+            // quickTestbtn
+            // 
+            this.quickTestbtn.Location = new System.Drawing.Point(143, 1);
+            this.quickTestbtn.Name = "quickTestbtn";
+            this.quickTestbtn.Size = new System.Drawing.Size(75, 23);
+            this.quickTestbtn.TabIndex = 3;
+            this.quickTestbtn.Text = "Set Paths";
+            this.quickTestbtn.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 655);
+            this.Controls.Add(this.quickTestbtn);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Submittal Tracking System";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -1010,6 +1097,9 @@
             this.tabLog.ResumeLayout(false);
             this.ztablelayout1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.tabList.ResumeLayout(false);
             this.ztablelayout2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).EndInit();
@@ -1061,7 +1151,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox sSubmittalNumBox;
         private System.Windows.Forms.TextBox sDescriptionBox;
         private System.Windows.Forms.TextBox sNumReceivedBox;
         private System.Windows.Forms.TextBox sSpecNumBox;
@@ -1107,6 +1196,13 @@
         private System.Windows.Forms.TextBox wConsultantLoc;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.Button subDeletebtn;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button subAddbtn;
+        private System.Windows.Forms.ComboBox sSubmittalDropdown;
+        private System.Windows.Forms.Button quickTestbtn;
+        private System.Windows.Forms.Label zlabel30;
+        private System.Windows.Forms.Label zlabel29;
     }
 }
 
