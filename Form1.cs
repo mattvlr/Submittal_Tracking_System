@@ -23,6 +23,7 @@ namespace Submittal_Tracking_System
         {
             tabControl1.Hide();
             cErrorBox.Hide();
+
         }
         private void closeMenu_Click(object sender, EventArgs e)
         {
@@ -715,7 +716,6 @@ namespace Submittal_Tracking_System
             finally
             {
                 cn.Close();
-                tabControl1.SelectedIndex = 3;
                 SubmittalRefresh();
             }
                 
@@ -955,6 +955,8 @@ namespace Submittal_Tracking_System
             if (wProjectLoc.Text == "")
                 tabControl1.SelectedTab = welcomeTab;
         }
+
+ 
 
   
 

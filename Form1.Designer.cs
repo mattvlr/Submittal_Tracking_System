@@ -73,54 +73,50 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ConsultantView = new System.Windows.Forms.DataGridView();
             this.tabSubmittals = new System.Windows.Forms.TabPage();
-            this.logSubmittalButton = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.sCommentBox = new System.Windows.Forms.TextBox();
-            this.sNameBox = new System.Windows.Forms.TextBox();
-            this.sActionBox = new System.Windows.Forms.ComboBox();
-            this.sQuantityReturnedBox = new System.Windows.Forms.TextBox();
-            this.sReturnedCBox = new System.Windows.Forms.DateTimePicker();
-            this.sContractorViaBox = new System.Windows.Forms.ComboBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.label9 = new System.Windows.Forms.Label();
+            this.zgroupBox3 = new System.Windows.Forms.GroupBox();
             this.label26 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.sConsultantDateDueBox = new System.Windows.Forms.DateTimePicker();
+            this.sConsultantBox = new System.Windows.Forms.ComboBox();
             this.sFromConsultantDateBox = new System.Windows.Forms.DateTimePicker();
+            this.label16 = new System.Windows.Forms.Label();
             this.sQuantityConsultantBox = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.sConsultantViaBox = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.sToConsultantDateBox = new System.Windows.Forms.DateTimePicker();
             this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.sConsultantBox = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.zgroupBox4 = new System.Windows.Forms.GroupBox();
+            this.sCommentBox = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.sNameBox = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.sActionBox = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.sQuantityReturnedBox = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.sReturnedCBox = new System.Windows.Forms.DateTimePicker();
+            this.label24 = new System.Windows.Forms.Label();
+            this.sContractorViaBox = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.zgroupBox2 = new System.Windows.Forms.GroupBox();
             this.sSubmittalDropdown = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.sSubmittalDateBox = new System.Windows.Forms.DateTimePicker();
+            this.logSubmittalButton = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.sDescriptionBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.sNumReceivedBox = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.sSpecNumBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tabLog = new System.Windows.Forms.TabPage();
-            this.ztablelayout1 = new System.Windows.Forms.TableLayoutPanel();
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.subAddbtn = new System.Windows.Forms.Button();
-            this.LRefresh = new System.Windows.Forms.Button();
-            this.subDeletebtn = new System.Windows.Forms.Button();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
@@ -132,15 +128,14 @@
             this.zgroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).BeginInit();
             this.tabSubmittals.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.tabLog.SuspendLayout();
-            this.ztablelayout1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            this.zgroupBox3.SuspendLayout();
+            this.zgroupBox4.SuspendLayout();
+            this.zgroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -220,7 +215,6 @@
             this.tabControl1.Controls.Add(this.welcomeTab);
             this.tabControl1.Controls.Add(this.tabConsultant);
             this.tabControl1.Controls.Add(this.tabSubmittals);
-            this.tabControl1.Controls.Add(this.tabLog);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
@@ -570,11 +564,7 @@
             // 
             // tabSubmittals
             // 
-            this.tabSubmittals.Controls.Add(this.logSubmittalButton);
-            this.tabSubmittals.Controls.Add(this.panel3);
-            this.tabSubmittals.Controls.Add(this.panel2);
-            this.tabSubmittals.Controls.Add(this.panel1);
-            this.tabSubmittals.Controls.Add(this.label9);
+            this.tabSubmittals.Controls.Add(this.splitContainer3);
             this.tabSubmittals.Location = new System.Drawing.Point(4, 22);
             this.tabSubmittals.Name = "tabSubmittals";
             this.tabSubmittals.Padding = new System.Windows.Forms.Padding(3);
@@ -583,52 +573,220 @@
             this.tabSubmittals.Text = "Submittals";
             this.tabSubmittals.UseVisualStyleBackColor = true;
             // 
-            // logSubmittalButton
+            // splitContainer3
             // 
-            this.logSubmittalButton.AutoSize = true;
-            this.logSubmittalButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.logSubmittalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logSubmittalButton.Location = new System.Drawing.Point(832, 89);
-            this.logSubmittalButton.Name = "logSubmittalButton";
-            this.logSubmittalButton.Size = new System.Drawing.Size(127, 53);
-            this.logSubmittalButton.TabIndex = 5;
-            this.logSubmittalButton.Text = "Log";
-            this.logSubmittalButton.UseVisualStyleBackColor = true;
-            this.logSubmittalButton.Click += new System.EventHandler(this.logSubmittalButton_Click);
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // panel3
+            // splitContainer3.Panel1
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.sCommentBox);
-            this.panel3.Controls.Add(this.sNameBox);
-            this.panel3.Controls.Add(this.sActionBox);
-            this.panel3.Controls.Add(this.sQuantityReturnedBox);
-            this.panel3.Controls.Add(this.sReturnedCBox);
-            this.panel3.Controls.Add(this.sContractorViaBox);
-            this.panel3.Controls.Add(this.label25);
-            this.panel3.Controls.Add(this.label24);
-            this.panel3.Controls.Add(this.label23);
-            this.panel3.Controls.Add(this.label22);
-            this.panel3.Controls.Add(this.label21);
-            this.panel3.Controls.Add(this.label17);
-            this.panel3.Location = new System.Drawing.Point(39, 335);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(754, 143);
-            this.panel3.TabIndex = 4;
+            this.splitContainer3.Panel1.Controls.Add(this.label9);
+            this.splitContainer3.Panel1.Controls.Add(this.zgroupBox3);
+            this.splitContainer3.Panel1.Controls.Add(this.zgroupBox4);
+            this.splitContainer3.Panel1.Controls.Add(this.zgroupBox2);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.SubmittalsView);
+            this.splitContainer3.Size = new System.Drawing.Size(1300, 498);
+            this.splitContainer3.SplitterDistance = 359;
+            this.splitContainer3.TabIndex = 17;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(20, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(293, 42);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Log New Submittal\r\n";
+            // 
+            // zgroupBox3
+            // 
+            this.zgroupBox3.Controls.Add(this.label26);
+            this.zgroupBox3.Controls.Add(this.label15);
+            this.zgroupBox3.Controls.Add(this.sConsultantDateDueBox);
+            this.zgroupBox3.Controls.Add(this.sConsultantBox);
+            this.zgroupBox3.Controls.Add(this.sFromConsultantDateBox);
+            this.zgroupBox3.Controls.Add(this.label16);
+            this.zgroupBox3.Controls.Add(this.sQuantityConsultantBox);
+            this.zgroupBox3.Controls.Add(this.label18);
+            this.zgroupBox3.Controls.Add(this.sConsultantViaBox);
+            this.zgroupBox3.Controls.Add(this.label19);
+            this.zgroupBox3.Controls.Add(this.sToConsultantDateBox);
+            this.zgroupBox3.Controls.Add(this.label20);
+            this.zgroupBox3.Location = new System.Drawing.Point(27, 195);
+            this.zgroupBox3.Name = "zgroupBox3";
+            this.zgroupBox3.Size = new System.Drawing.Size(490, 144);
+            this.zgroupBox3.TabIndex = 7;
+            this.zgroupBox3.TabStop = false;
+            this.zgroupBox3.Text = "Part 2";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(273, 52);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(59, 13);
+            this.label26.TabIndex = 13;
+            this.label26.Text = "Date Due: ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(70, 22);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(91, 13);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Consultant Name:";
+            // 
+            // sConsultantDateDueBox
+            // 
+            this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sConsultantDateDueBox.Location = new System.Drawing.Point(346, 46);
+            this.sConsultantDateDueBox.Name = "sConsultantDateDueBox";
+            this.sConsultantDateDueBox.Size = new System.Drawing.Size(100, 20);
+            this.sConsultantDateDueBox.TabIndex = 12;
+            // 
+            // sConsultantBox
+            // 
+            this.sConsultantBox.FormattingEnabled = true;
+            this.sConsultantBox.Location = new System.Drawing.Point(167, 19);
+            this.sConsultantBox.Name = "sConsultantBox";
+            this.sConsultantBox.Size = new System.Drawing.Size(300, 21);
+            this.sConsultantBox.TabIndex = 0;
+            this.sConsultantBox.Click += new System.EventHandler(this.consultantBox_Click);
+            // 
+            // sFromConsultantDateBox
+            // 
+            this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sFromConsultantDateBox.Location = new System.Drawing.Point(167, 98);
+            this.sFromConsultantDateBox.Name = "sFromConsultantDateBox";
+            this.sFromConsultantDateBox.Size = new System.Drawing.Size(100, 20);
+            this.sFromConsultantDateBox.TabIndex = 11;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(10, 49);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(151, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "Date Forwarded to Consultant:";
+            // 
+            // sQuantityConsultantBox
+            // 
+            this.sQuantityConsultantBox.Location = new System.Drawing.Point(167, 72);
+            this.sQuantityConsultantBox.Name = "sQuantityConsultantBox";
+            this.sQuantityConsultantBox.Size = new System.Drawing.Size(100, 20);
+            this.sQuantityConsultantBox.TabIndex = 10;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(273, 75);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(67, 13);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "Shipped Via:";
+            // 
+            // sConsultantViaBox
+            // 
+            this.sConsultantViaBox.FormattingEnabled = true;
+            this.sConsultantViaBox.Items.AddRange(new object[] {
+            "Delivered",
+            "US Mail",
+            "Fedex",
+            "UPS?",
+            "Courier Service",
+            "Picked Up"});
+            this.sConsultantViaBox.Location = new System.Drawing.Point(346, 72);
+            this.sConsultantViaBox.Name = "sConsultantViaBox";
+            this.sConsultantViaBox.Size = new System.Drawing.Size(121, 21);
+            this.sConsultantViaBox.TabIndex = 9;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(2, 101);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(159, 13);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "Date Returned From Consultant:";
+            // 
+            // sToConsultantDateBox
+            // 
+            this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sToConsultantDateBox.Location = new System.Drawing.Point(167, 46);
+            this.sToConsultantDateBox.Name = "sToConsultantDateBox";
+            this.sToConsultantDateBox.Size = new System.Drawing.Size(100, 20);
+            this.sToConsultantDateBox.TabIndex = 8;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(47, 75);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(114, 13);
+            this.label20.TabIndex = 6;
+            this.label20.Text = "Quantity to Consultant:";
+            // 
+            // zgroupBox4
+            // 
+            this.zgroupBox4.Controls.Add(this.button1);
+            this.zgroupBox4.Controls.Add(this.sCommentBox);
+            this.zgroupBox4.Controls.Add(this.label17);
+            this.zgroupBox4.Controls.Add(this.sNameBox);
+            this.zgroupBox4.Controls.Add(this.label21);
+            this.zgroupBox4.Controls.Add(this.sActionBox);
+            this.zgroupBox4.Controls.Add(this.label22);
+            this.zgroupBox4.Controls.Add(this.sQuantityReturnedBox);
+            this.zgroupBox4.Controls.Add(this.label23);
+            this.zgroupBox4.Controls.Add(this.sReturnedCBox);
+            this.zgroupBox4.Controls.Add(this.label24);
+            this.zgroupBox4.Controls.Add(this.sContractorViaBox);
+            this.zgroupBox4.Controls.Add(this.label25);
+            this.zgroupBox4.Location = new System.Drawing.Point(523, 45);
+            this.zgroupBox4.Name = "zgroupBox4";
+            this.zgroupBox4.Size = new System.Drawing.Size(460, 144);
+            this.zgroupBox4.TabIndex = 16;
+            this.zgroupBox4.TabStop = false;
+            this.zgroupBox4.Text = "Part 3";
             // 
             // sCommentBox
             // 
-            this.sCommentBox.Location = new System.Drawing.Point(174, 116);
+            this.sCommentBox.Location = new System.Drawing.Point(154, 118);
             this.sCommentBox.Name = "sCommentBox";
             this.sCommentBox.Size = new System.Drawing.Size(300, 20);
             this.sCommentBox.TabIndex = 15;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(4, 15);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(144, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Date Returned to Contractor:";
+            // 
             // sNameBox
             // 
-            this.sNameBox.Location = new System.Drawing.Point(174, 90);
+            this.sNameBox.Location = new System.Drawing.Point(154, 92);
             this.sNameBox.Name = "sNameBox";
             this.sNameBox.Size = new System.Drawing.Size(300, 20);
             this.sNameBox.TabIndex = 14;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(52, 42);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(96, 13);
+            this.label21.TabIndex = 1;
+            this.label21.Text = "Quantity Returned:";
             // 
             // sActionBox
             // 
@@ -639,25 +797,52 @@
             "Revise and Resubmit",
             "Not Accepted",
             "Resubmittal Received"});
-            this.sActionBox.Location = new System.Drawing.Point(174, 63);
+            this.sActionBox.Location = new System.Drawing.Point(154, 65);
             this.sActionBox.Name = "sActionBox";
             this.sActionBox.Size = new System.Drawing.Size(173, 21);
             this.sActionBox.TabIndex = 13;
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(260, 15);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(67, 13);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "Shipped Via:";
+            // 
             // sQuantityReturnedBox
             // 
-            this.sQuantityReturnedBox.Location = new System.Drawing.Point(174, 37);
+            this.sQuantityReturnedBox.Location = new System.Drawing.Point(154, 39);
             this.sQuantityReturnedBox.Name = "sQuantityReturnedBox";
             this.sQuantityReturnedBox.Size = new System.Drawing.Size(54, 20);
             this.sQuantityReturnedBox.TabIndex = 12;
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(126, 95);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(22, 13);
+            this.label23.TabIndex = 3;
+            this.label23.Text = "By:";
+            // 
             // sReturnedCBox
             // 
             this.sReturnedCBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.sReturnedCBox.Location = new System.Drawing.Point(174, 11);
+            this.sReturnedCBox.Location = new System.Drawing.Point(154, 13);
             this.sReturnedCBox.Name = "sReturnedCBox";
             this.sReturnedCBox.Size = new System.Drawing.Size(100, 20);
             this.sReturnedCBox.TabIndex = 11;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(108, 68);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(40, 13);
+            this.label24.TabIndex = 4;
+            this.label24.Text = "Action:";
             // 
             // sContractorViaBox
             // 
@@ -670,7 +855,7 @@
             "UPS",
             "Courier Service",
             "Picked Up"});
-            this.sContractorViaBox.Location = new System.Drawing.Point(353, 10);
+            this.sContractorViaBox.Location = new System.Drawing.Point(333, 12);
             this.sContractorViaBox.Name = "sContractorViaBox";
             this.sContractorViaBox.Size = new System.Drawing.Size(121, 21);
             this.sContractorViaBox.TabIndex = 10;
@@ -678,240 +863,116 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(109, 119);
+            this.label25.Location = new System.Drawing.Point(89, 121);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(59, 13);
             this.label25.TabIndex = 5;
             this.label25.Text = "Comments:";
             // 
-            // label24
+            // zgroupBox2
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(128, 66);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(40, 13);
-            this.label24.TabIndex = 4;
-            this.label24.Text = "Action:";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(146, 93);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(22, 13);
-            this.label23.TabIndex = 3;
-            this.label23.Text = "By:";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(280, 13);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(67, 13);
-            this.label22.TabIndex = 2;
-            this.label22.Text = "Shipped Via:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(72, 40);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(96, 13);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "Quantity Returned:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(24, 13);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(144, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "Date Returned to Contractor:";
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label26);
-            this.panel2.Controls.Add(this.sConsultantDateDueBox);
-            this.panel2.Controls.Add(this.sFromConsultantDateBox);
-            this.panel2.Controls.Add(this.sQuantityConsultantBox);
-            this.panel2.Controls.Add(this.sConsultantViaBox);
-            this.panel2.Controls.Add(this.sToConsultantDateBox);
-            this.panel2.Controls.Add(this.label20);
-            this.panel2.Controls.Add(this.label19);
-            this.panel2.Controls.Add(this.label18);
-            this.panel2.Controls.Add(this.label16);
-            this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.sConsultantBox);
-            this.panel2.Location = new System.Drawing.Point(39, 205);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(754, 124);
-            this.panel2.TabIndex = 4;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(280, 45);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(59, 13);
-            this.label26.TabIndex = 13;
-            this.label26.Text = "Date Due: ";
-            // 
-            // sConsultantDateDueBox
-            // 
-            this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.sConsultantDateDueBox.Location = new System.Drawing.Point(353, 39);
-            this.sConsultantDateDueBox.Name = "sConsultantDateDueBox";
-            this.sConsultantDateDueBox.Size = new System.Drawing.Size(100, 20);
-            this.sConsultantDateDueBox.TabIndex = 12;
-            // 
-            // sFromConsultantDateBox
-            // 
-            this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.sFromConsultantDateBox.Location = new System.Drawing.Point(174, 91);
-            this.sFromConsultantDateBox.Name = "sFromConsultantDateBox";
-            this.sFromConsultantDateBox.Size = new System.Drawing.Size(100, 20);
-            this.sFromConsultantDateBox.TabIndex = 11;
-            // 
-            // sQuantityConsultantBox
-            // 
-            this.sQuantityConsultantBox.Location = new System.Drawing.Point(174, 65);
-            this.sQuantityConsultantBox.Name = "sQuantityConsultantBox";
-            this.sQuantityConsultantBox.Size = new System.Drawing.Size(100, 20);
-            this.sQuantityConsultantBox.TabIndex = 10;
-            // 
-            // sConsultantViaBox
-            // 
-            this.sConsultantViaBox.FormattingEnabled = true;
-            this.sConsultantViaBox.Items.AddRange(new object[] {
-            "Delivered",
-            "US Mail",
-            "Fedex",
-            "UPS?",
-            "Courier Service",
-            "Picked Up"});
-            this.sConsultantViaBox.Location = new System.Drawing.Point(353, 65);
-            this.sConsultantViaBox.Name = "sConsultantViaBox";
-            this.sConsultantViaBox.Size = new System.Drawing.Size(121, 21);
-            this.sConsultantViaBox.TabIndex = 9;
-            // 
-            // sToConsultantDateBox
-            // 
-            this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.sToConsultantDateBox.Location = new System.Drawing.Point(174, 39);
-            this.sToConsultantDateBox.Name = "sToConsultantDateBox";
-            this.sToConsultantDateBox.Size = new System.Drawing.Size(100, 20);
-            this.sToConsultantDateBox.TabIndex = 8;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(54, 68);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(114, 13);
-            this.label20.TabIndex = 6;
-            this.label20.Text = "Quantity to Consultant:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(9, 94);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(159, 13);
-            this.label19.TabIndex = 5;
-            this.label19.Text = "Date Returned From Consultant:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(280, 68);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(67, 13);
-            this.label18.TabIndex = 4;
-            this.label18.Text = "Shipped Via:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(17, 42);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(151, 13);
-            this.label16.TabIndex = 2;
-            this.label16.Text = "Date Forwarded to Consultant:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(77, 15);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(91, 13);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "Consultant Name:";
-            // 
-            // sConsultantBox
-            // 
-            this.sConsultantBox.FormattingEnabled = true;
-            this.sConsultantBox.Location = new System.Drawing.Point(174, 12);
-            this.sConsultantBox.Name = "sConsultantBox";
-            this.sConsultantBox.Size = new System.Drawing.Size(300, 21);
-            this.sConsultantBox.TabIndex = 0;
-            this.sConsultantBox.Click += new System.EventHandler(this.consultantBox_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.sSubmittalDropdown);
-            this.panel1.Controls.Add(this.sSubmittalDateBox);
-            this.panel1.Controls.Add(this.sDescriptionBox);
-            this.panel1.Controls.Add(this.sNumReceivedBox);
-            this.panel1.Controls.Add(this.sSpecNumBox);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Location = new System.Drawing.Point(39, 48);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(754, 151);
-            this.panel1.TabIndex = 3;
+            this.zgroupBox2.Controls.Add(this.sSubmittalDropdown);
+            this.zgroupBox2.Controls.Add(this.label10);
+            this.zgroupBox2.Controls.Add(this.sSubmittalDateBox);
+            this.zgroupBox2.Controls.Add(this.logSubmittalButton);
+            this.zgroupBox2.Controls.Add(this.label11);
+            this.zgroupBox2.Controls.Add(this.sDescriptionBox);
+            this.zgroupBox2.Controls.Add(this.label12);
+            this.zgroupBox2.Controls.Add(this.sNumReceivedBox);
+            this.zgroupBox2.Controls.Add(this.label13);
+            this.zgroupBox2.Controls.Add(this.sSpecNumBox);
+            this.zgroupBox2.Controls.Add(this.label14);
+            this.zgroupBox2.Location = new System.Drawing.Point(27, 45);
+            this.zgroupBox2.Name = "zgroupBox2";
+            this.zgroupBox2.Size = new System.Drawing.Size(490, 144);
+            this.zgroupBox2.TabIndex = 6;
+            this.zgroupBox2.TabStop = false;
+            this.zgroupBox2.Text = "Part 1";
             // 
             // sSubmittalDropdown
             // 
             this.sSubmittalDropdown.FormattingEnabled = true;
-            this.sSubmittalDropdown.Location = new System.Drawing.Point(174, 37);
+            this.sSubmittalDropdown.Location = new System.Drawing.Point(139, 39);
             this.sSubmittalDropdown.Name = "sSubmittalDropdown";
             this.sSubmittalDropdown.Size = new System.Drawing.Size(300, 21);
             this.sSubmittalDropdown.TabIndex = 9;
             this.sSubmittalDropdown.SelectedIndexChanged += new System.EventHandler(this.sSubmittalDropdown_SelectedIndexChanged);
             this.sSubmittalDropdown.Click += new System.EventHandler(this.sSubmittalDropdown_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(23, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(110, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Specification Section:";
+            // 
             // sSubmittalDateBox
             // 
             this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.sSubmittalDateBox.Location = new System.Drawing.Point(174, 89);
+            this.sSubmittalDateBox.Location = new System.Drawing.Point(139, 91);
             this.sSubmittalDateBox.Name = "sSubmittalDateBox";
             this.sSubmittalDateBox.Size = new System.Drawing.Size(100, 20);
             this.sSubmittalDateBox.TabIndex = 7;
             // 
+            // logSubmittalButton
+            // 
+            this.logSubmittalButton.AutoSize = true;
+            this.logSubmittalButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.logSubmittalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logSubmittalButton.Location = new System.Drawing.Point(276, 92);
+            this.logSubmittalButton.Name = "logSubmittalButton";
+            this.logSubmittalButton.Size = new System.Drawing.Size(121, 41);
+            this.logSubmittalButton.TabIndex = 5;
+            this.logSubmittalButton.Text = "Log";
+            this.logSubmittalButton.UseVisualStyleBackColor = true;
+            this.logSubmittalButton.Click += new System.EventHandler(this.logSubmittalButton_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(40, 42);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(93, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Submittal Number:";
+            // 
             // sDescriptionBox
             // 
-            this.sDescriptionBox.Location = new System.Drawing.Point(174, 63);
+            this.sDescriptionBox.Location = new System.Drawing.Point(139, 65);
             this.sDescriptionBox.Name = "sDescriptionBox";
             this.sDescriptionBox.Size = new System.Drawing.Size(300, 20);
             this.sDescriptionBox.TabIndex = 8;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(70, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 13);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Description:";
+            // 
             // sNumReceivedBox
             // 
-            this.sNumReceivedBox.Location = new System.Drawing.Point(174, 115);
+            this.sNumReceivedBox.Location = new System.Drawing.Point(139, 117);
             this.sNumReceivedBox.Name = "sNumReceivedBox";
             this.sNumReceivedBox.Size = new System.Drawing.Size(100, 20);
             this.sNumReceivedBox.TabIndex = 6;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(51, 94);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(82, 13);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "Date Received:";
+            // 
             // sSpecNumBox
             // 
-            this.sSpecNumBox.Location = new System.Drawing.Point(174, 11);
+            this.sSpecNumBox.Location = new System.Drawing.Point(139, 13);
             this.sSpecNumBox.Name = "sSpecNumBox";
             this.sSpecNumBox.Size = new System.Drawing.Size(100, 20);
             this.sSpecNumBox.TabIndex = 5;
@@ -919,84 +980,11 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(70, 118);
+            this.label14.Location = new System.Drawing.Point(35, 120);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(98, 13);
             this.label14.TabIndex = 4;
             this.label14.Text = "Quantity Received:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(86, 92);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(82, 13);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "Date Received:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(105, 66);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(63, 13);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "Description:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(75, 40);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(93, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Submittal Number:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(58, 14);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(110, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Specification Section:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(32, 3);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(293, 42);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Log New Submittal\r\n";
-            // 
-            // tabLog
-            // 
-            this.tabLog.Controls.Add(this.ztablelayout1);
-            this.tabLog.Location = new System.Drawing.Point(4, 22);
-            this.tabLog.Name = "tabLog";
-            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLog.Size = new System.Drawing.Size(1306, 504);
-            this.tabLog.TabIndex = 3;
-            this.tabLog.Text = "Submittal Log";
-            this.tabLog.UseVisualStyleBackColor = true;
-            // 
-            // ztablelayout1
-            // 
-            this.ztablelayout1.ColumnCount = 1;
-            this.ztablelayout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ztablelayout1.Controls.Add(this.SubmittalsView, 0, 0);
-            this.ztablelayout1.Controls.Add(this.splitContainer1, 0, 1);
-            this.ztablelayout1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ztablelayout1.Location = new System.Drawing.Point(3, 3);
-            this.ztablelayout1.Name = "ztablelayout1";
-            this.ztablelayout1.RowCount = 2;
-            this.ztablelayout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.ztablelayout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.ztablelayout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.ztablelayout1.Size = new System.Drawing.Size(1300, 498);
-            this.ztablelayout1.TabIndex = 0;
             // 
             // SubmittalsView
             // 
@@ -1005,61 +993,12 @@
             this.SubmittalsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SubmittalsView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SubmittalsView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.SubmittalsView.Location = new System.Drawing.Point(3, 3);
+            this.SubmittalsView.Location = new System.Drawing.Point(0, 0);
             this.SubmittalsView.Name = "SubmittalsView";
-            this.SubmittalsView.Size = new System.Drawing.Size(1294, 442);
+            this.SubmittalsView.Size = new System.Drawing.Size(1300, 135);
             this.SubmittalsView.StandardTab = true;
             this.SubmittalsView.TabIndex = 1;
             this.SubmittalsView.DoubleClick += new System.EventHandler(this.SubmittalsView_DoubleClick);
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 451);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.subAddbtn);
-            this.splitContainer1.Panel1.Controls.Add(this.LRefresh);
-            this.splitContainer1.Panel1.Controls.Add(this.subDeletebtn);
-            this.splitContainer1.Size = new System.Drawing.Size(1294, 44);
-            this.splitContainer1.SplitterDistance = 431;
-            this.splitContainer1.TabIndex = 2;
-            // 
-            // subAddbtn
-            // 
-            this.subAddbtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.subAddbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subAddbtn.Location = new System.Drawing.Point(314, 0);
-            this.subAddbtn.Name = "subAddbtn";
-            this.subAddbtn.Size = new System.Drawing.Size(117, 44);
-            this.subAddbtn.TabIndex = 2;
-            this.subAddbtn.Text = "Add";
-            this.subAddbtn.UseVisualStyleBackColor = true;
-            // 
-            // LRefresh
-            // 
-            this.LRefresh.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LRefresh.Location = new System.Drawing.Point(0, 0);
-            this.LRefresh.Name = "LRefresh";
-            this.LRefresh.Size = new System.Drawing.Size(152, 44);
-            this.LRefresh.TabIndex = 0;
-            this.LRefresh.Text = "Refresh";
-            this.LRefresh.UseVisualStyleBackColor = true;
-            this.LRefresh.Click += new System.EventHandler(this.LRefresh_Click);
-            // 
-            // subDeletebtn
-            // 
-            this.subDeletebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subDeletebtn.Location = new System.Drawing.Point(158, 0);
-            this.subDeletebtn.Name = "subDeletebtn";
-            this.subDeletebtn.Size = new System.Drawing.Size(150, 44);
-            this.subDeletebtn.TabIndex = 1;
-            this.subDeletebtn.Text = "Delete";
-            this.subDeletebtn.UseVisualStyleBackColor = true;
-            this.subDeletebtn.Click += new System.EventHandler(this.subDeletebtn_Click);
             // 
             // cErrorBox
             // 
@@ -1088,6 +1027,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1320, 631);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(354, 40);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 41);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Log";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1115,19 +1066,18 @@
             this.zgroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).EndInit();
             this.tabSubmittals.ResumeLayout(false);
-            this.tabSubmittals.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.tabLog.ResumeLayout(false);
-            this.ztablelayout1.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.zgroupBox3.ResumeLayout(false);
+            this.zgroupBox3.PerformLayout();
+            this.zgroupBox4.ResumeLayout(false);
+            this.zgroupBox4.PerformLayout();
+            this.zgroupBox2.ResumeLayout(false);
+            this.zgroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1165,10 +1115,6 @@
         private System.Windows.Forms.Button cAddButton;
         private System.Windows.Forms.RichTextBox cErrorBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TabPage tabLog;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
@@ -1204,16 +1150,11 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.DateTimePicker sConsultantDateDueBox;
         private System.Windows.Forms.DateTimePicker sFromConsultantDateBox;
-        private System.Windows.Forms.Button LRefresh;
-        private System.Windows.Forms.TableLayoutPanel ztablelayout1;
         private System.Windows.Forms.DataGridView SubmittalsView;
         private System.Windows.Forms.DataGridView ConsultantView;
         private System.Windows.Forms.ToolStripMenuItem consultantDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem submittalDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.Button subDeletebtn;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button subAddbtn;
         private System.Windows.Forms.ComboBox sSubmittalDropdown;
         private System.Windows.Forms.Button cClearButton;
         private System.Windows.Forms.SplitContainer splitContainer2;
@@ -1229,6 +1170,11 @@
         private System.Windows.Forms.GroupBox zgroupBox1;
         private System.Windows.Forms.Label zlabel31;
         private System.Windows.Forms.ComboBox cConsultantEditCB;
+        private System.Windows.Forms.GroupBox zgroupBox3;
+        private System.Windows.Forms.GroupBox zgroupBox2;
+        private System.Windows.Forms.GroupBox zgroupBox4;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.Button button1;
     }
 }
 
