@@ -139,6 +139,7 @@ namespace Submittal_Tracking_System
             SqlCeCommand ConsultantCMD;
 
             string sql = "create table Consultant ( "
+            + "ConsultantNum INT IDENTITY(1,1) PRIMARY KEY, "
             + "Name nvarchar (200), "
             + "Address nvarchar (200), "
             + "Address2 nvarchar (200), "
@@ -319,6 +320,84 @@ namespace Submittal_Tracking_System
             cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Form cleared.\n"); // NAME
             forceScroll();
 
+        }
+
+        private void cConsultantEditCB_Click(object sender, EventArgs e)
+        {
+            cConsultantEditCB.Items.Clear();
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringConsultant);
+            Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand cmd;
+
+            string sql = "SELECT Name FROM Consultant";
+            try
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Retrieving Consultants from database.\n");
+                forceScroll();
+                cmd = new SqlCeCommand(sql, cn);
+                using (SqlCeDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        cConsultantEditCB.Items.Add(oReader["Name"].ToString());
+                    }
+                }
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Dropdown populated!\n");
+                forceScroll();
+            }
+        }
+
+        private void cConsultantEditCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+  
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringConsultant);
+            Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand cmd;
+
+            string sql = "SELECT * FROM Consultant where Name = " + cConsultantEditCB.Text;
+            try
+            {
+               // cmd = new SqlCeCommand(sql, cn);
+               // returnVal = cmd.ExecuteScalar();
+               // zlabel31.Text = returnVal.ToString();
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant retrieved.\n");
+                forceScroll();
+            }
         }
 
         //File I/O methods
@@ -507,6 +586,7 @@ namespace Submittal_Tracking_System
                     Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
                     cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'ConsultantDB.sdf' is now: " + Globals.Projectfilepath + "\n");
                     forceScroll();
+                    ConsultantRefresh();
                 }
                 else
                 {
@@ -782,7 +862,7 @@ namespace Submittal_Tracking_System
                 SqlCeCommand cmd = new SqlCeCommand("Consultant", cn);
                 cmd.CommandType = CommandType.TableDirect;
 
-                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
+                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable | ResultSetOptions.Updatable);
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant table was refreshed.\n");
                 forceScroll();
                 ConsultantView.DataSource = rs;
@@ -865,11 +945,18 @@ namespace Submittal_Tracking_System
         //Tab locker
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+           // if (wConsultantLoc.Text == "")
+          //      tabControl1.SelectedIndex = 0;
+         //   if (wProjectLoc.Text == "")
+         //       tabControl1.SelectedIndex = 0;
+
             if (wConsultantLoc.Text == "")
-                tabControl1.SelectedIndex = 0;
+                tabControl1.SelectedTab = welcomeTab;
             if (wProjectLoc.Text == "")
-                tabControl1.SelectedIndex = 0;
+                tabControl1.SelectedTab = welcomeTab;
         }
+
+  
 
 
 

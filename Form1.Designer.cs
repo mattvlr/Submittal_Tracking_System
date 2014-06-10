@@ -49,24 +49,29 @@
             this.wConsultantLoc = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.tabConsultant = new System.Windows.Forms.TabPage();
-            this.cClearButton = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.zgroupBox1 = new System.Windows.Forms.GroupBox();
+            this.zlabel31 = new System.Windows.Forms.Label();
+            this.cConsultantEditCB = new System.Windows.Forms.ComboBox();
+            this.cContactText = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cDeleteButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cStateText = new System.Windows.Forms.TextBox();
             this.cAddButton = new System.Windows.Forms.Button();
             this.cZipcodeText = new System.Windows.Forms.TextBox();
-            this.cStateText = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.cClearButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cContactText = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cCityText = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cAddress2Text = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cNameText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cAddress1Text = new System.Windows.Forms.TextBox();
+            this.cAddress2Text = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cCityText = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.cNameText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ConsultantView = new System.Windows.Forms.DataGridView();
             this.tabSubmittals = new System.Windows.Forms.TabPage();
             this.logSubmittalButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -114,18 +119,18 @@
             this.subAddbtn = new System.Windows.Forms.Button();
             this.LRefresh = new System.Windows.Forms.Button();
             this.subDeletebtn = new System.Windows.Forms.Button();
-            this.tabList = new System.Windows.Forms.TabPage();
-            this.ztablelayout2 = new System.Windows.Forms.TableLayoutPanel();
-            this.CRefresh = new System.Windows.Forms.Button();
-            this.ConsultantView = new System.Windows.Forms.DataGridView();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.quickTestbtn = new System.Windows.Forms.Button();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
             this.tabConsultant.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.zgroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).BeginInit();
             this.tabSubmittals.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -136,14 +141,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabList.SuspendLayout();
-            this.ztablelayout2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -223,7 +221,6 @@
             this.tabControl1.Controls.Add(this.tabConsultant);
             this.tabControl1.Controls.Add(this.tabSubmittals);
             this.tabControl1.Controls.Add(this.tabLog);
-            this.tabControl1.Controls.Add(this.tabList);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
@@ -256,9 +253,9 @@
             this.zlabel30.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.zlabel30.Location = new System.Drawing.Point(34, 96);
             this.zlabel30.Name = "zlabel30";
-            this.zlabel30.Size = new System.Drawing.Size(165, 26);
+            this.zlabel30.Size = new System.Drawing.Size(240, 26);
             this.zlabel30.TabIndex = 7;
-            this.zlabel30.Text = "Path to DB.sdf :";
+            this.zlabel30.Text = "Path to DB.sdf location:";
             // 
             // zlabel29
             // 
@@ -266,9 +263,9 @@
             this.zlabel29.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.zlabel29.Location = new System.Drawing.Point(34, 29);
             this.zlabel29.Name = "zlabel29";
-            this.zlabel29.Size = new System.Drawing.Size(275, 26);
+            this.zlabel29.Size = new System.Drawing.Size(344, 26);
             this.zlabel29.TabIndex = 6;
-            this.zlabel29.Text = "Path to ConsultantDB.sdf : ";
+            this.zlabel29.Text = "Path to ConsultantDB.sdf location:";
             // 
             // wBrowseProject
             // 
@@ -334,16 +331,88 @@
             this.tabConsultant.Text = "Consultant";
             this.tabConsultant.UseVisualStyleBackColor = true;
             // 
-            // cClearButton
+            // splitContainer2
             // 
-            this.cClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cClearButton.Location = new System.Drawing.Point(350, 184);
-            this.cClearButton.Name = "cClearButton";
-            this.cClearButton.Size = new System.Drawing.Size(118, 39);
-            this.cClearButton.TabIndex = 17;
-            this.cClearButton.Text = "Clear";
-            this.cClearButton.UseVisualStyleBackColor = true;
-            this.cClearButton.Click += new System.EventHandler(this.cClearButton_Click);
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.zgroupBox1);
+            this.splitContainer2.Panel1.Controls.Add(this.cContactText);
+            this.splitContainer2.Panel1.Controls.Add(this.label1);
+            this.splitContainer2.Panel1.Controls.Add(this.cDeleteButton);
+            this.splitContainer2.Panel1.Controls.Add(this.label6);
+            this.splitContainer2.Panel1.Controls.Add(this.cStateText);
+            this.splitContainer2.Panel1.Controls.Add(this.cAddButton);
+            this.splitContainer2.Panel1.Controls.Add(this.cZipcodeText);
+            this.splitContainer2.Panel1.Controls.Add(this.cClearButton);
+            this.splitContainer2.Panel1.Controls.Add(this.label7);
+            this.splitContainer2.Panel1.Controls.Add(this.label8);
+            this.splitContainer2.Panel1.Controls.Add(this.cNameText);
+            this.splitContainer2.Panel1.Controls.Add(this.label3);
+            this.splitContainer2.Panel1.Controls.Add(this.cAddress1Text);
+            this.splitContainer2.Panel1.Controls.Add(this.cAddress2Text);
+            this.splitContainer2.Panel1.Controls.Add(this.label4);
+            this.splitContainer2.Panel1.Controls.Add(this.cCityText);
+            this.splitContainer2.Panel1.Controls.Add(this.label5);
+            this.splitContainer2.Panel1.Controls.Add(this.label2);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.ConsultantView);
+            this.splitContainer2.Size = new System.Drawing.Size(1296, 494);
+            this.splitContainer2.SplitterDistance = 477;
+            this.splitContainer2.TabIndex = 19;
+            // 
+            // zgroupBox1
+            // 
+            this.zgroupBox1.Controls.Add(this.zlabel31);
+            this.zgroupBox1.Controls.Add(this.cConsultantEditCB);
+            this.zgroupBox1.Location = new System.Drawing.Point(15, 243);
+            this.zgroupBox1.Name = "zgroupBox1";
+            this.zgroupBox1.Size = new System.Drawing.Size(453, 121);
+            this.zgroupBox1.TabIndex = 20;
+            this.zgroupBox1.TabStop = false;
+            this.zgroupBox1.Text = "Consultant Edit";
+            // 
+            // zlabel31
+            // 
+            this.zlabel31.AutoSize = true;
+            this.zlabel31.Location = new System.Drawing.Point(23, 38);
+            this.zlabel31.Name = "zlabel31";
+            this.zlabel31.Size = new System.Drawing.Size(402, 13);
+            this.zlabel31.TabIndex = 18;
+            this.zlabel31.Text = "To edit a Consultant, select from the dropdown box or double click on one in the " +
+    "list.";
+            // 
+            // cConsultantEditCB
+            // 
+            this.cConsultantEditCB.FormattingEnabled = true;
+            this.cConsultantEditCB.Location = new System.Drawing.Point(26, 68);
+            this.cConsultantEditCB.Name = "cConsultantEditCB";
+            this.cConsultantEditCB.Size = new System.Drawing.Size(399, 21);
+            this.cConsultantEditCB.TabIndex = 19;
+            this.cConsultantEditCB.SelectedIndexChanged += new System.EventHandler(this.cConsultantEditCB_SelectedIndexChanged);
+            this.cConsultantEditCB.Click += new System.EventHandler(this.cConsultantEditCB_Click);
+            // 
+            // cContactText
+            // 
+            this.cContactText.Location = new System.Drawing.Point(101, 158);
+            this.cContactText.Name = "cContactText";
+            this.cContactText.Size = new System.Drawing.Size(367, 20);
+            this.cContactText.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(111, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(357, 42);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Consultant Information";
             // 
             // cDeleteButton
             // 
@@ -355,6 +424,24 @@
             this.cDeleteButton.Text = "Delete";
             this.cDeleteButton.UseVisualStyleBackColor = true;
             this.cDeleteButton.Click += new System.EventHandler(this.cDeleteButton_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 161);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Contact Person:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cStateText
+            // 
+            this.cStateText.Location = new System.Drawing.Point(273, 132);
+            this.cStateText.MaxLength = 2;
+            this.cStateText.Name = "cStateText";
+            this.cStateText.Size = new System.Drawing.Size(27, 20);
+            this.cStateText.TabIndex = 13;
             // 
             // cAddButton
             // 
@@ -374,22 +461,16 @@
             this.cZipcodeText.Size = new System.Drawing.Size(103, 20);
             this.cZipcodeText.TabIndex = 14;
             // 
-            // cStateText
+            // cClearButton
             // 
-            this.cStateText.Location = new System.Drawing.Point(273, 132);
-            this.cStateText.MaxLength = 2;
-            this.cStateText.Name = "cStateText";
-            this.cStateText.Size = new System.Drawing.Size(27, 20);
-            this.cStateText.TabIndex = 13;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(306, 135);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 13);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Zip Code:";
+            this.cClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cClearButton.Location = new System.Drawing.Point(350, 184);
+            this.cClearButton.Name = "cClearButton";
+            this.cClearButton.Size = new System.Drawing.Size(118, 39);
+            this.cClearButton.TabIndex = 17;
+            this.cClearButton.Text = "Clear";
+            this.cClearButton.UseVisualStyleBackColor = true;
+            this.cClearButton.Click += new System.EventHandler(this.cClearButton_Click);
             // 
             // label7
             // 
@@ -400,56 +481,21 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "State:";
             // 
-            // label6
+            // label8
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 161);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Contact Person:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(306, 135);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Zip Code:";
             // 
-            // cContactText
+            // cNameText
             // 
-            this.cContactText.Location = new System.Drawing.Point(101, 158);
-            this.cContactText.Name = "cContactText";
-            this.cContactText.Size = new System.Drawing.Size(367, 20);
-            this.cContactText.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(68, 135);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(27, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "City:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cCityText
-            // 
-            this.cCityText.Location = new System.Drawing.Point(101, 132);
-            this.cCityText.Name = "cCityText";
-            this.cCityText.Size = new System.Drawing.Size(125, 20);
-            this.cCityText.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 109);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Address Line 2:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cAddress2Text
-            // 
-            this.cAddress2Text.Location = new System.Drawing.Point(101, 106);
-            this.cAddress2Text.Name = "cAddress2Text";
-            this.cAddress2Text.Size = new System.Drawing.Size(367, 20);
-            this.cAddress2Text.TabIndex = 5;
+            this.cNameText.Location = new System.Drawing.Point(101, 54);
+            this.cNameText.Name = "cNameText";
+            this.cNameText.Size = new System.Drawing.Size(367, 20);
+            this.cNameText.TabIndex = 1;
             // 
             // label3
             // 
@@ -468,6 +514,40 @@
             this.cAddress1Text.Size = new System.Drawing.Size(367, 20);
             this.cAddress1Text.TabIndex = 3;
             // 
+            // cAddress2Text
+            // 
+            this.cAddress2Text.Location = new System.Drawing.Point(101, 106);
+            this.cAddress2Text.Name = "cAddress2Text";
+            this.cAddress2Text.Size = new System.Drawing.Size(367, 20);
+            this.cAddress2Text.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 109);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Address Line 2:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cCityText
+            // 
+            this.cCityText.Location = new System.Drawing.Point(101, 132);
+            this.cCityText.Name = "cCityText";
+            this.cCityText.Size = new System.Drawing.Size(125, 20);
+            this.cCityText.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(68, 135);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "City:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -478,22 +558,15 @@
             this.label2.Text = "Name:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cNameText
+            // ConsultantView
             // 
-            this.cNameText.Location = new System.Drawing.Point(101, 54);
-            this.cNameText.Name = "cNameText";
-            this.cNameText.Size = new System.Drawing.Size(367, 20);
-            this.cNameText.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(111, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(357, 42);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Consultant Information";
+            this.ConsultantView.AllowUserToOrderColumns = true;
+            this.ConsultantView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ConsultantView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConsultantView.Location = new System.Drawing.Point(0, 0);
+            this.ConsultantView.Name = "ConsultantView";
+            this.ConsultantView.Size = new System.Drawing.Size(815, 494);
+            this.ConsultantView.TabIndex = 1;
             // 
             // tabSubmittals
             // 
@@ -988,51 +1061,6 @@
             this.subDeletebtn.UseVisualStyleBackColor = true;
             this.subDeletebtn.Click += new System.EventHandler(this.subDeletebtn_Click);
             // 
-            // tabList
-            // 
-            this.tabList.Controls.Add(this.ztablelayout2);
-            this.tabList.Location = new System.Drawing.Point(4, 22);
-            this.tabList.Name = "tabList";
-            this.tabList.Padding = new System.Windows.Forms.Padding(3);
-            this.tabList.Size = new System.Drawing.Size(1306, 504);
-            this.tabList.TabIndex = 4;
-            this.tabList.Text = "Consultant List";
-            this.tabList.UseVisualStyleBackColor = true;
-            // 
-            // ztablelayout2
-            // 
-            this.ztablelayout2.ColumnCount = 1;
-            this.ztablelayout2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ztablelayout2.Controls.Add(this.CRefresh, 0, 1);
-            this.ztablelayout2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ztablelayout2.Location = new System.Drawing.Point(3, 3);
-            this.ztablelayout2.Name = "ztablelayout2";
-            this.ztablelayout2.RowCount = 2;
-            this.ztablelayout2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.ztablelayout2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.ztablelayout2.Size = new System.Drawing.Size(1300, 498);
-            this.ztablelayout2.TabIndex = 1;
-            // 
-            // CRefresh
-            // 
-            this.CRefresh.Location = new System.Drawing.Point(3, 451);
-            this.CRefresh.Name = "CRefresh";
-            this.CRefresh.Size = new System.Drawing.Size(152, 44);
-            this.CRefresh.TabIndex = 0;
-            this.CRefresh.Text = "Refresh";
-            this.CRefresh.UseVisualStyleBackColor = true;
-            this.CRefresh.Click += new System.EventHandler(this.CRefresh_Click);
-            // 
-            // ConsultantView
-            // 
-            this.ConsultantView.AllowUserToOrderColumns = true;
-            this.ConsultantView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ConsultantView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConsultantView.Location = new System.Drawing.Point(0, 0);
-            this.ConsultantView.Name = "ConsultantView";
-            this.ConsultantView.Size = new System.Drawing.Size(815, 494);
-            this.ConsultantView.TabIndex = 1;
-            // 
             // cErrorBox
             // 
             this.cErrorBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1060,55 +1088,11 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1320, 631);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // quickTestbtn
-            // 
-            this.quickTestbtn.Location = new System.Drawing.Point(143, 1);
-            this.quickTestbtn.Name = "quickTestbtn";
-            this.quickTestbtn.Size = new System.Drawing.Size(75, 23);
-            this.quickTestbtn.TabIndex = 3;
-            this.quickTestbtn.Text = "Set Paths";
-            this.quickTestbtn.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.cContactText);
-            this.splitContainer2.Panel1.Controls.Add(this.label1);
-            this.splitContainer2.Panel1.Controls.Add(this.cDeleteButton);
-            this.splitContainer2.Panel1.Controls.Add(this.label6);
-            this.splitContainer2.Panel1.Controls.Add(this.cStateText);
-            this.splitContainer2.Panel1.Controls.Add(this.cAddButton);
-            this.splitContainer2.Panel1.Controls.Add(this.cZipcodeText);
-            this.splitContainer2.Panel1.Controls.Add(this.cClearButton);
-            this.splitContainer2.Panel1.Controls.Add(this.label7);
-            this.splitContainer2.Panel1.Controls.Add(this.label8);
-            this.splitContainer2.Panel1.Controls.Add(this.cNameText);
-            this.splitContainer2.Panel1.Controls.Add(this.label3);
-            this.splitContainer2.Panel1.Controls.Add(this.cAddress1Text);
-            this.splitContainer2.Panel1.Controls.Add(this.cAddress2Text);
-            this.splitContainer2.Panel1.Controls.Add(this.label4);
-            this.splitContainer2.Panel1.Controls.Add(this.cCityText);
-            this.splitContainer2.Panel1.Controls.Add(this.label5);
-            this.splitContainer2.Panel1.Controls.Add(this.label2);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.ConsultantView);
-            this.splitContainer2.Size = new System.Drawing.Size(1296, 494);
-            this.splitContainer2.SplitterDistance = 477;
-            this.splitContainer2.TabIndex = 19;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 655);
-            this.Controls.Add(this.quickTestbtn);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -1122,6 +1106,14 @@
             this.welcomeTab.ResumeLayout(false);
             this.welcomeTab.PerformLayout();
             this.tabConsultant.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.zgroupBox1.ResumeLayout(false);
+            this.zgroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).EndInit();
             this.tabSubmittals.ResumeLayout(false);
             this.tabSubmittals.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -1136,15 +1128,7 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tabList.ResumeLayout(false);
-            this.ztablelayout2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1182,7 +1166,6 @@
         private System.Windows.Forms.RichTextBox cErrorBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TabPage tabLog;
-        private System.Windows.Forms.TabPage tabList;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
@@ -1224,28 +1207,28 @@
         private System.Windows.Forms.Button LRefresh;
         private System.Windows.Forms.TableLayoutPanel ztablelayout1;
         private System.Windows.Forms.DataGridView SubmittalsView;
-        private System.Windows.Forms.TableLayoutPanel ztablelayout2;
-        private System.Windows.Forms.Button CRefresh;
         private System.Windows.Forms.DataGridView ConsultantView;
         private System.Windows.Forms.ToolStripMenuItem consultantDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem submittalDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.Button subDeletebtn;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button subAddbtn;
+        private System.Windows.Forms.ComboBox sSubmittalDropdown;
+        private System.Windows.Forms.Button cClearButton;
+        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TabPage welcomeTab;
+        private System.Windows.Forms.Label zlabel30;
+        private System.Windows.Forms.Label zlabel29;
         private System.Windows.Forms.Button wBrowseProject;
         private System.Windows.Forms.Button wBrowseConsultant;
         private System.Windows.Forms.TextBox wProjectLoc;
         private System.Windows.Forms.Label zlabel28;
         private System.Windows.Forms.TextBox wConsultantLoc;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.Button subDeletebtn;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button subAddbtn;
-        private System.Windows.Forms.ComboBox sSubmittalDropdown;
-        private System.Windows.Forms.Button quickTestbtn;
-        private System.Windows.Forms.Label zlabel30;
-        private System.Windows.Forms.Label zlabel29;
-        private System.Windows.Forms.Button cClearButton;
-        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.GroupBox zgroupBox1;
+        private System.Windows.Forms.Label zlabel31;
+        private System.Windows.Forms.ComboBox cConsultantEditCB;
     }
 }
 
