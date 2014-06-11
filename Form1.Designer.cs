@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,7 +38,6 @@
             this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.closeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setDirectory = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
@@ -50,6 +51,9 @@
             this.label27 = new System.Windows.Forms.Label();
             this.tabConsultant = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cNoRB = new System.Windows.Forms.RadioButton();
+            this.cYesRB = new System.Windows.Forms.RadioButton();
             this.zgroupBox1 = new System.Windows.Forms.GroupBox();
             this.zlabel31 = new System.Windows.Forms.Label();
             this.cConsultantEditCB = new System.Windows.Forms.ComboBox();
@@ -72,6 +76,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ConsultantView = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabSubmittals = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.label9 = new System.Windows.Forms.Label();
@@ -89,6 +95,7 @@
             this.sToConsultantDateBox = new System.Windows.Forms.DateTimePicker();
             this.label20 = new System.Windows.Forms.Label();
             this.zgroupBox4 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.sCommentBox = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.sNameBox = new System.Windows.Forms.TextBox();
@@ -116,7 +123,8 @@
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.cRowsCountLB = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
@@ -125,8 +133,10 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.zgroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.tabSubmittals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -143,8 +153,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.exportToolStripMenuItem});
+            this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1320, 24);
@@ -167,7 +176,7 @@
             this.submittalDatabaseToolStripMenuItem,
             this.consultantDatabaseToolStripMenuItem});
             this.newMenu.Name = "newMenu";
-            this.newMenu.Size = new System.Drawing.Size(140, 22);
+            this.newMenu.Size = new System.Drawing.Size(152, 22);
             this.newMenu.Text = "New";
             // 
             // submittalDatabaseToolStripMenuItem
@@ -187,14 +196,14 @@
             // openMenu
             // 
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(140, 22);
+            this.openMenu.Size = new System.Drawing.Size(152, 22);
             this.openMenu.Text = "Open DB.sdf";
             this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
             // 
             // closeMenu
             // 
             this.closeMenu.Name = "closeMenu";
-            this.closeMenu.Size = new System.Drawing.Size(140, 22);
+            this.closeMenu.Size = new System.Drawing.Size(152, 22);
             this.closeMenu.Text = "Close";
             this.closeMenu.Click += new System.EventHandler(this.closeMenu_Click);
             // 
@@ -203,12 +212,6 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // exportToolStripMenuItem
-            // 
-            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.exportToolStripMenuItem.Text = "Export";
             // 
             // tabControl1
             // 
@@ -333,6 +336,9 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.cRowsCountLB);
+            this.splitContainer2.Panel1.Controls.Add(this.label28);
+            this.splitContainer2.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer2.Panel1.Controls.Add(this.zgroupBox1);
             this.splitContainer2.Panel1.Controls.Add(this.cContactText);
             this.splitContainer2.Panel1.Controls.Add(this.label1);
@@ -360,11 +366,44 @@
             this.splitContainer2.SplitterDistance = 477;
             this.splitContainer2.TabIndex = 19;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cNoRB);
+            this.groupBox1.Controls.Add(this.cYesRB);
+            this.groupBox1.Location = new System.Drawing.Point(101, 229);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(158, 43);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Turn off required fields?";
+            // 
+            // cNoRB
+            // 
+            this.cNoRB.AutoSize = true;
+            this.cNoRB.Checked = true;
+            this.cNoRB.Location = new System.Drawing.Point(55, 19);
+            this.cNoRB.Name = "cNoRB";
+            this.cNoRB.Size = new System.Drawing.Size(39, 17);
+            this.cNoRB.TabIndex = 23;
+            this.cNoRB.TabStop = true;
+            this.cNoRB.Text = "No";
+            this.cNoRB.UseVisualStyleBackColor = true;
+            // 
+            // cYesRB
+            // 
+            this.cYesRB.AutoSize = true;
+            this.cYesRB.Location = new System.Drawing.Point(6, 19);
+            this.cYesRB.Name = "cYesRB";
+            this.cYesRB.Size = new System.Drawing.Size(43, 17);
+            this.cYesRB.TabIndex = 22;
+            this.cYesRB.Text = "Yes";
+            this.cYesRB.UseVisualStyleBackColor = true;
+            // 
             // zgroupBox1
             // 
             this.zgroupBox1.Controls.Add(this.zlabel31);
             this.zgroupBox1.Controls.Add(this.cConsultantEditCB);
-            this.zgroupBox1.Location = new System.Drawing.Point(15, 243);
+            this.zgroupBox1.Location = new System.Drawing.Point(15, 278);
             this.zgroupBox1.Name = "zgroupBox1";
             this.zgroupBox1.Size = new System.Drawing.Size(453, 121);
             this.zgroupBox1.TabIndex = 20;
@@ -462,7 +501,7 @@
             this.cClearButton.Name = "cClearButton";
             this.cClearButton.Size = new System.Drawing.Size(118, 39);
             this.cClearButton.TabIndex = 17;
-            this.cClearButton.Text = "Clear";
+            this.cClearButton.Text = "Clear Form";
             this.cClearButton.UseVisualStyleBackColor = true;
             this.cClearButton.Click += new System.EventHandler(this.cClearButton_Click);
             // 
@@ -556,11 +595,27 @@
             // 
             this.ConsultantView.AllowUserToOrderColumns = true;
             this.ConsultantView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+           // this.ConsultantView.ContextMenuStrip = this.contextMenuStrip1;
             this.ConsultantView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ConsultantView.Location = new System.Drawing.Point(0, 0);
             this.ConsultantView.Name = "ConsultantView";
             this.ConsultantView.Size = new System.Drawing.Size(815, 494);
             this.ConsultantView.TabIndex = 1;
+            this.ConsultantView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ConsultantView_CellMouseClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteRowToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 26);
+            // 
+            // deleteRowToolStripMenuItem
+            // 
+            this.deleteRowToolStripMenuItem.Name = "deleteRowToolStripMenuItem";
+            this.deleteRowToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.deleteRowToolStripMenuItem.Text = "Delete Row";
+            this.deleteRowToolStripMenuItem.Click += new System.EventHandler(this.deleteRowToolStripMenuItem_Click);
             // 
             // tabSubmittals
             // 
@@ -591,7 +646,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.SubmittalsView);
             this.splitContainer3.Size = new System.Drawing.Size(1300, 498);
-            this.splitContainer3.SplitterDistance = 359;
+            this.splitContainer3.SplitterDistance = 334;
             this.splitContainer3.TabIndex = 17;
             // 
             // label9
@@ -620,7 +675,7 @@
             this.zgroupBox3.Controls.Add(this.label20);
             this.zgroupBox3.Location = new System.Drawing.Point(27, 195);
             this.zgroupBox3.Name = "zgroupBox3";
-            this.zgroupBox3.Size = new System.Drawing.Size(490, 144);
+            this.zgroupBox3.Size = new System.Drawing.Size(490, 128);
             this.zgroupBox3.TabIndex = 7;
             this.zgroupBox3.TabStop = false;
             this.zgroupBox3.Text = "Part 2";
@@ -755,6 +810,18 @@
             this.zgroupBox4.TabIndex = 16;
             this.zgroupBox4.TabStop = false;
             this.zgroupBox4.Text = "Part 3";
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(354, 40);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 41);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Log";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // sCommentBox
             // 
@@ -995,7 +1062,7 @@
             this.SubmittalsView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.SubmittalsView.Location = new System.Drawing.Point(0, 0);
             this.SubmittalsView.Name = "SubmittalsView";
-            this.SubmittalsView.Size = new System.Drawing.Size(1300, 135);
+            this.SubmittalsView.Size = new System.Drawing.Size(1300, 160);
             this.SubmittalsView.StandardTab = true;
             this.SubmittalsView.TabIndex = 1;
             this.SubmittalsView.DoubleClick += new System.EventHandler(this.SubmittalsView_DoubleClick);
@@ -1027,17 +1094,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1320, 631);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // button1
+            // label28
             // 
-            this.button1.AutoSize = true;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(354, 40);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 41);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Log";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(381, 471);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(59, 13);
+            this.label28.TabIndex = 24;
+            this.label28.Text = "# of Rows:";
+            // 
+            // cRowsCountLB
+            // 
+            this.cRowsCountLB.AutoSize = true;
+            this.cRowsCountLB.Location = new System.Drawing.Point(447, 471);
+            this.cRowsCountLB.Name = "cRowsCountLB";
+            this.cRowsCountLB.Size = new System.Drawing.Size(0, 13);
+            this.cRowsCountLB.TabIndex = 25;
             // 
             // Form1
             // 
@@ -1046,6 +1118,7 @@
             this.ClientSize = new System.Drawing.Size(1320, 655);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Submittal Tracking System";
@@ -1062,9 +1135,12 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.zgroupBox1.ResumeLayout(false);
             this.zgroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tabSubmittals.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
@@ -1154,7 +1230,6 @@
         private System.Windows.Forms.DataGridView ConsultantView;
         private System.Windows.Forms.ToolStripMenuItem consultantDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem submittalDatabaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ComboBox sSubmittalDropdown;
         private System.Windows.Forms.Button cClearButton;
         private System.Windows.Forms.SplitContainer splitContainer2;
@@ -1175,6 +1250,13 @@
         private System.Windows.Forms.GroupBox zgroupBox4;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RadioButton cYesRB;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton cNoRB;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteRowToolStripMenuItem;
+        private System.Windows.Forms.Label cRowsCountLB;
+        private System.Windows.Forms.Label label28;
     }
 }
 

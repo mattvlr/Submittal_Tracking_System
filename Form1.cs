@@ -176,77 +176,78 @@ namespace Submittal_Tracking_System
         {
     
             int flagCounter = 0;
-            string AddressLine2;
+            string AddressLine2 = "";
+            if (cNoRB.Checked)
+            {
+                if (cNameText.Text == "")
+                {
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No name entered!\n"); // NAME
+                    forceScroll();
+                    cNameText.BackColor = Color.MistyRose;
+                }
+                else
+                {
+                    flagCounter++;
+                    cNameText.BackColor = Color.White;
+                }
 
-            if (cNameText.Text == "")
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No name entered!\n"); // NAME
-                forceScroll();
-                cNameText.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                flagCounter++;
-                cNameText.BackColor = Color.White;
-            }
+                if (cAddress1Text.Text == "")
+                {
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No address entered!\n"); //ADDRESS
+                    forceScroll();
+                    cAddress1Text.BackColor = Color.MistyRose;
+                }
+                else
+                {
+                    flagCounter++;
+                    cAddress1Text.BackColor = Color.White;
+                }
 
-            if (cAddress1Text.Text == "")
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No address entered!\n"); //ADDRESS
-                forceScroll();
-                cAddress1Text.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                flagCounter++;
-                cAddress1Text.BackColor = Color.White;
-            }
-
-            if (cCityText.Text == "")
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No city entered!\n"); //CITY
-                forceScroll();
-                cCityText.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                flagCounter++;
-                cCityText.BackColor = Color.White;
-            }
-            if (cStateText.Text == "")
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No state entered!\n"); //STATE
-                forceScroll();
-                cStateText.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                flagCounter++;
-                cStateText.BackColor = Color.White;
-            }
-            if (cZipcodeText.Text == "")
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No zipcode entered!\n"); //ZIPCODE
-                forceScroll();
-                cZipcodeText.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                flagCounter++;
-                cZipcodeText.BackColor = Color.White;
-            }
-            if (cContactText.Text == "")
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No contact person entered!\n"); // CONTACT PERSON
-                forceScroll();
-                cContactText.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                flagCounter++;
-                cContactText.BackColor = Color.White;
-            }
-                if(cAddress2Text.Text == "") //ADDRESS LINE 2
+                if (cCityText.Text == "")
+                {
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No city entered!\n"); //CITY
+                    forceScroll();
+                    cCityText.BackColor = Color.MistyRose;
+                }
+                else
+                {
+                    flagCounter++;
+                    cCityText.BackColor = Color.White;
+                }
+                if (cStateText.Text == "")
+                {
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No state entered!\n"); //STATE
+                    forceScroll();
+                    cStateText.BackColor = Color.MistyRose;
+                }
+                else
+                {
+                    flagCounter++;
+                    cStateText.BackColor = Color.White;
+                }
+                if (cZipcodeText.Text == "")
+                {
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No zipcode entered!\n"); //ZIPCODE
+                    forceScroll();
+                    cZipcodeText.BackColor = Color.MistyRose;
+                }
+                else
+                {
+                    flagCounter++;
+                    cZipcodeText.BackColor = Color.White;
+                }
+                if (cContactText.Text == "")
+                {
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: No contact person entered!\n"); // CONTACT PERSON
+                    forceScroll();
+                    cContactText.BackColor = Color.MistyRose;
+                }
+                else
+                {
+                    flagCounter++;
+                    cContactText.BackColor = Color.White;
+                }
+                if (cAddress2Text.Text == "") //ADDRESS LINE 2
                     AddressLine2 = "";
                 else
                     AddressLine2 = cAddress2Text.Text;
@@ -281,26 +282,91 @@ namespace Submittal_Tracking_System
                         cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant added to database!\n");
                         forceScroll();
                         ConsultantRefresh();
+                        
                     }
                     catch (SqlCeException sqlexception)
                     {
-                         MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (Exception ex)
                     {
-                         MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
                     {
-                         cn.Close();
+                        cn.Close();
 
                     }
-                    
+
                 }
+            }
+            else if(cYesRB.Checked)
+            {
+
+                    cContactText.BackColor = Color.White;
+                    cZipcodeText.BackColor = Color.White;
+                    cStateText.BackColor = Color.White;
+                    cCityText.BackColor = Color.White;
+                    cAddress1Text.BackColor = Color.White;
+                    cNameText.BackColor = Color.White;
+
+                    SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringConsultant);
+                    Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+
+                    if (cn.State == ConnectionState.Closed)
+                    {
+                        cn.Open();
+                    }
+
+                    SqlCeCommand cmd;
+
+                    string sql = "insert into Consultant "
+                    + "(Name, Address, Address2, City, State, Zipcode, ContactPerson) "
+                    + "values (@name, @address, @address2, @city, @state, @zipcode, @contactperson) ";
+
+                    try
+                    {
+                        cmd = new SqlCeCommand(sql, cn);
+                        cmd.Parameters.AddWithValue("@name", cNameText.Text);
+                        cmd.Parameters.AddWithValue("@address", cAddress1Text.Text);
+                        cmd.Parameters.AddWithValue("@address2", AddressLine2);
+                        cmd.Parameters.AddWithValue("@city", cCityText.Text);
+                        cmd.Parameters.AddWithValue("@state", cStateText.Text);
+                        cmd.Parameters.AddWithValue("@zipcode", cZipcodeText.Text);
+                        cmd.Parameters.AddWithValue("@contactperson", cContactText.Text);
+                        cmd.ExecuteNonQuery();
+                        cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant added to database!\n");
+                        forceScroll();
+                        ConsultantRefresh();
+                    }
+                    catch (SqlCeException sqlexception)
+                    {
+                        MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        cn.Close();
+
+                    }
+
+                
+            }
         }
         private void cDeleteButton_Click(object sender, EventArgs e)
         {
+            int count = ConsultantView.SelectedRows.Count;
 
+            while (count > 0)
+            {
+                if (!ConsultantView.SelectedRows[0].IsNewRow)
+                    ConsultantView.Rows.RemoveAt(ConsultantView.SelectedRows[0].Index);
+
+                count--;
+            }
         }
         private void cClearButton_Click(object sender, EventArgs e)
         {
@@ -322,6 +388,20 @@ namespace Submittal_Tracking_System
             forceScroll();
 
         }
+        private void deleteRowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                        string messageBoxText1 = "Are you sure you wish to delete the currently selected row?";
+                        string caption1 = "Delete row.";
+                        MessageBoxButtons button = MessageBoxButtons.YesNo;
+                        MessageBoxIcon icon = MessageBoxIcon.Warning;
+
+                        if (MessageBox.Show(messageBoxText1, caption1, button, icon) == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            ConsultantView.Rows.RemoveAt(this.ConsultantView.SelectedRows[0].Index);
+                            ConsultantRefresh();
+                        }
+        }
+
 
         private void cConsultantEditCB_Click(object sender, EventArgs e)
         {
@@ -365,7 +445,6 @@ namespace Submittal_Tracking_System
                 forceScroll();
             }
         }
-
         private void cConsultantEditCB_SelectedIndexChanged(object sender, EventArgs e)
         {
   
@@ -398,6 +477,19 @@ namespace Submittal_Tracking_System
                 cn.Close();
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant retrieved.\n");
                 forceScroll();
+            }
+        }
+
+        private void ConsultantView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ConsultantView.ClearSelection();
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.Button == MouseButtons.Right)
+            {
+                ConsultantView.Rows[e.RowIndex].Selected = true;
+                Rectangle r = ConsultantView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+
+                contextMenuStrip1.Show((Control)sender, r.Left + e.X, r.Top + e.Y);
+
             }
         }
 
@@ -592,6 +684,7 @@ namespace Submittal_Tracking_System
                 else
                 {
                     MessageBox.Show("Could not find 'DB.sdf' in that location, please browse again or create a new one.");
+                    Globals.Consultantfilepath = "";
                 }
             }
         }
@@ -610,6 +703,7 @@ namespace Submittal_Tracking_System
                 else
                 {
                     MessageBox.Show("Could not find 'DB.sdf' in that location, please browse again or create a new one.");
+                    Globals.Projectfilepath = "";
                 }
             }
         }
@@ -771,14 +865,6 @@ namespace Submittal_Tracking_System
         }
 
         //Database Tab button methods
-        private void LRefresh_Click(object sender, EventArgs e)
-        {
-            SubmittalRefresh();
-        }
-        private void CRefresh_Click(object sender, EventArgs e)
-        {
-            ConsultantRefresh();
-        }
         private void subDeletebtn_Click(object sender, EventArgs e)
         {
             int count = 0;
@@ -866,6 +952,7 @@ namespace Submittal_Tracking_System
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant table was refreshed.\n");
                 forceScroll();
                 ConsultantView.DataSource = rs;
+                cRowsCountLB.Text = ConsultantView.Rows.Count.ToString();
             }
             catch (SqlCeException sqlexception)
             {
@@ -955,6 +1042,11 @@ namespace Submittal_Tracking_System
             if (wProjectLoc.Text == "")
                 tabControl1.SelectedTab = welcomeTab;
         }
+
+
+   
+
+
 
  
 
