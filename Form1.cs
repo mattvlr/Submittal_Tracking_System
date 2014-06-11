@@ -23,7 +23,6 @@ namespace Submittal_Tracking_System
         {
             tabControl1.Hide();
             cErrorBox.Hide();
-
         }
         private void closeMenu_Click(object sender, EventArgs e)
         {
@@ -140,7 +139,9 @@ namespace Submittal_Tracking_System
             SqlCeCommand ConsultantCMD;
 
             string sql = "create table Consultant ( "
-            + "ConsultantNum INT IDENTITY(1,1) PRIMARY KEY, "
+           // + "ConsultantNum INT IDENTITY(1,1), "
+            //+ "ConsultantNum INT IDENTITY(1,1) PRIMARY KEY, "
+            + "ConsultantNum nvarchar(10), "
             + "Name nvarchar (200), "
             + "Address nvarchar (200), "
             + "Address2 nvarchar (200), "
@@ -282,7 +283,7 @@ namespace Submittal_Tracking_System
                         cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant added to database!\n");
                         forceScroll();
                         ConsultantRefresh();
-                        
+                        RC();
                     }
                     catch (SqlCeException sqlexception)
                     {
@@ -338,6 +339,7 @@ namespace Submittal_Tracking_System
                         cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant added to database!\n");
                         forceScroll();
                         ConsultantRefresh();
+                        RC();
                     }
                     catch (SqlCeException sqlexception)
                     {
@@ -399,6 +401,7 @@ namespace Submittal_Tracking_System
                         {
                             ConsultantView.Rows.RemoveAt(this.ConsultantView.SelectedRows[0].Index);
                             ConsultantRefresh();
+                            RC();
                         }
         }
 
@@ -492,7 +495,16 @@ namespace Submittal_Tracking_System
 
             }
         }
+        private void RC()
+        {
+            int count = ConsultantView.Rows.Count;
 
+            for (int i = 0; i < count-1; i++)
+            {
+                ConsultantView.Rows[i].Cells[0].Value = i+1;
+                
+            }
+        }
         //File I/O methods
         private void openMenu_Click(object sender, EventArgs e)
         {
@@ -536,10 +548,11 @@ namespace Submittal_Tracking_System
                                     tabControl1.Visible = true;
                                     cErrorBox.Visible = true;
                                     ConsultantRefresh();
+                                    RC();
                                 }
                                 else
                                 {
-                                    string messageBoxText2 = "Could no find ConsultantDB.sdf in the chosen directory, would you like to create a new one?";
+                                    string messageBoxText2 = "Could not find ConsultantDB.sdf in the chosen directory, would you like to create a new one?";
                                     string caption2 = "Create new ConsultantaDB.sdf";
 
                                     if (MessageBox.Show(messageBoxText2, caption2, button, icon) == System.Windows.Forms.DialogResult.Yes)
@@ -560,7 +573,8 @@ namespace Submittal_Tracking_System
                                                 tabControl1.Visible = true;
                                                 cErrorBox.Visible = true;
                                                 createConsultantDatabase();
-
+                                                ConsultantRefresh();
+                                                RC();
                                             }
 
                                         }
@@ -584,6 +598,7 @@ namespace Submittal_Tracking_System
                             {
                                 SubmittalRefresh();
                                 ConsultantRefresh();
+                                RC();
                             }
                         }
                         else // if the answer to the messagebox was not yes
@@ -680,6 +695,7 @@ namespace Submittal_Tracking_System
                     cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'ConsultantDB.sdf' is now: " + Globals.Projectfilepath + "\n");
                     forceScroll();
                     ConsultantRefresh();
+                    RC();
                 }
                 else
                 {
@@ -699,6 +715,7 @@ namespace Submittal_Tracking_System
                     wProjectLoc.Text = Globals.Projectfilepath;
                     cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'DB.sdf' is now: " + Globals.Projectfilepath + "\n");
                     forceScroll();
+                    SubmittalRefresh();
                 }
                 else
                 {
@@ -1043,6 +1060,10 @@ namespace Submittal_Tracking_System
                 tabControl1.SelectedTab = welcomeTab;
         }
 
+        private void ConsultantView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            RC();
+        }
 
    
 

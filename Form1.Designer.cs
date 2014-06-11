@@ -51,6 +51,8 @@
             this.label27 = new System.Windows.Forms.Label();
             this.tabConsultant = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.cRowsCountLB = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cNoRB = new System.Windows.Forms.RadioButton();
             this.cYesRB = new System.Windows.Forms.RadioButton();
@@ -76,8 +78,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ConsultantView = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabSubmittals = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.label9 = new System.Windows.Forms.Label();
@@ -121,10 +121,10 @@
             this.sSpecNumBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label28 = new System.Windows.Forms.Label();
-            this.cRowsCountLB = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
@@ -136,7 +136,6 @@
             this.groupBox1.SuspendLayout();
             this.zgroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.tabSubmittals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -146,6 +145,7 @@
             this.zgroupBox4.SuspendLayout();
             this.zgroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -176,7 +176,7 @@
             this.submittalDatabaseToolStripMenuItem,
             this.consultantDatabaseToolStripMenuItem});
             this.newMenu.Name = "newMenu";
-            this.newMenu.Size = new System.Drawing.Size(152, 22);
+            this.newMenu.Size = new System.Drawing.Size(140, 22);
             this.newMenu.Text = "New";
             // 
             // submittalDatabaseToolStripMenuItem
@@ -196,14 +196,14 @@
             // openMenu
             // 
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(152, 22);
+            this.openMenu.Size = new System.Drawing.Size(140, 22);
             this.openMenu.Text = "Open DB.sdf";
             this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
             // 
             // closeMenu
             // 
             this.closeMenu.Name = "closeMenu";
-            this.closeMenu.Size = new System.Drawing.Size(152, 22);
+            this.closeMenu.Size = new System.Drawing.Size(140, 22);
             this.closeMenu.Text = "Close";
             this.closeMenu.Click += new System.EventHandler(this.closeMenu_Click);
             // 
@@ -365,6 +365,23 @@
             this.splitContainer2.Size = new System.Drawing.Size(1296, 494);
             this.splitContainer2.SplitterDistance = 477;
             this.splitContainer2.TabIndex = 19;
+            // 
+            // cRowsCountLB
+            // 
+            this.cRowsCountLB.AutoSize = true;
+            this.cRowsCountLB.Location = new System.Drawing.Point(447, 471);
+            this.cRowsCountLB.Name = "cRowsCountLB";
+            this.cRowsCountLB.Size = new System.Drawing.Size(0, 13);
+            this.cRowsCountLB.TabIndex = 25;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(381, 471);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(59, 13);
+            this.label28.TabIndex = 24;
+            this.label28.Text = "# of Rows:";
             // 
             // groupBox1
             // 
@@ -595,27 +612,13 @@
             // 
             this.ConsultantView.AllowUserToOrderColumns = true;
             this.ConsultantView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-           // this.ConsultantView.ContextMenuStrip = this.contextMenuStrip1;
             this.ConsultantView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ConsultantView.Location = new System.Drawing.Point(0, 0);
             this.ConsultantView.Name = "ConsultantView";
             this.ConsultantView.Size = new System.Drawing.Size(815, 494);
             this.ConsultantView.TabIndex = 1;
+            this.ConsultantView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConsultantView_CellClick);
             this.ConsultantView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ConsultantView_CellMouseClick);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteRowToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 26);
-            // 
-            // deleteRowToolStripMenuItem
-            // 
-            this.deleteRowToolStripMenuItem.Name = "deleteRowToolStripMenuItem";
-            this.deleteRowToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.deleteRowToolStripMenuItem.Text = "Delete Row";
-            this.deleteRowToolStripMenuItem.Click += new System.EventHandler(this.deleteRowToolStripMenuItem_Click);
             // 
             // tabSubmittals
             // 
@@ -1067,6 +1070,20 @@
             this.SubmittalsView.TabIndex = 1;
             this.SubmittalsView.DoubleClick += new System.EventHandler(this.SubmittalsView_DoubleClick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteRowToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 26);
+            // 
+            // deleteRowToolStripMenuItem
+            // 
+            this.deleteRowToolStripMenuItem.Name = "deleteRowToolStripMenuItem";
+            this.deleteRowToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.deleteRowToolStripMenuItem.Text = "Delete Row";
+            this.deleteRowToolStripMenuItem.Click += new System.EventHandler(this.deleteRowToolStripMenuItem_Click);
+            // 
             // cErrorBox
             // 
             this.cErrorBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1093,23 +1110,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1320, 631);
             this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(381, 471);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(59, 13);
-            this.label28.TabIndex = 24;
-            this.label28.Text = "# of Rows:";
-            // 
-            // cRowsCountLB
-            // 
-            this.cRowsCountLB.AutoSize = true;
-            this.cRowsCountLB.Location = new System.Drawing.Point(447, 471);
-            this.cRowsCountLB.Name = "cRowsCountLB";
-            this.cRowsCountLB.Size = new System.Drawing.Size(0, 13);
-            this.cRowsCountLB.TabIndex = 25;
             // 
             // Form1
             // 
@@ -1140,7 +1140,6 @@
             this.zgroupBox1.ResumeLayout(false);
             this.zgroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.tabSubmittals.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
@@ -1154,6 +1153,7 @@
             this.zgroupBox2.ResumeLayout(false);
             this.zgroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
