@@ -41,6 +41,12 @@
             this.setDirectory = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
+            this.wNumberBTN = new System.Windows.Forms.Button();
+            this.wTitleBTN = new System.Windows.Forms.Button();
+            this.wNumberTxT = new System.Windows.Forms.TextBox();
+            this.wTitleTxT = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
             this.zlabel30 = new System.Windows.Forms.Label();
             this.zlabel29 = new System.Windows.Forms.Label();
             this.wBrowseProject = new System.Windows.Forms.Button();
@@ -80,8 +86,13 @@
             this.ConsultantView = new System.Windows.Forms.DataGridView();
             this.tabSubmittals = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.sNoRB = new System.Windows.Forms.RadioButton();
+            this.sYesRB = new System.Windows.Forms.RadioButton();
+            this.sClearFormBTN = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.zgroupBox3 = new System.Windows.Forms.GroupBox();
+            this.logSubmittalButtonPart2 = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.sConsultantDateDueBox = new System.Windows.Forms.DateTimePicker();
@@ -95,7 +106,7 @@
             this.sToConsultantDateBox = new System.Windows.Forms.DateTimePicker();
             this.label20 = new System.Windows.Forms.Label();
             this.zgroupBox4 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.logSubmittalButtonPart3 = new System.Windows.Forms.Button();
             this.sCommentBox = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.sNameBox = new System.Windows.Forms.TextBox();
@@ -112,8 +123,8 @@
             this.sSubmittalDropdown = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.sSubmittalDateBox = new System.Windows.Forms.DateTimePicker();
-            this.logSubmittalButton = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.logSubmittalButtonPart1 = new System.Windows.Forms.Button();
             this.sDescriptionBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.sNumReceivedBox = new System.Windows.Forms.TextBox();
@@ -121,10 +132,13 @@
             this.sSpecNumBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.TestData = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
@@ -141,12 +155,16 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.zgroupBox3.SuspendLayout();
             this.zgroupBox4.SuspendLayout();
             this.zgroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TestData)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -218,6 +236,7 @@
             this.tabControl1.Controls.Add(this.welcomeTab);
             this.tabControl1.Controls.Add(this.tabConsultant);
             this.tabControl1.Controls.Add(this.tabSubmittals);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
@@ -228,6 +247,14 @@
             // 
             // welcomeTab
             // 
+            this.welcomeTab.BackColor = System.Drawing.Color.LightGray;
+            this.welcomeTab.Controls.Add(this.pictureBox1);
+            this.welcomeTab.Controls.Add(this.wNumberBTN);
+            this.welcomeTab.Controls.Add(this.wTitleBTN);
+            this.welcomeTab.Controls.Add(this.wNumberTxT);
+            this.welcomeTab.Controls.Add(this.wTitleTxT);
+            this.welcomeTab.Controls.Add(this.label30);
+            this.welcomeTab.Controls.Add(this.label40);
             this.welcomeTab.Controls.Add(this.zlabel30);
             this.welcomeTab.Controls.Add(this.zlabel29);
             this.welcomeTab.Controls.Add(this.wBrowseProject);
@@ -242,13 +269,66 @@
             this.welcomeTab.Size = new System.Drawing.Size(1306, 504);
             this.welcomeTab.TabIndex = 2;
             this.welcomeTab.Text = "Welcome";
-            this.welcomeTab.UseVisualStyleBackColor = true;
+            // 
+            // wNumberBTN
+            // 
+            this.wNumberBTN.Location = new System.Drawing.Point(317, 57);
+            this.wNumberBTN.Name = "wNumberBTN";
+            this.wNumberBTN.Size = new System.Drawing.Size(75, 23);
+            this.wNumberBTN.TabIndex = 13;
+            this.wNumberBTN.Text = "Update";
+            this.wNumberBTN.UseVisualStyleBackColor = true;
+            this.wNumberBTN.Click += new System.EventHandler(this.wNumberBTN_Click);
+            // 
+            // wTitleBTN
+            // 
+            this.wTitleBTN.Location = new System.Drawing.Point(317, 31);
+            this.wTitleBTN.Name = "wTitleBTN";
+            this.wTitleBTN.Size = new System.Drawing.Size(75, 23);
+            this.wTitleBTN.TabIndex = 12;
+            this.wTitleBTN.Text = "Update";
+            this.wTitleBTN.UseVisualStyleBackColor = true;
+            this.wTitleBTN.Click += new System.EventHandler(this.wTitleBTN_Click);
+            // 
+            // wNumberTxT
+            // 
+            this.wNumberTxT.Location = new System.Drawing.Point(211, 59);
+            this.wNumberTxT.Name = "wNumberTxT";
+            this.wNumberTxT.Size = new System.Drawing.Size(100, 20);
+            this.wNumberTxT.TabIndex = 11;
+            // 
+            // wTitleTxT
+            // 
+            this.wTitleTxT.Location = new System.Drawing.Point(211, 33);
+            this.wTitleTxT.Name = "wTitleTxT";
+            this.wTitleTxT.Size = new System.Drawing.Size(100, 20);
+            this.wTitleTxT.TabIndex = 10;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(35, 53);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(170, 26);
+            this.label30.TabIndex = 9;
+            this.label30.Text = "Project Number:";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(56, 28);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(132, 26);
+            this.label40.TabIndex = 8;
+            this.label40.Text = "Project Title:";
             // 
             // zlabel30
             // 
             this.zlabel30.AutoSize = true;
             this.zlabel30.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zlabel30.Location = new System.Drawing.Point(34, 96);
+            this.zlabel30.Location = new System.Drawing.Point(35, 187);
             this.zlabel30.Name = "zlabel30";
             this.zlabel30.Size = new System.Drawing.Size(240, 26);
             this.zlabel30.TabIndex = 7;
@@ -258,7 +338,7 @@
             // 
             this.zlabel29.AutoSize = true;
             this.zlabel29.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zlabel29.Location = new System.Drawing.Point(34, 29);
+            this.zlabel29.Location = new System.Drawing.Point(35, 120);
             this.zlabel29.Name = "zlabel29";
             this.zlabel29.Size = new System.Drawing.Size(344, 26);
             this.zlabel29.TabIndex = 6;
@@ -266,7 +346,7 @@
             // 
             // wBrowseProject
             // 
-            this.wBrowseProject.Location = new System.Drawing.Point(810, 123);
+            this.wBrowseProject.Location = new System.Drawing.Point(811, 214);
             this.wBrowseProject.Name = "wBrowseProject";
             this.wBrowseProject.Size = new System.Drawing.Size(50, 23);
             this.wBrowseProject.TabIndex = 5;
@@ -277,7 +357,7 @@
             // wBrowseConsultant
             // 
             this.wBrowseConsultant.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wBrowseConsultant.Location = new System.Drawing.Point(810, 55);
+            this.wBrowseConsultant.Location = new System.Drawing.Point(811, 146);
             this.wBrowseConsultant.Name = "wBrowseConsultant";
             this.wBrowseConsultant.Size = new System.Drawing.Size(50, 23);
             this.wBrowseConsultant.TabIndex = 4;
@@ -287,7 +367,7 @@
             // 
             // wProjectLoc
             // 
-            this.wProjectLoc.Location = new System.Drawing.Point(39, 125);
+            this.wProjectLoc.Location = new System.Drawing.Point(40, 216);
             this.wProjectLoc.Name = "wProjectLoc";
             this.wProjectLoc.Size = new System.Drawing.Size(765, 20);
             this.wProjectLoc.TabIndex = 3;
@@ -295,14 +375,14 @@
             // zlabel28
             // 
             this.zlabel28.AutoSize = true;
-            this.zlabel28.Location = new System.Drawing.Point(133, 122);
+            this.zlabel28.Location = new System.Drawing.Point(134, 213);
             this.zlabel28.Name = "zlabel28";
             this.zlabel28.Size = new System.Drawing.Size(0, 13);
             this.zlabel28.TabIndex = 2;
             // 
             // wConsultantLoc
             // 
-            this.wConsultantLoc.Location = new System.Drawing.Point(39, 58);
+            this.wConsultantLoc.Location = new System.Drawing.Point(40, 149);
             this.wConsultantLoc.Name = "wConsultantLoc";
             this.wConsultantLoc.Size = new System.Drawing.Size(765, 20);
             this.wConsultantLoc.TabIndex = 1;
@@ -311,7 +391,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(146, 96);
+            this.label27.Location = new System.Drawing.Point(147, 187);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(0, 13);
             this.label27.TabIndex = 0;
@@ -446,7 +526,6 @@
             this.cConsultantEditCB.Name = "cConsultantEditCB";
             this.cConsultantEditCB.Size = new System.Drawing.Size(399, 21);
             this.cConsultantEditCB.TabIndex = 19;
-            this.cConsultantEditCB.SelectedIndexChanged += new System.EventHandler(this.cConsultantEditCB_SelectedIndexChanged);
             this.cConsultantEditCB.Click += new System.EventHandler(this.cConsultantEditCB_Click);
             // 
             // cContactText
@@ -619,7 +698,6 @@
             this.ConsultantView.Name = "ConsultantView";
             this.ConsultantView.Size = new System.Drawing.Size(815, 494);
             this.ConsultantView.TabIndex = 1;
-            this.ConsultantView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConsultantView_CellClick);
             this.ConsultantView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ConsultantView_CellMouseClick);
             // 
             // tabSubmittals
@@ -642,6 +720,7 @@
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer3.Panel1.Controls.Add(this.label9);
             this.splitContainer3.Panel1.Controls.Add(this.zgroupBox3);
             this.splitContainer3.Panel1.Controls.Add(this.zgroupBox4);
@@ -653,6 +732,57 @@
             this.splitContainer3.Size = new System.Drawing.Size(1300, 498);
             this.splitContainer3.SplitterDistance = 334;
             this.splitContainer3.TabIndex = 17;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.sSubmittalDropdown);
+            this.groupBox2.Controls.Add(this.sNoRB);
+            this.groupBox2.Controls.Add(this.sYesRB);
+            this.groupBox2.Controls.Add(this.sClearFormBTN);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Location = new System.Drawing.Point(626, 195);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(460, 128);
+            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "New Submittal?";
+            // 
+            // sNoRB
+            // 
+            this.sNoRB.AutoSize = true;
+            this.sNoRB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sNoRB.Location = new System.Drawing.Point(140, 46);
+            this.sNoRB.Name = "sNoRB";
+            this.sNoRB.Size = new System.Drawing.Size(67, 35);
+            this.sNoRB.TabIndex = 19;
+            this.sNoRB.Text = "No";
+            this.sNoRB.UseVisualStyleBackColor = true;
+            // 
+            // sYesRB
+            // 
+            this.sYesRB.AutoSize = true;
+            this.sYesRB.Checked = true;
+            this.sYesRB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sYesRB.Location = new System.Drawing.Point(55, 46);
+            this.sYesRB.Name = "sYesRB";
+            this.sYesRB.Size = new System.Drawing.Size(79, 35);
+            this.sYesRB.TabIndex = 18;
+            this.sYesRB.TabStop = true;
+            this.sYesRB.Text = "Yes";
+            this.sYesRB.UseVisualStyleBackColor = true;
+            this.sYesRB.CheckedChanged += new System.EventHandler(this.sYesRB_CheckedChanged);
+            // 
+            // sClearFormBTN
+            // 
+            this.sClearFormBTN.AutoSize = true;
+            this.sClearFormBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sClearFormBTN.Location = new System.Drawing.Point(225, 45);
+            this.sClearFormBTN.Name = "sClearFormBTN";
+            this.sClearFormBTN.Size = new System.Drawing.Size(131, 36);
+            this.sClearFormBTN.TabIndex = 17;
+            this.sClearFormBTN.Text = "Clear Form";
+            this.sClearFormBTN.UseVisualStyleBackColor = true;
+            this.sClearFormBTN.Click += new System.EventHandler(this.sClearFormBTN_Click);
             // 
             // label9
             // 
@@ -666,6 +796,7 @@
             // 
             // zgroupBox3
             // 
+            this.zgroupBox3.Controls.Add(this.logSubmittalButtonPart2);
             this.zgroupBox3.Controls.Add(this.label26);
             this.zgroupBox3.Controls.Add(this.label15);
             this.zgroupBox3.Controls.Add(this.sConsultantDateDueBox);
@@ -680,10 +811,23 @@
             this.zgroupBox3.Controls.Add(this.label20);
             this.zgroupBox3.Location = new System.Drawing.Point(27, 195);
             this.zgroupBox3.Name = "zgroupBox3";
-            this.zgroupBox3.Size = new System.Drawing.Size(490, 128);
+            this.zgroupBox3.Size = new System.Drawing.Size(588, 128);
             this.zgroupBox3.TabIndex = 7;
             this.zgroupBox3.TabStop = false;
             this.zgroupBox3.Text = "Part 2";
+            // 
+            // logSubmittalButtonPart2
+            // 
+            this.logSubmittalButtonPart2.AutoSize = true;
+            this.logSubmittalButtonPart2.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.logSubmittalButtonPart2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logSubmittalButtonPart2.Location = new System.Drawing.Point(482, 81);
+            this.logSubmittalButtonPart2.Name = "logSubmittalButtonPart2";
+            this.logSubmittalButtonPart2.Size = new System.Drawing.Size(100, 41);
+            this.logSubmittalButtonPart2.TabIndex = 14;
+            this.logSubmittalButtonPart2.Text = "Log";
+            this.logSubmittalButtonPart2.UseVisualStyleBackColor = true;
+            this.logSubmittalButtonPart2.Click += new System.EventHandler(this.logSubmittalButtonPart2_Click);
             // 
             // label26
             // 
@@ -758,6 +902,7 @@
             this.sConsultantViaBox.FormattingEnabled = true;
             this.sConsultantViaBox.Items.AddRange(new object[] {
             "Delivered",
+            "Email",
             "US Mail",
             "Fedex",
             "UPS?",
@@ -796,7 +941,7 @@
             // 
             // zgroupBox4
             // 
-            this.zgroupBox4.Controls.Add(this.button1);
+            this.zgroupBox4.Controls.Add(this.logSubmittalButtonPart3);
             this.zgroupBox4.Controls.Add(this.sCommentBox);
             this.zgroupBox4.Controls.Add(this.label17);
             this.zgroupBox4.Controls.Add(this.sNameBox);
@@ -809,24 +954,25 @@
             this.zgroupBox4.Controls.Add(this.label24);
             this.zgroupBox4.Controls.Add(this.sContractorViaBox);
             this.zgroupBox4.Controls.Add(this.label25);
-            this.zgroupBox4.Location = new System.Drawing.Point(523, 45);
+            this.zgroupBox4.Location = new System.Drawing.Point(626, 45);
             this.zgroupBox4.Name = "zgroupBox4";
             this.zgroupBox4.Size = new System.Drawing.Size(460, 144);
             this.zgroupBox4.TabIndex = 16;
             this.zgroupBox4.TabStop = false;
             this.zgroupBox4.Text = "Part 3";
             // 
-            // button1
+            // logSubmittalButtonPart3
             // 
-            this.button1.AutoSize = true;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(354, 40);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 41);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Log";
-            this.button1.UseVisualStyleBackColor = true;
+            this.logSubmittalButtonPart3.AutoSize = true;
+            this.logSubmittalButtonPart3.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.logSubmittalButtonPart3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logSubmittalButtonPart3.Location = new System.Drawing.Point(344, 42);
+            this.logSubmittalButtonPart3.Name = "logSubmittalButtonPart3";
+            this.logSubmittalButtonPart3.Size = new System.Drawing.Size(100, 41);
+            this.logSubmittalButtonPart3.TabIndex = 17;
+            this.logSubmittalButtonPart3.Text = "Log";
+            this.logSubmittalButtonPart3.UseVisualStyleBackColor = true;
+            this.logSubmittalButtonPart3.Click += new System.EventHandler(this.logSubmittalButtonPart3_Click);
             // 
             // sCommentBox
             // 
@@ -943,11 +1089,9 @@
             // 
             // zgroupBox2
             // 
-            this.zgroupBox2.Controls.Add(this.sSubmittalDropdown);
             this.zgroupBox2.Controls.Add(this.label10);
             this.zgroupBox2.Controls.Add(this.sSubmittalDateBox);
-            this.zgroupBox2.Controls.Add(this.logSubmittalButton);
-            this.zgroupBox2.Controls.Add(this.label11);
+            this.zgroupBox2.Controls.Add(this.logSubmittalButtonPart1);
             this.zgroupBox2.Controls.Add(this.sDescriptionBox);
             this.zgroupBox2.Controls.Add(this.label12);
             this.zgroupBox2.Controls.Add(this.sNumReceivedBox);
@@ -956,7 +1100,7 @@
             this.zgroupBox2.Controls.Add(this.label14);
             this.zgroupBox2.Location = new System.Drawing.Point(27, 45);
             this.zgroupBox2.Name = "zgroupBox2";
-            this.zgroupBox2.Size = new System.Drawing.Size(490, 144);
+            this.zgroupBox2.Size = new System.Drawing.Size(588, 144);
             this.zgroupBox2.TabIndex = 6;
             this.zgroupBox2.TabStop = false;
             this.zgroupBox2.Text = "Part 1";
@@ -964,17 +1108,18 @@
             // sSubmittalDropdown
             // 
             this.sSubmittalDropdown.FormattingEnabled = true;
-            this.sSubmittalDropdown.Location = new System.Drawing.Point(139, 39);
+            this.sSubmittalDropdown.Location = new System.Drawing.Point(154, 92);
             this.sSubmittalDropdown.Name = "sSubmittalDropdown";
-            this.sSubmittalDropdown.Size = new System.Drawing.Size(300, 21);
+            this.sSubmittalDropdown.Size = new System.Drawing.Size(67, 21);
             this.sSubmittalDropdown.TabIndex = 9;
+            this.sSubmittalDropdown.Visible = false;
             this.sSubmittalDropdown.SelectedIndexChanged += new System.EventHandler(this.sSubmittalDropdown_SelectedIndexChanged);
             this.sSubmittalDropdown.Click += new System.EventHandler(this.sSubmittalDropdown_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(23, 16);
+            this.label10.Location = new System.Drawing.Point(42, 31);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(110, 13);
             this.label10.TabIndex = 0;
@@ -983,36 +1128,37 @@
             // sSubmittalDateBox
             // 
             this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.sSubmittalDateBox.Location = new System.Drawing.Point(139, 91);
+            this.sSubmittalDateBox.Location = new System.Drawing.Point(158, 80);
             this.sSubmittalDateBox.Name = "sSubmittalDateBox";
             this.sSubmittalDateBox.Size = new System.Drawing.Size(100, 20);
             this.sSubmittalDateBox.TabIndex = 7;
             // 
-            // logSubmittalButton
-            // 
-            this.logSubmittalButton.AutoSize = true;
-            this.logSubmittalButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.logSubmittalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logSubmittalButton.Location = new System.Drawing.Point(276, 92);
-            this.logSubmittalButton.Name = "logSubmittalButton";
-            this.logSubmittalButton.Size = new System.Drawing.Size(121, 41);
-            this.logSubmittalButton.TabIndex = 5;
-            this.logSubmittalButton.Text = "Log";
-            this.logSubmittalButton.UseVisualStyleBackColor = true;
-            this.logSubmittalButton.Click += new System.EventHandler(this.logSubmittalButton_Click);
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(40, 42);
+            this.label11.Location = new System.Drawing.Point(23, 98);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(93, 13);
+            this.label11.Size = new System.Drawing.Size(125, 13);
             this.label11.TabIndex = 1;
-            this.label11.Text = "Submittal Number:";
+            this.label11.Text = "Submittal Number to edit:";
+            this.label11.Visible = false;
+            // 
+            // logSubmittalButtonPart1
+            // 
+            this.logSubmittalButtonPart1.AutoSize = true;
+            this.logSubmittalButtonPart1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.logSubmittalButtonPart1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logSubmittalButtonPart1.Location = new System.Drawing.Point(482, 97);
+            this.logSubmittalButtonPart1.Name = "logSubmittalButtonPart1";
+            this.logSubmittalButtonPart1.Size = new System.Drawing.Size(100, 41);
+            this.logSubmittalButtonPart1.TabIndex = 5;
+            this.logSubmittalButtonPart1.Text = "Log";
+            this.logSubmittalButtonPart1.UseVisualStyleBackColor = true;
+            this.logSubmittalButtonPart1.Click += new System.EventHandler(this.logSubmittalButtonPart1_Click);
             // 
             // sDescriptionBox
             // 
-            this.sDescriptionBox.Location = new System.Drawing.Point(139, 65);
+            this.sDescriptionBox.Location = new System.Drawing.Point(158, 54);
             this.sDescriptionBox.Name = "sDescriptionBox";
             this.sDescriptionBox.Size = new System.Drawing.Size(300, 20);
             this.sDescriptionBox.TabIndex = 8;
@@ -1020,7 +1166,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(70, 68);
+            this.label12.Location = new System.Drawing.Point(89, 57);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(63, 13);
             this.label12.TabIndex = 2;
@@ -1028,7 +1174,7 @@
             // 
             // sNumReceivedBox
             // 
-            this.sNumReceivedBox.Location = new System.Drawing.Point(139, 117);
+            this.sNumReceivedBox.Location = new System.Drawing.Point(158, 106);
             this.sNumReceivedBox.Name = "sNumReceivedBox";
             this.sNumReceivedBox.Size = new System.Drawing.Size(100, 20);
             this.sNumReceivedBox.TabIndex = 6;
@@ -1036,7 +1182,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(51, 94);
+            this.label13.Location = new System.Drawing.Point(70, 83);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(82, 13);
             this.label13.TabIndex = 3;
@@ -1044,7 +1190,7 @@
             // 
             // sSpecNumBox
             // 
-            this.sSpecNumBox.Location = new System.Drawing.Point(139, 13);
+            this.sSpecNumBox.Location = new System.Drawing.Point(158, 28);
             this.sSpecNumBox.Name = "sSpecNumBox";
             this.sSpecNumBox.Size = new System.Drawing.Size(100, 20);
             this.sSpecNumBox.TabIndex = 5;
@@ -1052,7 +1198,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(35, 120);
+            this.label14.Location = new System.Drawing.Point(54, 109);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(98, 13);
             this.label14.TabIndex = 4;
@@ -1071,6 +1217,27 @@
             this.SubmittalsView.StandardTab = true;
             this.SubmittalsView.TabIndex = 1;
             this.SubmittalsView.DoubleClick += new System.EventHandler(this.SubmittalsView_DoubleClick);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.TestData);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1306, 504);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // TestData
+            // 
+            this.TestData.AllowUserToOrderColumns = true;
+            this.TestData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TestData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TestData.Location = new System.Drawing.Point(3, 3);
+            this.TestData.Name = "TestData";
+            this.TestData.Size = new System.Drawing.Size(1300, 498);
+            this.TestData.TabIndex = 0;
             // 
             // contextMenuStrip1
             // 
@@ -1113,6 +1280,16 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1320, 631);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(697, 445);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(603, 53);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1148,6 +1325,8 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.zgroupBox3.ResumeLayout(false);
             this.zgroupBox3.PerformLayout();
             this.zgroupBox4.ResumeLayout(false);
@@ -1155,8 +1334,11 @@
             this.zgroupBox2.ResumeLayout(false);
             this.zgroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TestData)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1219,7 +1401,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button logSubmittalButton;
+        private System.Windows.Forms.Button logSubmittalButtonPart1;
         private System.Windows.Forms.TextBox sCommentBox;
         private System.Windows.Forms.TextBox sNameBox;
         private System.Windows.Forms.ComboBox sActionBox;
@@ -1244,14 +1426,10 @@
         private System.Windows.Forms.Label zlabel28;
         private System.Windows.Forms.TextBox wConsultantLoc;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.GroupBox zgroupBox1;
-        private System.Windows.Forms.Label zlabel31;
-        private System.Windows.Forms.ComboBox cConsultantEditCB;
         private System.Windows.Forms.GroupBox zgroupBox3;
         private System.Windows.Forms.GroupBox zgroupBox2;
         private System.Windows.Forms.GroupBox zgroupBox4;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RadioButton cYesRB;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton cNoRB;
@@ -1259,6 +1437,24 @@
         private System.Windows.Forms.ToolStripMenuItem deleteRowToolStripMenuItem;
         private System.Windows.Forms.Label cRowsCountLB;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.GroupBox zgroupBox1;
+        private System.Windows.Forms.Label zlabel31;
+        private System.Windows.Forms.ComboBox cConsultantEditCB;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView TestData;
+        private System.Windows.Forms.Button sClearFormBTN;
+        private System.Windows.Forms.Button logSubmittalButtonPart2;
+        private System.Windows.Forms.Button logSubmittalButtonPart3;
+        private System.Windows.Forms.Button wNumberBTN;
+        private System.Windows.Forms.Button wTitleBTN;
+        private System.Windows.Forms.TextBox wNumberTxT;
+        private System.Windows.Forms.TextBox wTitleTxT;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton sNoRB;
+        private System.Windows.Forms.RadioButton sYesRB;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
