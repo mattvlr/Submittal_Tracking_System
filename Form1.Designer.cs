@@ -368,6 +368,7 @@
             // 
             // cRowsCountLB
             // 
+            this.cRowsCountLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cRowsCountLB.AutoSize = true;
             this.cRowsCountLB.Location = new System.Drawing.Point(447, 471);
             this.cRowsCountLB.Name = "cRowsCountLB";
@@ -376,6 +377,7 @@
             // 
             // label28
             // 
+            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(381, 471);
             this.label28.Name = "label28";

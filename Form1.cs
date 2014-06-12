@@ -12,7 +12,7 @@ using System.Data.SqlServerCe;
 
 namespace Submittal_Tracking_System
 {
-   
+
     public partial class Form1 : Form
     {
         public Form1()
@@ -283,7 +283,7 @@ namespace Submittal_Tracking_System
                         cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant added to database!\n");
                         forceScroll();
                         ConsultantRefresh();
-                        RC();
+                        //RC();
                     }
                     catch (SqlCeException sqlexception)
                     {
@@ -339,7 +339,7 @@ namespace Submittal_Tracking_System
                         cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant added to database!\n");
                         forceScroll();
                         ConsultantRefresh();
-                        RC();
+                        //RC();
                     }
                     catch (SqlCeException sqlexception)
                     {
@@ -360,8 +360,8 @@ namespace Submittal_Tracking_System
         }
         private void cDeleteButton_Click(object sender, EventArgs e)
         {
-            int count = ConsultantView.SelectedRows.Count;
-
+            int count = this.ConsultantView.SelectedRows.Count;
+            MessageBox.Show(count.ToString());
             while (count > 0)
             {
                 if (!ConsultantView.SelectedRows[0].IsNewRow)
@@ -401,7 +401,7 @@ namespace Submittal_Tracking_System
                         {
                             ConsultantView.Rows.RemoveAt(this.ConsultantView.SelectedRows[0].Index);
                             ConsultantRefresh();
-                            RC();
+                            //RC();
                         }
         }
 
@@ -463,9 +463,20 @@ namespace Submittal_Tracking_System
             string sql = "SELECT * FROM Consultant where Name = " + cConsultantEditCB.Text;
             try
             {
-               // cmd = new SqlCeCommand(sql, cn);
-               // returnVal = cmd.ExecuteScalar();
-               // zlabel31.Text = returnVal.ToString();
+                cmd = new SqlCeCommand(sql, cn);
+                using (SqlCeDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        cContactText.Text = oReader["ContactPerson"].ToString();
+                        cZipcodeText.Text = oReader["Zipcode"].ToString();
+                        cStateText.Text = oReader["State"].ToString();
+                        cCityText.Text = oReader["City"].ToString();
+                        cAddress1Text.Text = oReader["Address"].ToString();
+                        cAddress2Text.Text = oReader["Address2"].ToString();
+                        cNameText.Text = oReader["Name"].ToString();
+                    }
+                }
             }
             catch (SqlCeException sqlexception)
             {
@@ -505,6 +516,52 @@ namespace Submittal_Tracking_System
                 
             }
         }
+       /* private void CreateConsultantList()
+        {
+     
+
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringConsultant);
+            Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand cmd;
+
+            string sql = "SELECT * FROM Consultant where Name = " + cConsultantEditCB.Text;
+            try
+            {
+                cmd = new SqlCeCommand(sql, cn);
+                using (SqlCeDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        row[0] = oReader["ContactPerson"].ToString();
+                        row[0] = oReader["Zipcode"].ToString();
+                        row[0] = oReader["State"].ToString();
+                        row[0] = oReader["City"].ToString();
+                        row[0] = oReader["Address"].ToString();
+                        row[0] = oReader["Address2"].ToString();
+                        row[0] = oReader["Name"].ToString();
+                    }
+                }
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant retrieved.\n");
+                forceScroll();
+            }
+        }*/
         //File I/O methods
         private void openMenu_Click(object sender, EventArgs e)
         {
@@ -548,7 +605,7 @@ namespace Submittal_Tracking_System
                                     tabControl1.Visible = true;
                                     cErrorBox.Visible = true;
                                     ConsultantRefresh();
-                                    RC();
+                                    //RC();
                                 }
                                 else
                                 {
@@ -574,7 +631,7 @@ namespace Submittal_Tracking_System
                                                 cErrorBox.Visible = true;
                                                 createConsultantDatabase();
                                                 ConsultantRefresh();
-                                                RC();
+                                                //RC();
                                             }
 
                                         }
@@ -598,7 +655,7 @@ namespace Submittal_Tracking_System
                             {
                                 SubmittalRefresh();
                                 ConsultantRefresh();
-                                RC();
+                                //RC();
                             }
                         }
                         else // if the answer to the messagebox was not yes
@@ -695,7 +752,7 @@ namespace Submittal_Tracking_System
                     cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'ConsultantDB.sdf' is now: " + Globals.Projectfilepath + "\n");
                     forceScroll();
                     ConsultantRefresh();
-                    RC();
+                    //RC();
                 }
                 else
                 {
@@ -968,7 +1025,8 @@ namespace Submittal_Tracking_System
                 SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable | ResultSetOptions.Updatable);
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant table was refreshed.\n");
                 forceScroll();
-                ConsultantView.DataSource = rs;
+                ConsultantView.DataSource = Globals.Consultants.ToList();
+               // ConsultantView.DataSource = rs;
                 cRowsCountLB.Text = ConsultantView.Rows.Count.ToString();
             }
             catch (SqlCeException sqlexception)
@@ -1062,8 +1120,9 @@ namespace Submittal_Tracking_System
 
         private void ConsultantView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            RC();
+            //RC();
         }
+
 
    
 
@@ -1089,6 +1148,9 @@ namespace Submittal_Tracking_System
         public static string connectionStringProject { get; set; }
         public static string jobTitle { get; set; }
         public static string jobNumber { get; set; }
+        public static List<string> Consultants { get; set; }
+        public static List<string> Submittals { get; set; }
+
     }
 
     
