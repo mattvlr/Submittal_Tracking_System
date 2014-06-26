@@ -283,7 +283,7 @@ namespace Submittal_Tracking_System
                         cmd = new SqlCeCommand(sql, cn);
                         cmd.Parameters.AddWithValue("@name", cNameText.Text);
                         cmd.Parameters.AddWithValue("@address", cAddress1Text.Text);
-                        cmd.Parameters.AddWithValue("@address2", AddressLine2);
+                        cmd.Parameters.AddWithValue("@address2", cAddress2Text.Text);
                         cmd.Parameters.AddWithValue("@city", cCityText.Text);
                         cmd.Parameters.AddWithValue("@state", cStateText.Text);
                         cmd.Parameters.AddWithValue("@zipcode", cZipcodeText.Text);
@@ -339,7 +339,7 @@ namespace Submittal_Tracking_System
                     cmd = new SqlCeCommand(sql, cn);
                     cmd.Parameters.AddWithValue("@name", cNameText.Text);
                     cmd.Parameters.AddWithValue("@address", cAddress1Text.Text);
-                    cmd.Parameters.AddWithValue("@address2", AddressLine2);
+                    cmd.Parameters.AddWithValue("@address2", cAddress2Text.Text);
                     cmd.Parameters.AddWithValue("@city", cCityText.Text);
                     cmd.Parameters.AddWithValue("@state", cStateText.Text);
                     cmd.Parameters.AddWithValue("@zipcode", cZipcodeText.Text);
@@ -366,18 +366,6 @@ namespace Submittal_Tracking_System
                 }
 
 
-            }
-        }
-        private void cDeleteButton_Click(object sender, EventArgs e)
-        {
-            int count = this.ConsultantView.SelectedRows.Count;
-            MessageBox.Show(count.ToString());
-            while (count > 0)
-            {
-                if (!ConsultantView.SelectedRows[0].IsNewRow)
-                    ConsultantView.Rows.RemoveAt(ConsultantView.SelectedRows[0].Index);
-
-                count--;
             }
         }
         private void cClearButton_Click(object sender, EventArgs e)
@@ -414,7 +402,6 @@ namespace Submittal_Tracking_System
                 //RC();
             }
         }
-
         private void ConsultantView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             ConsultantView.ClearSelection();
@@ -423,103 +410,13 @@ namespace Submittal_Tracking_System
                 ConsultantView.Rows[e.RowIndex].Selected = true;
                 Rectangle r = ConsultantView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
 
-                contextMenuStrip1.Show((Control)sender, r.Left + e.X, r.Top + e.Y);
+                consultantMenuStrip.Show((Control)sender, r.Left + e.X, r.Top + e.Y);
 
             }
         }
-        private void cConsultantEditCB_Click(object sender, EventArgs e)
-        {
-            cConsultantEditCB.Items.Clear();
-            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringConsultant);
-            Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+       
 
-            if (cn.State == ConnectionState.Closed)
-            {
-                cn.Open();
-            }
-
-            SqlCeCommand cmd;
-
-            string sql = "SELECT Name FROM Consultant";
-            try
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Retrieving Consultants from database.\n");
-                forceScroll();
-                cmd = new SqlCeCommand(sql, cn);
-                using (SqlCeDataReader oReader = cmd.ExecuteReader())
-                {
-                    while (oReader.Read())
-                    {
-                        cConsultantEditCB.Items.Add(oReader["Name"].ToString());
-                    }
-                }
-            }
-            catch (SqlCeException sqlexception)
-            {
-                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                cn.Close();
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Dropdown populated!\n");
-                forceScroll();
-            }
-        }
-        /*   private void cConsultantEditCB_SelectedIndexChanged(object sender, EventArgs e)
-           {
-               int yCoord = ConsultantView.CurrentCellAddress.Y;
-               int colindex = ConsultantView.Columns[yCoord].Index;
-               SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringConsultant);
-               Directory.SetCurrentDirectory(Globals.Consultantfilepath);
-               if (cn.State == ConnectionState.Closed)
-               {
-                   cn.Open();
-               }
-
-               SqlCeCommand cmd;
-               SqlCeCommand cmd2;
-               string sql1 = "SELECT ConsultantNum FROM Consultant where Name = " + cConsultantEditCB.Text;
-               string sql = "SELECT * FROM Consultant where ConsultantNum = " + colindex;
-               try
-               {
-                   cmd = new SqlCeCommand(sql, cn);
-                   cmd = new SqlCeCommand(sql1, cn);
-
-                   using (SqlCeDataReader oReader = cmd.ExecuteReader())
-                   {
-                       while (oReader.Read())
-                       {
-                           cContactText.Text = oReader["ContactPerson"].ToString();
-                           cZipcodeText.Text = oReader["Zipcode"].ToString();
-                           cStateText.Text = oReader["State"].ToString();
-                           cCityText.Text = oReader["City"].ToString();
-                           cAddress1Text.Text = oReader["Address"].ToString();
-                           cAddress2Text.Text = oReader["Address2"].ToString();
-                           cNameText.Text = oReader["Name"].ToString();
-                       }
-                   }
-               }
-               catch (SqlCeException sqlexception)
-               {
-                   MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               }
-               catch (Exception ex)
-               {
-                   MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               }
-               finally
-               {
-                   cn.Close();
-                   cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Consultant retrieved.\n");
-                   forceScroll();
-               }
-           }
-           */
-
+       
         //File I/O methods
         private void openMenu_Click(object sender, EventArgs e)
         {
@@ -1333,7 +1230,7 @@ namespace Submittal_Tracking_System
             finally
             {
                 cn.Close();
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal tab populated!\n");
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal form populated!\n");
                 forceScroll();
                 sNoRB.Checked = true;
             }
@@ -1435,46 +1332,41 @@ namespace Submittal_Tracking_System
                 sNoRB.Checked = true;
             }
         }
-        //Database Tab button methods
-        private void subDeletebtn_Click(object sender, EventArgs e)
+        private void submittalMenuStrip_Click(object sender, EventArgs e)
         {
-            int count = 0;
-
-            string text = "Are you should you want to delete " + count + " rows?";
-            string caption = "Delete selected rows.";
+            string messageBoxText1 = "Are you sure you wish to delete the currently selected row?";
+            string caption1 = "Delete row.";
             MessageBoxButtons button = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Information;
+            MessageBoxIcon icon = MessageBoxIcon.Warning;
 
-            if (MessageBox.Show(text, caption, button, icon) == System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show(messageBoxText1, caption1, button, icon) == System.Windows.Forms.DialogResult.Yes)
             {
-
-                int yCoord = SubmittalsView.CurrentCellAddress.Y;
-                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-                Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
-                if (cn.State == ConnectionState.Closed)
-                {
-                    cn.Open();
-                }
-
-
-                foreach (DataGridViewRow row in SubmittalsView.SelectedRows)
-                {
-
-                    SqlCeCommand cmd;
-                    int y = SubmittalsView.CurrentCellAddress.Y;
-                    string sql = "DELETE * FROM Submittals where SubmittalNum = " + y;
-
-                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Deleting row: " + y + " from table.\n");
-                    forceScroll();
-                    cmd = new SqlCeCommand(sql, cn);
-                    cmd.ExecuteNonQuery();
-                }
-
+                SubmittalsView.Rows.RemoveAt(this.SubmittalsView.SelectedRows[0].Index);
                 SubmittalRefresh();
+                //RC();
             }
-
         }
+        private void SubmittalsView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            SubmittalsView.ClearSelection();
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.Button == MouseButtons.Right)
+            {
+                SubmittalsView.Rows[e.RowIndex].Selected = true;
+                Rectangle r = SubmittalsView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+
+                submittalMenuStrip.Show((Control)sender, r.Left + e.X, r.Top + e.Y);
+
+            }
+        }
+        private string calcTotalDays(string x, string y)
+        {
+            string days;
+            DateTime rec = Convert.ToDateTime(x);
+            DateTime returned = Convert.ToDateTime(y);
+            days = (rec - returned).TotalDays.ToString();
+            return days;
+        }
+       
 
         //Database refreshers
         private void SubmittalRefresh()
@@ -1491,7 +1383,7 @@ namespace Submittal_Tracking_System
                 SqlCeCommand cmd = new SqlCeCommand("Submittals", cn);
                 cmd.CommandType = CommandType.TableDirect;
 
-                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
+                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable | ResultSetOptions.Updatable);
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal table was refreshed.\n");
                 forceScroll();
                 SubmittalsView.DataSource = rs;
@@ -1664,6 +1556,14 @@ namespace Submittal_Tracking_System
                 sSubmittalDropdown.Visible = true;
             }
         }
+
+        private void SubmittalsView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
+   
 
      
 

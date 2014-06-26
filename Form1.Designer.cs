@@ -41,6 +41,7 @@
             this.setDirectory = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.wNumberBTN = new System.Windows.Forms.Button();
             this.wTitleBTN = new System.Windows.Forms.Button();
             this.wNumberTxT = new System.Windows.Forms.TextBox();
@@ -62,12 +63,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cNoRB = new System.Windows.Forms.RadioButton();
             this.cYesRB = new System.Windows.Forms.RadioButton();
-            this.zgroupBox1 = new System.Windows.Forms.GroupBox();
-            this.zlabel31 = new System.Windows.Forms.Label();
-            this.cConsultantEditCB = new System.Windows.Forms.ComboBox();
             this.cContactText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cDeleteButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cStateText = new System.Windows.Forms.TextBox();
             this.cAddButton = new System.Windows.Forms.Button();
@@ -87,9 +84,11 @@
             this.tabSubmittals = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.sSubmittalDropdown = new System.Windows.Forms.ComboBox();
             this.sNoRB = new System.Windows.Forms.RadioButton();
             this.sYesRB = new System.Windows.Forms.RadioButton();
             this.sClearFormBTN = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.zgroupBox3 = new System.Windows.Forms.GroupBox();
             this.logSubmittalButtonPart2 = new System.Windows.Forms.Button();
@@ -120,10 +119,8 @@
             this.sContractorViaBox = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
             this.zgroupBox2 = new System.Windows.Forms.GroupBox();
-            this.sSubmittalDropdown = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.sSubmittalDateBox = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
             this.logSubmittalButtonPart1 = new System.Windows.Forms.Button();
             this.sDescriptionBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -134,21 +131,22 @@
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.TestData = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.consultantMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.submittalMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabConsultant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.zgroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).BeginInit();
             this.tabSubmittals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
@@ -162,9 +160,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TestData)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
+            this.consultantMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.submittalMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -247,8 +245,8 @@
             // 
             // welcomeTab
             // 
-            this.welcomeTab.BackColor = System.Drawing.Color.LightGray;
-            this.welcomeTab.Controls.Add(this.pictureBox1);
+            this.welcomeTab.BackColor = System.Drawing.Color.DarkGray;
+            this.welcomeTab.Controls.Add(this.pictureBox2);
             this.welcomeTab.Controls.Add(this.wNumberBTN);
             this.welcomeTab.Controls.Add(this.wTitleBTN);
             this.welcomeTab.Controls.Add(this.wNumberTxT);
@@ -269,6 +267,16 @@
             this.welcomeTab.Size = new System.Drawing.Size(1306, 504);
             this.welcomeTab.TabIndex = 2;
             this.welcomeTab.Text = "Welcome";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(595, 260);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(708, 241);
+            this.pictureBox2.TabIndex = 14;
+            this.pictureBox2.TabStop = false;
             // 
             // wNumberBTN
             // 
@@ -419,10 +427,8 @@
             this.splitContainer2.Panel1.Controls.Add(this.cRowsCountLB);
             this.splitContainer2.Panel1.Controls.Add(this.label28);
             this.splitContainer2.Panel1.Controls.Add(this.groupBox1);
-            this.splitContainer2.Panel1.Controls.Add(this.zgroupBox1);
             this.splitContainer2.Panel1.Controls.Add(this.cContactText);
             this.splitContainer2.Panel1.Controls.Add(this.label1);
-            this.splitContainer2.Panel1.Controls.Add(this.cDeleteButton);
             this.splitContainer2.Panel1.Controls.Add(this.label6);
             this.splitContainer2.Panel1.Controls.Add(this.cStateText);
             this.splitContainer2.Panel1.Controls.Add(this.cAddButton);
@@ -469,7 +475,7 @@
             // 
             this.groupBox1.Controls.Add(this.cNoRB);
             this.groupBox1.Controls.Add(this.cYesRB);
-            this.groupBox1.Location = new System.Drawing.Point(101, 229);
+            this.groupBox1.Location = new System.Drawing.Point(183, 184);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(158, 43);
             this.groupBox1.TabIndex = 23;
@@ -498,36 +504,6 @@
             this.cYesRB.Text = "Yes";
             this.cYesRB.UseVisualStyleBackColor = true;
             // 
-            // zgroupBox1
-            // 
-            this.zgroupBox1.Controls.Add(this.zlabel31);
-            this.zgroupBox1.Controls.Add(this.cConsultantEditCB);
-            this.zgroupBox1.Location = new System.Drawing.Point(15, 278);
-            this.zgroupBox1.Name = "zgroupBox1";
-            this.zgroupBox1.Size = new System.Drawing.Size(453, 121);
-            this.zgroupBox1.TabIndex = 20;
-            this.zgroupBox1.TabStop = false;
-            this.zgroupBox1.Text = "Consultant Edit";
-            // 
-            // zlabel31
-            // 
-            this.zlabel31.AutoSize = true;
-            this.zlabel31.Location = new System.Drawing.Point(23, 38);
-            this.zlabel31.Name = "zlabel31";
-            this.zlabel31.Size = new System.Drawing.Size(402, 13);
-            this.zlabel31.TabIndex = 18;
-            this.zlabel31.Text = "To edit a Consultant, select from the dropdown box or double click on one in the " +
-    "list.";
-            // 
-            // cConsultantEditCB
-            // 
-            this.cConsultantEditCB.FormattingEnabled = true;
-            this.cConsultantEditCB.Location = new System.Drawing.Point(26, 68);
-            this.cConsultantEditCB.Name = "cConsultantEditCB";
-            this.cConsultantEditCB.Size = new System.Drawing.Size(399, 21);
-            this.cConsultantEditCB.TabIndex = 19;
-            this.cConsultantEditCB.Click += new System.EventHandler(this.cConsultantEditCB_Click);
-            // 
             // cContactText
             // 
             this.cContactText.Location = new System.Drawing.Point(101, 158);
@@ -544,17 +520,6 @@
             this.label1.Size = new System.Drawing.Size(357, 42);
             this.label1.TabIndex = 0;
             this.label1.Text = "Consultant Information";
-            // 
-            // cDeleteButton
-            // 
-            this.cDeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cDeleteButton.Location = new System.Drawing.Point(225, 184);
-            this.cDeleteButton.Name = "cDeleteButton";
-            this.cDeleteButton.Size = new System.Drawing.Size(118, 39);
-            this.cDeleteButton.TabIndex = 16;
-            this.cDeleteButton.Text = "Delete";
-            this.cDeleteButton.UseVisualStyleBackColor = true;
-            this.cDeleteButton.Click += new System.EventHandler(this.cDeleteButton_Click);
             // 
             // label6
             // 
@@ -577,9 +542,9 @@
             // cAddButton
             // 
             this.cAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cAddButton.Location = new System.Drawing.Point(101, 184);
+            this.cAddButton.Location = new System.Drawing.Point(101, 188);
             this.cAddButton.Name = "cAddButton";
-            this.cAddButton.Size = new System.Drawing.Size(118, 39);
+            this.cAddButton.Size = new System.Drawing.Size(62, 39);
             this.cAddButton.TabIndex = 15;
             this.cAddButton.Text = "Add";
             this.cAddButton.UseVisualStyleBackColor = true;
@@ -595,9 +560,9 @@
             // cClearButton
             // 
             this.cClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cClearButton.Location = new System.Drawing.Point(350, 184);
+            this.cClearButton.Location = new System.Drawing.Point(356, 188);
             this.cClearButton.Name = "cClearButton";
-            this.cClearButton.Size = new System.Drawing.Size(118, 39);
+            this.cClearButton.Size = new System.Drawing.Size(112, 39);
             this.cClearButton.TabIndex = 17;
             this.cClearButton.Text = "Clear Form";
             this.cClearButton.UseVisualStyleBackColor = true;
@@ -747,6 +712,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "New Submittal?";
             // 
+            // sSubmittalDropdown
+            // 
+            this.sSubmittalDropdown.FormattingEnabled = true;
+            this.sSubmittalDropdown.Location = new System.Drawing.Point(154, 92);
+            this.sSubmittalDropdown.Name = "sSubmittalDropdown";
+            this.sSubmittalDropdown.Size = new System.Drawing.Size(67, 21);
+            this.sSubmittalDropdown.TabIndex = 9;
+            this.sSubmittalDropdown.Visible = false;
+            this.sSubmittalDropdown.SelectedIndexChanged += new System.EventHandler(this.sSubmittalDropdown_SelectedIndexChanged);
+            this.sSubmittalDropdown.Click += new System.EventHandler(this.sSubmittalDropdown_Click);
+            // 
             // sNoRB
             // 
             this.sNoRB.AutoSize = true;
@@ -783,6 +759,16 @@
             this.sClearFormBTN.Text = "Clear Form";
             this.sClearFormBTN.UseVisualStyleBackColor = true;
             this.sClearFormBTN.Click += new System.EventHandler(this.sClearFormBTN_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(23, 98);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(125, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Submittal Number to edit:";
+            this.label11.Visible = false;
             // 
             // label9
             // 
@@ -1105,17 +1091,6 @@
             this.zgroupBox2.TabStop = false;
             this.zgroupBox2.Text = "Part 1";
             // 
-            // sSubmittalDropdown
-            // 
-            this.sSubmittalDropdown.FormattingEnabled = true;
-            this.sSubmittalDropdown.Location = new System.Drawing.Point(154, 92);
-            this.sSubmittalDropdown.Name = "sSubmittalDropdown";
-            this.sSubmittalDropdown.Size = new System.Drawing.Size(67, 21);
-            this.sSubmittalDropdown.TabIndex = 9;
-            this.sSubmittalDropdown.Visible = false;
-            this.sSubmittalDropdown.SelectedIndexChanged += new System.EventHandler(this.sSubmittalDropdown_SelectedIndexChanged);
-            this.sSubmittalDropdown.Click += new System.EventHandler(this.sSubmittalDropdown_Click);
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -1132,16 +1107,6 @@
             this.sSubmittalDateBox.Name = "sSubmittalDateBox";
             this.sSubmittalDateBox.Size = new System.Drawing.Size(100, 20);
             this.sSubmittalDateBox.TabIndex = 7;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(23, 98);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(125, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Submittal Number to edit:";
-            this.label11.Visible = false;
             // 
             // logSubmittalButtonPart1
             // 
@@ -1216,6 +1181,8 @@
             this.SubmittalsView.Size = new System.Drawing.Size(1300, 160);
             this.SubmittalsView.StandardTab = true;
             this.SubmittalsView.TabIndex = 1;
+            this.SubmittalsView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SubmittalsView_CellMouseClick);
+            this.SubmittalsView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.SubmittalsView_CellValueChanged);
             this.SubmittalsView.DoubleClick += new System.EventHandler(this.SubmittalsView_DoubleClick);
             // 
             // tabPage1
@@ -1239,12 +1206,12 @@
             this.TestData.Size = new System.Drawing.Size(1300, 498);
             this.TestData.TabIndex = 0;
             // 
-            // contextMenuStrip1
+            // consultantMenuStrip
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.consultantMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteRowToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 26);
+            this.consultantMenuStrip.Name = "contextMenuStrip1";
+            this.consultantMenuStrip.Size = new System.Drawing.Size(134, 26);
             // 
             // deleteRowToolStripMenuItem
             // 
@@ -1280,15 +1247,19 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1320, 631);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // pictureBox1
+            // submittalMenuStrip
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(697, 445);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(603, 53);
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
+            this.submittalMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.submittalMenuStrip.Name = "submittalMenuStrip";
+            this.submittalMenuStrip.Size = new System.Drawing.Size(134, 26);
+            this.submittalMenuStrip.Click += new System.EventHandler(this.submittalMenuStrip_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "Delete Row";
             // 
             // Form1
             // 
@@ -1308,6 +1279,7 @@
             this.tabControl1.ResumeLayout(false);
             this.welcomeTab.ResumeLayout(false);
             this.welcomeTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabConsultant.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
@@ -1316,8 +1288,6 @@
             this.splitContainer2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.zgroupBox1.ResumeLayout(false);
-            this.zgroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultantView)).EndInit();
             this.tabSubmittals.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
@@ -1336,9 +1306,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).EndInit();
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TestData)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.consultantMenuStrip.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.submittalMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1371,7 +1341,6 @@
         private System.Windows.Forms.TextBox cNameText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabSubmittals;
-        private System.Windows.Forms.Button cDeleteButton;
         private System.Windows.Forms.Button cAddButton;
         private System.Windows.Forms.RichTextBox cErrorBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -1433,13 +1402,10 @@
         private System.Windows.Forms.RadioButton cYesRB;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton cNoRB;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip consultantMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem deleteRowToolStripMenuItem;
         private System.Windows.Forms.Label cRowsCountLB;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.GroupBox zgroupBox1;
-        private System.Windows.Forms.Label zlabel31;
-        private System.Windows.Forms.ComboBox cConsultantEditCB;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView TestData;
         private System.Windows.Forms.Button sClearFormBTN;
@@ -1454,7 +1420,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton sNoRB;
         private System.Windows.Forms.RadioButton sYesRB;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ContextMenuStrip submittalMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 
