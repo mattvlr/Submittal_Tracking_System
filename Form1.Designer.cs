@@ -130,7 +130,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.TestData = new System.Windows.Forms.DataGridView();
+            this.label29 = new System.Windows.Forms.Label();
+            this.actionBx = new System.Windows.Forms.ComboBox();
+            this.actionview = new System.Windows.Forms.DataGridView();
             this.consultantMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
@@ -159,7 +161,7 @@
             this.zgroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TestData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actionview)).BeginInit();
             this.consultantMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.submittalMenuStrip.SuspendLayout();
@@ -226,8 +228,8 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.editToolStripMenuItem.Text = "Print";
             // 
             // tabControl1
             // 
@@ -270,6 +272,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
             this.pictureBox2.Location = new System.Drawing.Point(595, 260);
@@ -1182,29 +1185,55 @@
             this.SubmittalsView.StandardTab = true;
             this.SubmittalsView.TabIndex = 1;
             this.SubmittalsView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SubmittalsView_CellMouseClick);
-            this.SubmittalsView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.SubmittalsView_CellValueChanged);
             this.SubmittalsView.DoubleClick += new System.EventHandler(this.SubmittalsView_DoubleClick);
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.TestData);
+            this.tabPage1.Controls.Add(this.label29);
+            this.tabPage1.Controls.Add(this.actionBx);
+            this.tabPage1.Controls.Add(this.actionview);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1306, 504);
             this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Action";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // TestData
+            // label29
             // 
-            this.TestData.AllowUserToOrderColumns = true;
-            this.TestData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TestData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TestData.Location = new System.Drawing.Point(3, 3);
-            this.TestData.Name = "TestData";
-            this.TestData.Size = new System.Drawing.Size(1300, 498);
-            this.TestData.TabIndex = 0;
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(123, 16);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(40, 13);
+            this.label29.TabIndex = 15;
+            this.label29.Text = "Action:";
+            // 
+            // actionBx
+            // 
+            this.actionBx.FormattingEnabled = true;
+            this.actionBx.Items.AddRange(new object[] {
+            "",
+            "Accepted",
+            "Approved As Noted",
+            "Revise and Resubmit",
+            "Not Accepted",
+            "Resubmittal Received"});
+            this.actionBx.Location = new System.Drawing.Point(169, 13);
+            this.actionBx.Name = "actionBx";
+            this.actionBx.Size = new System.Drawing.Size(173, 21);
+            this.actionBx.TabIndex = 14;
+            this.actionBx.SelectedIndexChanged += new System.EventHandler(this.actionBx_SelectedIndexChanged);
+            // 
+            // actionview
+            // 
+            this.actionview.AllowUserToOrderColumns = true;
+            this.actionview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.actionview.Location = new System.Drawing.Point(3, 40);
+            this.actionview.Name = "actionview";
+            this.actionview.Size = new System.Drawing.Size(1300, 461);
+            this.actionview.TabIndex = 0;
+            this.actionview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.actionview_CellDoubleClick);
             // 
             // consultantMenuStrip
             // 
@@ -1258,7 +1287,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem1.Text = "Delete Row";
             // 
             // Form1
@@ -1305,7 +1334,8 @@
             this.zgroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.TestData)).EndInit();
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.actionview)).EndInit();
             this.consultantMenuStrip.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.submittalMenuStrip.ResumeLayout(false);
@@ -1407,7 +1437,7 @@
         private System.Windows.Forms.Label cRowsCountLB;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView TestData;
+        private System.Windows.Forms.DataGridView actionview;
         private System.Windows.Forms.Button sClearFormBTN;
         private System.Windows.Forms.Button logSubmittalButtonPart2;
         private System.Windows.Forms.Button logSubmittalButtonPart3;
@@ -1423,6 +1453,8 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ContextMenuStrip submittalMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox actionBx;
     }
 }
 

@@ -1428,7 +1428,42 @@ namespace Submittal_Tracking_System
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void actionBx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Directory.SetCurrentDirectory(Globals.Projectfilepath);
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
 
+            try
+            {
+                string sql = "SELECT * FROM Submittals where Action = '" + actionBx.Text + "'";
+                SqlCeCommand cmd = new SqlCeCommand(sql, cn);
+                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable | ResultSetOptions.Updatable);
+                actionview.DataSource = rs;
+
+
+                // 
+
+                // 
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal table was refreshed.\n");
+                forceScroll();
+                // 
+
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+      
         //Misc Database methods
         private void SetProjectInfoDataBase()
         {
@@ -1557,10 +1592,73 @@ namespace Submittal_Tracking_System
             }
         }
 
-        private void SubmittalsView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void actionview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            tabControl1.SelectedTab = tabSubmittals;
+            int yCoord = actionview.CurrentCellAddress.Y;
+
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+            Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand cmd;
+
+            string sql = "SELECT * FROM Submittals where SubmittalNum = " + (yCoord + 1);
+
+            try
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Retrieving row contents from database.\n");
+                forceScroll();
+                cmd = new SqlCeCommand(sql, cn);
+                using (SqlCeDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        sSubmittalDateBox.Text = oReader["ReceivedDate"].ToString();
+                        sSubmittalDropdown.Text = oReader["SubmittalNum"].ToString();
+                        sDescriptionBox.Text = oReader["Description"].ToString();
+                        sNumReceivedBox.Text = oReader["NumReceived"].ToString();
+                        sConsultantBox.Text = oReader["Consultant"].ToString();
+                        sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
+                        sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
+                        sQuantityConsultantBox.Text = oReader["QuantityToConsultant"].ToString();
+                        sConsultantViaBox.Text = oReader["ConsultantVia"].ToString();
+                        sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
+                        sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
+                        sQuantityReturnedBox.Text = oReader["Quantity"].ToString();
+                        sContractorViaBox.Text = oReader["ContractorVia"].ToString();
+                        sActionBox.Text = oReader["Action"].ToString();
+                        sNameBox.Text = oReader["Name"].ToString();
+                        sCommentBox.Text = oReader["Comments"].ToString();
+                    }
+                }
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal form populated!\n");
+                forceScroll();
+                sNoRB.Checked = true;
+            }
 
         }
+
+
+
+    
 
 
    
