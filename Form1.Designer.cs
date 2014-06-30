@@ -36,8 +36,10 @@
             this.submittalDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultantDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setDirectory = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
@@ -139,6 +141,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.submittalMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.sLogBTN = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
@@ -165,6 +169,7 @@
             this.consultantMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.submittalMenuStrip.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -183,6 +188,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newMenu,
             this.openMenu,
+            this.printToolStripMenuItem,
             this.closeMenu});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -218,6 +224,12 @@
             this.openMenu.Text = "Open DB.sdf";
             this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
             // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.printToolStripMenuItem.Text = "Print";
+            // 
             // closeMenu
             // 
             this.closeMenu.Name = "closeMenu";
@@ -227,9 +239,17 @@
             // 
             // editToolStripMenuItem
             // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toExcelToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.editToolStripMenuItem.Text = "Print";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.editToolStripMenuItem.Text = "Export";
+            // 
+            // toExcelToolStripMenuItem
+            // 
+            this.toExcelToolStripMenuItem.Name = "toExcelToolStripMenuItem";
+            this.toExcelToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.toExcelToolStripMenuItem.Text = "To Excel";
             // 
             // tabControl1
             // 
@@ -688,6 +708,8 @@
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.Controls.Add(this.groupBox3);
+            this.splitContainer3.Panel1.Controls.Add(this.sLogBTN);
             this.splitContainer3.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer3.Panel1.Controls.Add(this.label9);
             this.splitContainer3.Panel1.Controls.Add(this.zgroupBox3);
@@ -785,7 +807,6 @@
             // 
             // zgroupBox3
             // 
-            this.zgroupBox3.Controls.Add(this.logSubmittalButtonPart2);
             this.zgroupBox3.Controls.Add(this.label26);
             this.zgroupBox3.Controls.Add(this.label15);
             this.zgroupBox3.Controls.Add(this.sConsultantDateDueBox);
@@ -810,11 +831,11 @@
             this.logSubmittalButtonPart2.AutoSize = true;
             this.logSubmittalButtonPart2.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.logSubmittalButtonPart2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logSubmittalButtonPart2.Location = new System.Drawing.Point(482, 81);
+            this.logSubmittalButtonPart2.Location = new System.Drawing.Point(36, 86);
             this.logSubmittalButtonPart2.Name = "logSubmittalButtonPart2";
-            this.logSubmittalButtonPart2.Size = new System.Drawing.Size(100, 41);
+            this.logSubmittalButtonPart2.Size = new System.Drawing.Size(132, 41);
             this.logSubmittalButtonPart2.TabIndex = 14;
-            this.logSubmittalButtonPart2.Text = "Log";
+            this.logSubmittalButtonPart2.Text = "Log Pt. 2";
             this.logSubmittalButtonPart2.UseVisualStyleBackColor = true;
             this.logSubmittalButtonPart2.Click += new System.EventHandler(this.logSubmittalButtonPart2_Click);
             // 
@@ -930,7 +951,6 @@
             // 
             // zgroupBox4
             // 
-            this.zgroupBox4.Controls.Add(this.logSubmittalButtonPart3);
             this.zgroupBox4.Controls.Add(this.sCommentBox);
             this.zgroupBox4.Controls.Add(this.label17);
             this.zgroupBox4.Controls.Add(this.sNameBox);
@@ -955,11 +975,11 @@
             this.logSubmittalButtonPart3.AutoSize = true;
             this.logSubmittalButtonPart3.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.logSubmittalButtonPart3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logSubmittalButtonPart3.Location = new System.Drawing.Point(344, 42);
+            this.logSubmittalButtonPart3.Location = new System.Drawing.Point(36, 133);
             this.logSubmittalButtonPart3.Name = "logSubmittalButtonPart3";
-            this.logSubmittalButtonPart3.Size = new System.Drawing.Size(100, 41);
+            this.logSubmittalButtonPart3.Size = new System.Drawing.Size(132, 41);
             this.logSubmittalButtonPart3.TabIndex = 17;
-            this.logSubmittalButtonPart3.Text = "Log";
+            this.logSubmittalButtonPart3.Text = "Log Pt. 3";
             this.logSubmittalButtonPart3.UseVisualStyleBackColor = true;
             this.logSubmittalButtonPart3.Click += new System.EventHandler(this.logSubmittalButtonPart3_Click);
             // 
@@ -1080,7 +1100,6 @@
             // 
             this.zgroupBox2.Controls.Add(this.label10);
             this.zgroupBox2.Controls.Add(this.sSubmittalDateBox);
-            this.zgroupBox2.Controls.Add(this.logSubmittalButtonPart1);
             this.zgroupBox2.Controls.Add(this.sDescriptionBox);
             this.zgroupBox2.Controls.Add(this.label12);
             this.zgroupBox2.Controls.Add(this.sNumReceivedBox);
@@ -1116,11 +1135,11 @@
             this.logSubmittalButtonPart1.AutoSize = true;
             this.logSubmittalButtonPart1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.logSubmittalButtonPart1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logSubmittalButtonPart1.Location = new System.Drawing.Point(482, 97);
+            this.logSubmittalButtonPart1.Location = new System.Drawing.Point(36, 39);
             this.logSubmittalButtonPart1.Name = "logSubmittalButtonPart1";
-            this.logSubmittalButtonPart1.Size = new System.Drawing.Size(100, 41);
+            this.logSubmittalButtonPart1.Size = new System.Drawing.Size(132, 41);
             this.logSubmittalButtonPart1.TabIndex = 5;
-            this.logSubmittalButtonPart1.Text = "Log";
+            this.logSubmittalButtonPart1.Text = "Log Pt. 1";
             this.logSubmittalButtonPart1.UseVisualStyleBackColor = true;
             this.logSubmittalButtonPart1.Click += new System.EventHandler(this.logSubmittalButtonPart1_Click);
             // 
@@ -1290,6 +1309,29 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem1.Text = "Delete Row";
             // 
+            // sLogBTN
+            // 
+            this.sLogBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sLogBTN.Location = new System.Drawing.Point(1092, 50);
+            this.sLogBTN.Name = "sLogBTN";
+            this.sLogBTN.Size = new System.Drawing.Size(141, 65);
+            this.sLogBTN.TabIndex = 19;
+            this.sLogBTN.Text = "Log";
+            this.sLogBTN.UseVisualStyleBackColor = true;
+            this.sLogBTN.Click += new System.EventHandler(this.sLogBTN_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.logSubmittalButtonPart3);
+            this.groupBox3.Controls.Add(this.logSubmittalButtonPart2);
+            this.groupBox3.Controls.Add(this.logSubmittalButtonPart1);
+            this.groupBox3.Location = new System.Drawing.Point(1092, 128);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 195);
+            this.groupBox3.TabIndex = 20;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Test Log Buttons";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1339,6 +1381,8 @@
             this.consultantMenuStrip.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.submittalMenuStrip.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1455,6 +1499,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox actionBx;
+        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toExcelToolStripMenuItem;
+        private System.Windows.Forms.Button sLogBTN;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 

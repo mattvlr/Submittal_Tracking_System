@@ -530,6 +530,10 @@ namespace Submittal_Tracking_System
 
 
                 }
+                else
+                {
+                    MessageBox.Show("Error: 'DB.sdf' was not found, please try another location.\n");
+                }
             }
         }
         private void consultantDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -923,12 +927,6 @@ namespace Submittal_Tracking_System
                             cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
                             cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
                             cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
-                            //cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
-                            //cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
-                            //cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
-                            //cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
-                            //cmd.Parameters.AddWithValue("@Name", sNameBox.Text);
-                            //cmd.Parameters.AddWithValue("@Comments", sCommentBox.Text);
                             cmd.ExecuteNonQuery();
                             cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Updated the database!\n");
                             forceScroll();
@@ -984,12 +982,6 @@ namespace Submittal_Tracking_System
                             cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
                             cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
                             cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
-                            //cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
-                            //cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
-                            //cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
-                            //cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
-                            //cmd.Parameters.AddWithValue("@Name", sNameBox.Text);
-                            //cmd.Parameters.AddWithValue("@Comments", sCommentBox.Text);
                             cmd.ExecuteNonQuery();
                             cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal Part 2 added to database!\n");
                             forceScroll();
@@ -1130,6 +1122,203 @@ namespace Submittal_Tracking_System
 
             }
         }
+        private void sLogBTN_Click(object sender, EventArgs e)
+        {
+            sSubmittalDropdown.BackColor = Color.White;
+            if (sNoRB.Checked)
+            {
+                string sql = "";
+                string sql1 = "";
+                string sql2 = "";
+                string totaldays = "";
+                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+                Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+
+                SqlCeCommand cmd;
+
+
+                if (sSubmittalDropdown.Text != "")
+                {
+                    sql = "Update Submittals set SpecSection = @SpecSection, ProjectTitle = @ProjectTitle, Description = @Description, ReceivedDate = @ReceivedDate, NumReceived = @NumReceived, Consultant = @Consultant, ToConsultantDate = @ToConsultantDate, DateDue = @DateDue, QuantityToConsultant = @QuantityToConsultant, ConsultantVia = @ConsultantVia, FromConsultantDate = @FromConsultantDate,ToContractorDate = @ToContractorDate, ContractorVia = @ContractorVia, Quantity = @Quantity, Action = @Action, Name = @Name, Comments = @Comments, TotalDays = @TotalDays  "
+                    + "where SubmittalNum = " + sSubmittalDropdown.Text;
+
+               //     sql1 = "Update Submittals set Consultant = @Consultant, ToConsultantDate = @ToConsultantDate, DateDue = @DateDue, QuantityToConsultant = @QuantityToConsultant, ConsultantVia = @ConsultantVia, FromConsultantDate = @FromConsultantDate "
+                  //  + "where SubmittalNum = " + sSubmittalDropdown.Text;
+
+                  //  sql2 = "Update Submittals set ToContractorDate = @ToContractorDate, ContractorVia = @ContractorVia, Quantity = @Quantity, Action = @Action, Name = @Name, Comments = @Comments "
+                  //  + "where SubmittalNum = " + sSubmittalDropdown.Text;
+
+                    try
+                    {
+                        totaldays = calcTotalDays(sReturnedCBox.Text, sSubmittalDateBox.Text);
+                        cmd = new SqlCeCommand(sql, cn);
+                        cmd.Parameters.AddWithValue("@SpecSection", sSpecNumBox.Text);
+                        cmd.Parameters.AddWithValue("@Description", sDescriptionBox.Text);
+                        cmd.Parameters.AddWithValue("@ProjectTitle", Globals.ProjectTitle);
+                        cmd.Parameters.AddWithValue("@ReceivedDate", sSubmittalDateBox.Text);
+                        cmd.Parameters.AddWithValue("@NumReceived", sNumReceivedBox.Text);
+                        cmd.Parameters.AddWithValue("@Consultant", sConsultantBox.Text);
+                        cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
+                        cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
+                        cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
+                        cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
+                        cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
+                        cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
+                        cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
+                        cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
+                        cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
+                        cmd.Parameters.AddWithValue("@Name", sNameBox.Text);
+                        cmd.Parameters.AddWithValue("@Comments", sCommentBox.Text);
+                        cmd.Parameters.AddWithValue("@TotalDays", totaldays);
+                        cmd.ExecuteNonQuery();
+
+                       /* cmd = new SqlCeCommand(sql1, cn);
+                        cmd.Parameters.AddWithValue("@Consultant", sConsultantBox.Text);
+                        cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
+                        cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
+                        cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
+                        cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
+                        cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
+                        cmd.ExecuteNonQuery();
+
+                        cmd = new SqlCeCommand(sql2, cn);
+                        cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
+                        cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
+                        cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
+                        cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
+                        cmd.Parameters.AddWithValue("@Name", sNameBox.Text);
+                        cmd.Parameters.AddWithValue("@Comments", sCommentBox.Text);
+                        cmd.ExecuteNonQuery();
+                        */
+                        cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Updated the database!\n");
+                        forceScroll();
+
+                    }
+                    catch (SqlCeException sqlexception)
+                    {
+                        MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        cn.Close();
+                        SubmittalRefresh();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a submittal from the dropdown to edit.");
+                    sSubmittalDropdown.BackColor = Color.MistyRose;
+                }
+
+            }
+
+            if (sYesRB.Checked)
+            {
+                string sql = "";
+                string sql1 = "";
+                string sql2 = "";
+                string totaldays = "";
+                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+                Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+
+                SqlCeCommand cmd;
+
+
+                if (sSubmittalDropdown.Text == "")
+                {
+                    sql = "insert into Submittals "
+                    + "(SpecSection, ProjectTitle, Description, ReceivedDate, NumReceived, Consultant, ToConsultantDate, DateDue, QuantityToConsultant, ConsultantVia, FromConsultantDate, ToContractorDate, ContractorVia, Quantity, Action, Name, Comments, TotalDays) "
+                    + "values (@SpecSection, @ProjectTitle, @Description, @ReceivedDate, @NumReceived,@Consultant, @ToConsultantDate, @DateDue, @QuantityToConsultant, @ConsultantVia, @FromConsultantDate,@ToContractorDate, @ContractorVia, @Quantity, @Action, @Name, @Comments, @TotalDays) ";
+
+               //     sql1 = "insert into Submittals "
+                 //   + "(Consultant, ToConsultantDate, DateDue, QuantityToConsultant, ConsultantVia, FromConsultantDate) "
+                   // + "values (@Consultant, @ToConsultantDate, @DateDue, @QuantityToConsultant, @ConsultantVia, @FromConsultantDate) ";
+
+//                    sql2 = "insert into Submittals "
+  //                  + "(ToContractorDate, ContractorVia, Quantity, Action, Name, Comments) "
+    //                + "values (@ToContractorDate, @ContractorVia, @Quantity, @Action, @Name, @Comments) ";
+
+                    try
+                    {
+                        totaldays = calcTotalDays(sReturnedCBox.Text, sSubmittalDateBox.Text);
+                        cmd = new SqlCeCommand(sql, cn);
+                        cmd.Parameters.AddWithValue("@SpecSection", sSpecNumBox.Text);
+                        cmd.Parameters.AddWithValue("@Description", sDescriptionBox.Text);
+                        cmd.Parameters.AddWithValue("@ProjectTitle", Globals.ProjectTitle);
+                        cmd.Parameters.AddWithValue("@ReceivedDate", sSubmittalDateBox.Text);
+                        cmd.Parameters.AddWithValue("@NumReceived", sNumReceivedBox.Text);
+                        cmd.Parameters.AddWithValue("@Consultant", sConsultantBox.Text);
+                        cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
+                        cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
+                        cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
+                        cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
+                        cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
+                        cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
+                        cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
+                        cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
+                        cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
+                        cmd.Parameters.AddWithValue("@Name", sNameBox.Text);
+                        cmd.Parameters.AddWithValue("@Comments", sCommentBox.Text);
+                        cmd.Parameters.AddWithValue("@TotalDays", totaldays);
+                        cmd.ExecuteNonQuery();
+                        cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal added to database!\n");
+                        forceScroll();
+
+                       /* cmd = new SqlCeCommand(sql1, cn);
+                        cmd.Parameters.AddWithValue("@Consultant", sConsultantBox.Text);
+                        cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
+                        cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
+                        cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
+                        cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
+                        cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
+                        cmd.ExecuteNonQuery();
+
+                        cmd = new SqlCeCommand(sql2, cn);
+                        cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
+                        cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
+                        cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
+                        cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
+                        cmd.Parameters.AddWithValue("@Name", sNameBox.Text);
+                        cmd.Parameters.AddWithValue("@Comments", sCommentBox.Text);
+                        cmd.ExecuteNonQuery();
+                        */
+                    }
+                    catch (SqlCeException sqlexception)
+                    {
+                        MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        cn.Close();
+                        SubmittalRefresh();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Submittal Number dropdown needs to be blank if you are logging a new submittal. Try clicking clear form.");
+                }
+
+            }
+        }
+
         private void sSubmittalDropdown_Click(object sender, EventArgs e)
         {
             sSubmittalDropdown.Items.Clear();
@@ -1176,11 +1365,11 @@ namespace Submittal_Tracking_System
         }
         private void SubmittalsView_DoubleClick(object sender, EventArgs e)
         {
-            int yCoord = SubmittalsView.CurrentCellAddress.Y;
 
+            int yCoord = 0;
             SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
             Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
+            //string yCoord = ((DataGridView)sender).SelectedRows[0].Cells[0].Value.ToString();
 
             if (cn.State == ConnectionState.Closed)
             {
@@ -1656,6 +1845,7 @@ namespace Submittal_Tracking_System
 
         }
 
+      
 
 
     
