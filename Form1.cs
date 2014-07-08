@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Data.SqlServerCe;
+using ClosedXML;
 
 namespace Submittal_Tracking_System
 {
@@ -21,7 +22,7 @@ namespace Submittal_Tracking_System
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            tabControl1.Hide();
+          //  tabControl1.Hide();
             cErrorBox.Hide();
         }
         private void closeMenu_Click(object sender, EventArgs e)
@@ -90,6 +91,7 @@ namespace Submittal_Tracking_System
             + "Comments nvarchar(200) )";
 
             string sql1 = "create table Contractor ( "
+            + "Num INT IDENTITY(1,1) PRIMARY KEY, "
             + "Name nvarchar (200), "
             + "Address nvarchar (200), "
             + "Address2 nvarchar (200), "
@@ -99,6 +101,7 @@ namespace Submittal_Tracking_System
             + "ContactPerson nvarchar (200) )";
 
             string sql2 = "create table ProjectInfo ( "
+            + "Num INT IDENTITY(1,1) PRIMARY KEY, "
             + "Title nvarchar (200), "
             + "Number nvarchar (40) )";
 
@@ -435,6 +438,7 @@ namespace Submittal_Tracking_System
                     Globals.connectionStringProject = "DataSource=\"DB.sdf\"; Password=\"password\"";
                     SubmittalRefresh();
                     GetProjectInfoDataBase();
+                    GetContractorInfoDataBase();
                     if (Globals.connectionStringConsultant == null)
                     {
                         string messageBoxText1 = "The path for ConsultantDB.sdf has not been set, would you like to browse for it now?";
@@ -587,9 +591,12 @@ namespace Submittal_Tracking_System
                     tabControl1.Visible = true;
                     cErrorBox.Visible = true;
                     createProjectDatabase();
-                    zlabel29.Text = "Please browse to ConsultantDB.sdf or make a new one.";
-                    wConsultantLoc.Focus();
-                    wConsultantLoc.BackColor = Color.MistyRose;
+                    if (Globals.Consultantfilepath == "")
+                    {
+                        zlabel29.Text = "Please browse to ConsultantDB.sdf or make a new one.";
+                        wConsultantLoc.Focus();
+                        wConsultantLoc.BackColor = Color.MistyRose;
+                    }
                     tabControl1.SelectedIndex = 0;
 
                     if (Globals.ProjectTitle != "" && Globals.ProjectNum != "")
@@ -637,11 +644,14 @@ namespace Submittal_Tracking_System
                 Directory.SetCurrentDirectory(Globals.Projectfilepath);
                 if (File.Exists("DB.sdf") == true)
                 {
+                   // Globals.Projectfilepath = setDirectory.SelectedPath;
+                   // Directory.SetCurrentDirectory(Globals.Projectfilepath);
                     wProjectLoc.Text = Globals.Projectfilepath;
                     cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'DB.sdf' is now: " + Globals.Projectfilepath + "\n");
                     forceScroll();
                     SubmittalRefresh();
                     GetProjectInfoDataBase();
+                    GetContractorInfoDataBase();
                 }
                 else
                 {
@@ -669,16 +679,15 @@ namespace Submittal_Tracking_System
 
             SqlCeCommand cmd;
 
-            string sql = "insert into ProjectInfo"
-            + "(Title) "
-            + "values (@Title) ";
+            string sql = "Update ProjectInfo set Title = @Title "
+            + "where Num = 1" ;
             try
             {
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Updating Project title in database.\n");
                 forceScroll();
                 cmd = new SqlCeCommand(sql, cn);
 
-                cmd.Parameters.AddWithValue("@Title", Globals.ProjectTitle);
+                cmd.Parameters.AddWithValue("@Title", wTitleTxT.Text);
                 cmd.ExecuteNonQuery();
 
             }
@@ -711,16 +720,15 @@ namespace Submittal_Tracking_System
 
             SqlCeCommand cmd;
 
-            string sql = "insert into ProjectInfo"
-            + "(Number) "
-            + "values (@Number) ";
+            string sql = "Update ProjectInfo set Number = @Number "
+            + "where Num = 1";
             try
             {
                 cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Updating Project number in database.\n");
                 forceScroll();
                 cmd = new SqlCeCommand(sql, cn);
 
-                cmd.Parameters.AddWithValue("@Number", Globals.ProjectTitle);
+                cmd.Parameters.AddWithValue("@Number", wNumberTxT.Text);
                 cmd.ExecuteNonQuery();
 
             }
@@ -740,6 +748,109 @@ namespace Submittal_Tracking_System
                 Globals.ProjectNum = wNumberTxT.Text;
                 this.Text = "Submittal Tracking System | " + Globals.ProjectNum + " | " + Globals.ProjectTitle;
             }
+        }
+
+        private void wConSet_Click(object sender, EventArgs e)
+        {
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+            Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand cmd;
+
+            string sql = "Update Contractor set Name = @Name, Address = @Address, Address2 = @Address2, City = @city, State = @state, Zipcode = @zipcode, ContactPerson = @contactperson "
+                       + "where Num = 1";
+                  
+            try
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Updating Contractor information in database.\n");
+                forceScroll();
+                cmd = new SqlCeCommand(sql, cn);
+
+                cmd.Parameters.AddWithValue("@name", wName.Text);
+                cmd.Parameters.AddWithValue("@address", wAddress.Text);
+                cmd.Parameters.AddWithValue("@address2", wAddress2.Text);
+                cmd.Parameters.AddWithValue("@city", wCity.Text);
+                cmd.Parameters.AddWithValue("@state", wState.Text);
+                cmd.Parameters.AddWithValue("@zipcode", wZipcode.Text);
+                cmd.Parameters.AddWithValue("@contactperson", wContact.Text);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Contractor updated!\n");
+                forceScroll();
+            }
+        }
+
+
+        private void toExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Globals.Projectfilepath != null)
+            {
+                var wb = new ClosedXML.Excel.XLWorkbook();
+
+                Directory.SetCurrentDirectory(Globals.Projectfilepath);
+                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+
+                try
+                {
+                    SqlCeCommand cmd = new SqlCeCommand("Submittals", cn);
+                    SqlCeCommand cmd1 = new SqlCeCommand("Contractor", cn);
+                    SqlCeCommand cmd2 = new SqlCeCommand("ProjectInfo", cn);
+
+                    cmd.CommandType = CommandType.TableDirect;
+                    cmd1.CommandType = CommandType.TableDirect;
+                    cmd2.CommandType = CommandType.TableDirect;
+
+                    DataTable Submittals = new DataTable();
+                    DataTable Contractor = new DataTable();
+                    DataTable ProjectInfo = new DataTable();
+
+                    SqlCeDataReader reader = cmd.ExecuteReader();
+                    SqlCeDataReader reader1 = cmd1.ExecuteReader();
+                    SqlCeDataReader reader2 = cmd2.ExecuteReader();
+
+                    Submittals.Load(reader);
+                    wb.Worksheets.Add(Submittals);
+
+                    Contractor.Load(reader1);
+                    wb.Worksheets.Add(Contractor);
+
+                    ProjectInfo.Load(reader2);
+                    wb.Worksheets.Add(ProjectInfo);
+
+
+                    wb.SaveAs(wTitleTxT.Text + wNumberTxT.Text + ".xlsx");
+                }
+                catch (SqlCeException sqlexception)
+                {
+                    MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+                MessageBox.Show("Please open a Submittal file first.");
         }
 
         //Submittal Tab methods
@@ -1751,6 +1862,75 @@ namespace Submittal_Tracking_System
                 this.Text = "Submittal Tracking System | " + Globals.ProjectNum + " | " + Globals.ProjectTitle;
             }
         }
+        private void GetContractorInfoDataBase()
+        {
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+            Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            string sql = "SELECT Name, Address, Address2, City, State, Zipcode, ContactPerson FROM Contractor";
+
+            try
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Retrieving Contractor Info from database.\n");
+                forceScroll();
+                SqlCeCommand cmd = new SqlCeCommand(sql, cn);
+                cmd.CommandType = CommandType.Text;
+                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
+
+
+                if (rs.HasRows)
+                {
+
+                    int ordName = rs.GetOrdinal("Name");
+                    int ordAddress = rs.GetOrdinal("Address");
+                    int ordAddress2 = rs.GetOrdinal("Address2");
+                    int ordCity = rs.GetOrdinal("City");
+                    int ordState = rs.GetOrdinal("State");
+                    int ordZipcode = rs.GetOrdinal("Zipcode");
+                    int ordContact = rs.GetOrdinal("ContactPerson");
+                    
+
+                    rs.ReadFirst();
+                    Globals.cName = rs.GetString(ordName);
+                    Globals.cAddress = rs.GetString(ordAddress);
+                    Globals.cAddress2 = rs.GetString(ordAddress2);
+                    Globals.cCity = rs.GetString(ordCity);
+                    Globals.cState = rs.GetString(ordState);
+                    Globals.cZipcode = rs.GetString(ordZipcode);
+                    Globals.cContactPerson = rs.GetString(ordContact);
+
+
+                }
+
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Contractor Information retrieved!\n");
+                forceScroll();
+                wName.Text = Globals.cName;
+                wAddress.Text = Globals.cAddress;
+                wAddress2.Text = Globals.cAddress2;
+                wCity.Text = Globals.cCity;
+                wState.Text = Globals.cState;
+                wZipcode.Text = Globals.cZipcode;
+                wContact.Text = Globals.cContactPerson;
+                
+            }
+        }
         //data gates (lockers)
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1845,6 +2025,8 @@ namespace Submittal_Tracking_System
 
         }
 
+ 
+
       
 
 
@@ -1909,19 +2091,6 @@ namespace Submittal_Tracking_System
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     public static class Globals // class that holds "global" variables
@@ -1934,6 +2103,14 @@ namespace Submittal_Tracking_System
         public static string jobNumber { get; set; }
         public static string ProjectTitle { get; set; }
         public static string ProjectNum { get; set; }
+
+        public static string cName { get; set; }
+        public static string cAddress { get; set; }
+        public static string cAddress2 { get; set; }
+        public static string cCity { get; set; }
+        public static string cState { get; set; }
+        public static string cZipcode { get; set; }
+        public static string cContactPerson { get; set; }
 
     }
 }
