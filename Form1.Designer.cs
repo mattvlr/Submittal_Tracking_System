@@ -40,6 +40,8 @@
             this.closeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toExcelSubmittals = new System.Windows.Forms.ToolStripMenuItem();
+            this.submittalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setDirectory = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
@@ -159,6 +161,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.submittalMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
@@ -216,7 +219,7 @@
             this.submittalDatabaseToolStripMenuItem,
             this.consultantDatabaseToolStripMenuItem});
             this.newMenu.Name = "newMenu";
-            this.newMenu.Size = new System.Drawing.Size(140, 22);
+            this.newMenu.Size = new System.Drawing.Size(152, 22);
             this.newMenu.Text = "New";
             // 
             // submittalDatabaseToolStripMenuItem
@@ -236,20 +239,21 @@
             // openMenu
             // 
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(140, 22);
+            this.openMenu.Size = new System.Drawing.Size(152, 22);
             this.openMenu.Text = "Open DB.sdf";
             this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.printToolStripMenuItem.Text = "Print";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // closeMenu
             // 
             this.closeMenu.Name = "closeMenu";
-            this.closeMenu.Size = new System.Drawing.Size(140, 22);
+            this.closeMenu.Size = new System.Drawing.Size(152, 22);
             this.closeMenu.Text = "Close";
             this.closeMenu.Click += new System.EventHandler(this.closeMenu_Click);
             // 
@@ -263,10 +267,26 @@
             // 
             // toExcelSubmittals
             // 
+            this.toExcelSubmittals.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.submittalsToolStripMenuItem,
+            this.consultantToolStripMenuItem});
             this.toExcelSubmittals.Name = "toExcelSubmittals";
-            this.toExcelSubmittals.Size = new System.Drawing.Size(176, 22);
-            this.toExcelSubmittals.Text = "To Submittals Excel";
-            this.toExcelSubmittals.Click += new System.EventHandler(this.toExcelToolStripMenuItem_Click);
+            this.toExcelSubmittals.Size = new System.Drawing.Size(152, 22);
+            this.toExcelSubmittals.Text = "Excel";
+            // 
+            // submittalsToolStripMenuItem
+            // 
+            this.submittalsToolStripMenuItem.Name = "submittalsToolStripMenuItem";
+            this.submittalsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.submittalsToolStripMenuItem.Text = "Submittals";
+            this.submittalsToolStripMenuItem.Click += new System.EventHandler(this.submittalsToolStripMenuItem_Click);
+            // 
+            // consultantToolStripMenuItem
+            // 
+            this.consultantToolStripMenuItem.Name = "consultantToolStripMenuItem";
+            this.consultantToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.consultantToolStripMenuItem.Text = "Consultant";
+            this.consultantToolStripMenuItem.Click += new System.EventHandler(this.consultantToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -1712,6 +1732,9 @@
         private System.Windows.Forms.TextBox wCity;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.ToolStripMenuItem submittalsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultantToolStripMenuItem;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }
 
