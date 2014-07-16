@@ -34,7 +34,7 @@ namespace Submittal_Tracking_System
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-          //  tabControl1.Hide();
+            tabControl1.Hide();
             cErrorBox.Hide();
 
           
@@ -1413,7 +1413,9 @@ namespace Submittal_Tracking_System
 
                     try
                     {
+
                         totaldays = calcTotalDays(sReturnedCBox.Text, sSubmittalDateBox.Text);
+
                         cmd = new SqlCeCommand(sql, cn);
                         cmd.Parameters.AddWithValue("@SpecSection", sSpecNumBox.Text);
                         cmd.Parameters.AddWithValue("@Description", sDescriptionBox.Text);
@@ -1616,6 +1618,23 @@ namespace Submittal_Tracking_System
             if (sCommentBox.Text != "")
                 sCommentBox.Text = "";
 
+
+            this.sSubmittalDateBox.CustomFormat = " ";
+            this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+
+            this.sToConsultantDateBox.CustomFormat = " ";
+            this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+     
+            this.sConsultantDateDueBox.CustomFormat = " ";
+            this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+   
+            this.sFromConsultantDateBox.CustomFormat = " ";
+            this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+        
+            this.sReturnedCBox.CustomFormat = " ";
+            this.sReturnedCBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+
+ 
             cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Form cleared.\n"); // NAME
             forceScroll();
         }
@@ -1708,11 +1727,16 @@ namespace Submittal_Tracking_System
         }
         private string calcTotalDays(string x, string y)
         {
-            string days;
-            DateTime rec = Convert.ToDateTime(x);
-            DateTime returned = Convert.ToDateTime(y);
-            days = (rec - returned).TotalDays.ToString();
-            return days;
+           /* if (x != "" && y != "")
+            {
+                string days;
+                DateTime rec = Convert.ToDateTime(x);
+                DateTime returned = Convert.ToDateTime(y);
+                days = (rec - returned).TotalDays.ToString();
+
+                return days;
+            }*/
+            return "";
         }
        
 
@@ -2240,6 +2264,29 @@ namespace Submittal_Tracking_System
             {
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        
+        // Date clearers
+        private void sSubmittalDateBox_ValueChanged(object sender, EventArgs e) //d
+        {
+            this.sSubmittalDateBox.Format = DateTimePickerFormat.Short;
+        }
+        private void sToConsultantDateBox_ValueChanged(object sender, EventArgs e) //d
+        {
+            this.sToConsultantDateBox.Format = DateTimePickerFormat.Short;
+        }
+        private void sConsultantDateDueBox_ValueChanged(object sender, EventArgs e)
+        {
+            this.sConsultantDateDueBox.Format = DateTimePickerFormat.Short;
+        }
+        private void sFromConsultantDateBox_ValueChanged(object sender, EventArgs e) //d
+        {
+            this.sFromConsultantDateBox.Format = DateTimePickerFormat.Short;
+
+        }
+        private void sReturnedCBox_ValueChanged(object sender, EventArgs e) //d
+        {
+            this.sReturnedCBox.Format = DateTimePickerFormat.Short;
         }
 
  

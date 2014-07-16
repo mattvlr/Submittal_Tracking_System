@@ -103,10 +103,6 @@
             this.ConsultantView = new System.Windows.Forms.DataGridView();
             this.tabSubmittals = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.logSubmittalButtonPart3 = new System.Windows.Forms.Button();
-            this.logSubmittalButtonPart2 = new System.Windows.Forms.Button();
-            this.logSubmittalButtonPart1 = new System.Windows.Forms.Button();
             this.sLogBTN = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.sSubmittalDropdown = new System.Windows.Forms.ComboBox();
@@ -178,7 +174,6 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.zgroupBox3.SuspendLayout();
             this.zgroupBox4.SuspendLayout();
@@ -219,7 +214,7 @@
             this.submittalDatabaseToolStripMenuItem,
             this.consultantDatabaseToolStripMenuItem});
             this.newMenu.Name = "newMenu";
-            this.newMenu.Size = new System.Drawing.Size(152, 22);
+            this.newMenu.Size = new System.Drawing.Size(140, 22);
             this.newMenu.Text = "New";
             // 
             // submittalDatabaseToolStripMenuItem
@@ -239,21 +234,21 @@
             // openMenu
             // 
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(152, 22);
+            this.openMenu.Size = new System.Drawing.Size(140, 22);
             this.openMenu.Text = "Open DB.sdf";
             this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.printToolStripMenuItem.Text = "Print";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // closeMenu
             // 
             this.closeMenu.Name = "closeMenu";
-            this.closeMenu.Size = new System.Drawing.Size(152, 22);
+            this.closeMenu.Size = new System.Drawing.Size(140, 22);
             this.closeMenu.Text = "Close";
             this.closeMenu.Click += new System.EventHandler(this.closeMenu_Click);
             // 
@@ -271,20 +266,20 @@
             this.submittalsToolStripMenuItem,
             this.consultantToolStripMenuItem});
             this.toExcelSubmittals.Name = "toExcelSubmittals";
-            this.toExcelSubmittals.Size = new System.Drawing.Size(152, 22);
+            this.toExcelSubmittals.Size = new System.Drawing.Size(100, 22);
             this.toExcelSubmittals.Text = "Excel";
             // 
             // submittalsToolStripMenuItem
             // 
             this.submittalsToolStripMenuItem.Name = "submittalsToolStripMenuItem";
-            this.submittalsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.submittalsToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.submittalsToolStripMenuItem.Text = "Submittals";
             this.submittalsToolStripMenuItem.Click += new System.EventHandler(this.submittalsToolStripMenuItem_Click);
             // 
             // consultantToolStripMenuItem
             // 
             this.consultantToolStripMenuItem.Name = "consultantToolStripMenuItem";
-            this.consultantToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.consultantToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.consultantToolStripMenuItem.Text = "Consultant";
             this.consultantToolStripMenuItem.Click += new System.EventHandler(this.consultantToolStripMenuItem_Click);
             // 
@@ -914,7 +909,6 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.groupBox3);
             this.splitContainer3.Panel1.Controls.Add(this.sLogBTN);
             this.splitContainer3.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer3.Panel1.Controls.Add(this.label9);
@@ -929,61 +923,10 @@
             this.splitContainer3.SplitterDistance = 334;
             this.splitContainer3.TabIndex = 17;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.logSubmittalButtonPart3);
-            this.groupBox3.Controls.Add(this.logSubmittalButtonPart2);
-            this.groupBox3.Controls.Add(this.logSubmittalButtonPart1);
-            this.groupBox3.Location = new System.Drawing.Point(1092, 128);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 195);
-            this.groupBox3.TabIndex = 20;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Test Log Buttons";
-            // 
-            // logSubmittalButtonPart3
-            // 
-            this.logSubmittalButtonPart3.AutoSize = true;
-            this.logSubmittalButtonPart3.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.logSubmittalButtonPart3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logSubmittalButtonPart3.Location = new System.Drawing.Point(36, 133);
-            this.logSubmittalButtonPart3.Name = "logSubmittalButtonPart3";
-            this.logSubmittalButtonPart3.Size = new System.Drawing.Size(132, 41);
-            this.logSubmittalButtonPart3.TabIndex = 17;
-            this.logSubmittalButtonPart3.Text = "Log Pt. 3";
-            this.logSubmittalButtonPart3.UseVisualStyleBackColor = true;
-            this.logSubmittalButtonPart3.Click += new System.EventHandler(this.logSubmittalButtonPart3_Click);
-            // 
-            // logSubmittalButtonPart2
-            // 
-            this.logSubmittalButtonPart2.AutoSize = true;
-            this.logSubmittalButtonPart2.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.logSubmittalButtonPart2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logSubmittalButtonPart2.Location = new System.Drawing.Point(36, 86);
-            this.logSubmittalButtonPart2.Name = "logSubmittalButtonPart2";
-            this.logSubmittalButtonPart2.Size = new System.Drawing.Size(132, 41);
-            this.logSubmittalButtonPart2.TabIndex = 14;
-            this.logSubmittalButtonPart2.Text = "Log Pt. 2";
-            this.logSubmittalButtonPart2.UseVisualStyleBackColor = true;
-            this.logSubmittalButtonPart2.Click += new System.EventHandler(this.logSubmittalButtonPart2_Click);
-            // 
-            // logSubmittalButtonPart1
-            // 
-            this.logSubmittalButtonPart1.AutoSize = true;
-            this.logSubmittalButtonPart1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.logSubmittalButtonPart1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logSubmittalButtonPart1.Location = new System.Drawing.Point(36, 39);
-            this.logSubmittalButtonPart1.Name = "logSubmittalButtonPart1";
-            this.logSubmittalButtonPart1.Size = new System.Drawing.Size(132, 41);
-            this.logSubmittalButtonPart1.TabIndex = 5;
-            this.logSubmittalButtonPart1.Text = "Log Pt. 1";
-            this.logSubmittalButtonPart1.UseVisualStyleBackColor = true;
-            this.logSubmittalButtonPart1.Click += new System.EventHandler(this.logSubmittalButtonPart1_Click);
-            // 
             // sLogBTN
             // 
             this.sLogBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sLogBTN.Location = new System.Drawing.Point(1092, 50);
+            this.sLogBTN.Location = new System.Drawing.Point(1092, 258);
             this.sLogBTN.Name = "sLogBTN";
             this.sLogBTN.Size = new System.Drawing.Size(141, 65);
             this.sLogBTN.TabIndex = 19;
@@ -1114,11 +1057,13 @@
             // 
             // sConsultantDateDueBox
             // 
-            this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sConsultantDateDueBox.CustomFormat = " ";
+            this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.sConsultantDateDueBox.Location = new System.Drawing.Point(346, 46);
             this.sConsultantDateDueBox.Name = "sConsultantDateDueBox";
             this.sConsultantDateDueBox.Size = new System.Drawing.Size(100, 20);
             this.sConsultantDateDueBox.TabIndex = 12;
+            this.sConsultantDateDueBox.ValueChanged += new System.EventHandler(this.sConsultantDateDueBox_ValueChanged);
             // 
             // sConsultantBox
             // 
@@ -1131,11 +1076,13 @@
             // 
             // sFromConsultantDateBox
             // 
-            this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sFromConsultantDateBox.CustomFormat = " ";
+            this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.sFromConsultantDateBox.Location = new System.Drawing.Point(167, 98);
             this.sFromConsultantDateBox.Name = "sFromConsultantDateBox";
             this.sFromConsultantDateBox.Size = new System.Drawing.Size(100, 20);
             this.sFromConsultantDateBox.TabIndex = 11;
+            this.sFromConsultantDateBox.ValueChanged += new System.EventHandler(this.sFromConsultantDateBox_ValueChanged);
             // 
             // label16
             // 
@@ -1190,11 +1137,13 @@
             // 
             // sToConsultantDateBox
             // 
-            this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sToConsultantDateBox.CustomFormat = " ";
+            this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.sToConsultantDateBox.Location = new System.Drawing.Point(167, 46);
             this.sToConsultantDateBox.Name = "sToConsultantDateBox";
             this.sToConsultantDateBox.Size = new System.Drawing.Size(100, 20);
             this.sToConsultantDateBox.TabIndex = 8;
+            this.sToConsultantDateBox.ValueChanged += new System.EventHandler(this.sToConsultantDateBox_ValueChanged);
             // 
             // label20
             // 
@@ -1302,11 +1251,13 @@
             // 
             // sReturnedCBox
             // 
-            this.sReturnedCBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sReturnedCBox.CustomFormat = " ";
+            this.sReturnedCBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.sReturnedCBox.Location = new System.Drawing.Point(154, 13);
             this.sReturnedCBox.Name = "sReturnedCBox";
             this.sReturnedCBox.Size = new System.Drawing.Size(100, 20);
             this.sReturnedCBox.TabIndex = 11;
+            this.sReturnedCBox.ValueChanged += new System.EventHandler(this.sReturnedCBox_ValueChanged);
             // 
             // label24
             // 
@@ -1370,11 +1321,13 @@
             // 
             // sSubmittalDateBox
             // 
-            this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.sSubmittalDateBox.CustomFormat = " ";
+            this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.sSubmittalDateBox.Location = new System.Drawing.Point(158, 80);
             this.sSubmittalDateBox.Name = "sSubmittalDateBox";
             this.sSubmittalDateBox.Size = new System.Drawing.Size(100, 20);
             this.sSubmittalDateBox.TabIndex = 7;
+            this.sSubmittalDateBox.ValueChanged += new System.EventHandler(this.sSubmittalDateBox_ValueChanged);
             // 
             // sDescriptionBox
             // 
@@ -1579,8 +1532,6 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.zgroupBox3.ResumeLayout(false);
@@ -1657,7 +1608,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button logSubmittalButtonPart1;
         private System.Windows.Forms.TextBox sCommentBox;
         private System.Windows.Forms.TextBox sNameBox;
         private System.Windows.Forms.ComboBox sActionBox;
@@ -1696,8 +1646,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView actionview;
         private System.Windows.Forms.Button sClearFormBTN;
-        private System.Windows.Forms.Button logSubmittalButtonPart2;
-        private System.Windows.Forms.Button logSubmittalButtonPart3;
         private System.Windows.Forms.Button wNumberBTN;
         private System.Windows.Forms.Button wTitleBTN;
         private System.Windows.Forms.TextBox wNumberTxT;
@@ -1715,7 +1663,6 @@
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toExcelSubmittals;
         private System.Windows.Forms.Button sLogBTN;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button wConSet;
         private System.Windows.Forms.TextBox wContact;
         private System.Windows.Forms.Label label31;
