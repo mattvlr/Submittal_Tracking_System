@@ -47,6 +47,18 @@ namespace Submittal_Tracking_System
             Globals.connectionStringProject = "";
             Globals.jobTitle = "";
             Globals.jobNumber = "";
+            Globals.ProjectTitle = "";
+            Globals.ProjectNum = "";
+
+            Globals.cName = "";
+            Globals.cAddress = "";
+            Globals.cAddress2 = "";
+            Globals.cCity = "";
+            Globals.cState = "";
+            Globals.cZipcode = "";
+            Globals.cContactPerson = "";
+
+         
             tabControl1.Visible = false;
             cErrorBox.Visible = false;
         }
@@ -551,7 +563,7 @@ namespace Submittal_Tracking_System
                 else
                 {
                     MessageBox.Show("Error: 'DB.sdf' was not found, please try another location.\n");
-                }
+                } 
             }
         }
         private void consultantDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1269,13 +1281,12 @@ namespace Submittal_Tracking_System
                         DateTime temp;
                         sSpecNumBox.Text = oReader["SpecSection"].ToString();
 
-                        if (oReader["DateDue"].ToString() == " ")
+                        if (oReader["ReceivedDate"].ToString() == " ")
                         {
                             this.sSubmittalDateBox.CustomFormat = " ";
                             this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                            //sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
                         }
-                        else if (DateTime.TryParse(oReader["DateDue"].ToString(), out temp) == true)
+                        else if (DateTime.TryParse(oReader["ReceivedDate"].ToString(), out temp) == true)
                             sSubmittalDateBox.Text = temp.ToShortDateString();
                         else
                             sSubmittalDateBox.Text = oReader["ReceivedDate"].ToString();
@@ -1289,8 +1300,9 @@ namespace Submittal_Tracking_System
                         {
                             this.sConsultantDateDueBox.CustomFormat = " ";
                             this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                            //sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
                         }
+                        else if (DateTime.TryParse(oReader["DateDue"].ToString(), out temp) == true)
+                            sConsultantDateDueBox.Text = temp.ToShortDateString();
                         else
                             sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
 
@@ -1298,8 +1310,9 @@ namespace Submittal_Tracking_System
                         {
                             this.sToConsultantDateBox.CustomFormat = " ";
                             this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                            //sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
                         }
+                        else if (DateTime.TryParse(oReader["ToConsultantDate"].ToString(), out temp) == true)
+                            sToConsultantDateBox.Text = temp.ToShortDateString();
                         else
                             sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
 
@@ -1307,11 +1320,12 @@ namespace Submittal_Tracking_System
                         sConsultantViaBox.Text = oReader["ConsultantVia"].ToString();
 
                         if (oReader["FromConsultantDate"].ToString() == " ")
-                        {    
+                        {
                             this.sFromConsultantDateBox.CustomFormat = " ";
                             this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                           // sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
                         }
+                        else if (DateTime.TryParse(oReader["FromConsultantDate"].ToString(), out temp) == true)
+                            sFromConsultantDateBox.Text = temp.ToShortDateString();
                         else
                             sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
 
@@ -1319,8 +1333,9 @@ namespace Submittal_Tracking_System
                         {
                             this.sReturnedCBox.CustomFormat = " ";
                             this.sReturnedCBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                           // sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
                         }
+                        else if (DateTime.TryParse(oReader["FromConsultantDate"].ToString(), out temp) == true)
+                            sReturnedCBox.Text = temp.ToShortDateString();
                         else
                             sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
 
@@ -1404,7 +1419,7 @@ namespace Submittal_Tracking_System
         }
         private void sSubmittalDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            SubmittalRefresh();
             this.sSubmittalDateBox.Format = DateTimePickerFormat.Short;
             this.sToConsultantDateBox.Format = DateTimePickerFormat.Short;
             this.sConsultantDateDueBox.Format = DateTimePickerFormat.Short;
@@ -1435,14 +1450,16 @@ namespace Submittal_Tracking_System
                 {
                     while (oReader.Read())
                     {
+                        DateTime temp;
                         sSpecNumBox.Text = oReader["SpecSection"].ToString();
 
-                        if (oReader["DateDue"].ToString() == " ")
+                        if (oReader["ReceivedDate"].ToString() == " ")
                         {
                             this.sSubmittalDateBox.CustomFormat = " ";
                             this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                            //sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
                         }
+                        else if (DateTime.TryParse(oReader["ReceivedDate"].ToString(), out temp) == true)
+                            sSubmittalDateBox.Text = temp.ToShortDateString();
                         else
                             sSubmittalDateBox.Text = oReader["ReceivedDate"].ToString();
 
@@ -1455,8 +1472,9 @@ namespace Submittal_Tracking_System
                         {
                             this.sConsultantDateDueBox.CustomFormat = " ";
                             this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                            //sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
                         }
+                        else if (DateTime.TryParse(oReader["DateDue"].ToString(), out temp) == true)
+                            sConsultantDateDueBox.Text = temp.ToShortDateString();
                         else
                             sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
 
@@ -1464,8 +1482,9 @@ namespace Submittal_Tracking_System
                         {
                             this.sToConsultantDateBox.CustomFormat = " ";
                             this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                            //sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
                         }
+                        else if (DateTime.TryParse(oReader["ToConsultantDate"].ToString(), out temp) == true)
+                            sToConsultantDateBox.Text = temp.ToShortDateString();
                         else
                             sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
 
@@ -1476,8 +1495,9 @@ namespace Submittal_Tracking_System
                         {
                             this.sFromConsultantDateBox.CustomFormat = " ";
                             this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                            // sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
                         }
+                        else if (DateTime.TryParse(oReader["FromConsultantDate"].ToString(), out temp) == true)
+                            sFromConsultantDateBox.Text = temp.ToShortDateString();
                         else
                             sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
 
@@ -1485,8 +1505,9 @@ namespace Submittal_Tracking_System
                         {
                             this.sReturnedCBox.CustomFormat = " ";
                             this.sReturnedCBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-                            // sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
                         }
+                        else if (DateTime.TryParse(oReader["FromConsultantDate"].ToString(), out temp) == true)
+                            sReturnedCBox.Text = temp.ToShortDateString();
                         else
                             sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
 
@@ -1540,8 +1561,7 @@ namespace Submittal_Tracking_System
                 submittalMenuStrip.Show((Control)sender, r.Left + e.X, r.Top + e.Y);
 
             }
-            else
-                SubmittalsView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
+
         }
         private string calcTotalDays(string x, string y)
         {
