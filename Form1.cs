@@ -850,8 +850,10 @@ namespace Submittal_Tracking_System
                     ProjectInfo.Load(reader2);
                     wb.Worksheets.Add(ProjectInfo);
 
+                    string date = DateTime.Now.ToShortDateString();
+                    string date2 = date.Replace('/', '-');
 
-                    wb.SaveAs(wTitleTxT.Text + wNumberTxT.Text + ".xlsx");
+                    wb.SaveAs(date2 + "_" +  wNumberTxT.Text + "_" + wTitleTxT.Text  + ".xlsx");
                 }
                 catch (SqlCeException sqlexception)
                 {
@@ -865,7 +867,6 @@ namespace Submittal_Tracking_System
             else
                 MessageBox.Show("Please open a Submittal file first.");
         }
-
         private void consultantToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Globals.Consultantfilepath != null)
@@ -944,343 +945,6 @@ namespace Submittal_Tracking_System
                 forceScroll();
             }
         }
-        private void logSubmittalButtonPart1_Click(object sender, EventArgs e)
-        {
-            sSubmittalDropdown.BackColor = Color.White;
-            if (sNoRB.Checked)
-            {
-                string sql = "";
-                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-                Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
-                if (cn.State == ConnectionState.Closed)
-                {
-                    cn.Open();
-                }
-
-                SqlCeCommand cmd;
-
-
-                if (sSubmittalDropdown.Text != "")
-                {
-                    sql = "Update Submittals set SpecSection = @SpecSection, ProjectTitle = @ProjectTitle, Description = @Description, ReceivedDate = @ReceivedDate, NumReceived = @NumReceived "
-                    + "where SubmittalNum = " + sSubmittalDropdown.Text;
-
-                    try
-                    {
-                        cmd = new SqlCeCommand(sql, cn);
-                        cmd.Parameters.AddWithValue("@SpecSection", sSpecNumBox.Text);
-                        cmd.Parameters.AddWithValue("@Description", sDescriptionBox.Text);
-                        cmd.Parameters.AddWithValue("@ProjectTitle", Globals.ProjectTitle);
-                        cmd.Parameters.AddWithValue("@ReceivedDate", sSubmittalDateBox.Text);
-                        cmd.Parameters.AddWithValue("@NumReceived", sNumReceivedBox.Text);
-                        cmd.ExecuteNonQuery();
-                        cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Updated the database!\n");
-                        forceScroll();
-
-                    }
-                    catch (SqlCeException sqlexception)
-                    {
-                        MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        cn.Close();
-                        SubmittalRefresh();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Please select a submittal from the dropdown to edit.");
-                    sSubmittalDropdown.BackColor = Color.MistyRose;
-                }
-                
-            }
-
-            if (sYesRB.Checked)
-            {
-                string sql = "";
-                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-                Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
-                if (cn.State == ConnectionState.Closed)
-                {
-                    cn.Open();
-                }
-
-                SqlCeCommand cmd;
-
-
-                if (sSubmittalDropdown.Text == "")
-                {
-                    sql = "insert into Submittals "
-                    + "(SpecSection, ProjectTitle, Description, ReceivedDate, NumReceived) "
-                    + "values (@SpecSection, @ProjectTitle, @Description, @ReceivedDate, @NumReceived) ";
-
-                    try
-                    {
-                        cmd = new SqlCeCommand(sql, cn);
-                        cmd.Parameters.AddWithValue("@SpecSection", sSpecNumBox.Text);
-                        cmd.Parameters.AddWithValue("@Description", sDescriptionBox.Text);
-                        cmd.Parameters.AddWithValue("@ProjectTitle", Globals.ProjectTitle);
-                        cmd.Parameters.AddWithValue("@ReceivedDate", sSubmittalDateBox.Text);
-                        cmd.Parameters.AddWithValue("@NumReceived", sNumReceivedBox.Text);
-                        cmd.ExecuteNonQuery();
-                        cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal Part 1 added to database!\n");
-                        forceScroll();
-
-                    }
-                    catch (SqlCeException sqlexception)
-                    {
-                        MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        cn.Close();
-                        SubmittalRefresh();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Submittal Number dropdown needs to be blank if you are logging a new submittal. Try clicking clear form.");
-                }
-                
-            }
-        }
-        private void logSubmittalButtonPart2_Click(object sender, EventArgs e)
-        {
-                sSubmittalDropdown.BackColor = Color.White;
-                if (sNoRB.Checked)
-                {
-                    string sql = "";
-                    SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-                    Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
-                    if (cn.State == ConnectionState.Closed)
-                    {
-                        cn.Open();
-                    }
-
-                    SqlCeCommand cmd;
-
-
-                    if (sSubmittalDropdown.Text != "")
-                    {
-                        sql = "Update Submittals set Consultant = @Consultant, ToConsultantDate = @ToConsultantDate, DateDue = @DateDue, QuantityToConsultant = @QuantityToConsultant, ConsultantVia = @ConsultantVia, FromConsultantDate = @FromConsultantDate "
-                        + "where SubmittalNum = " + sSubmittalDropdown.Text;
-
-                        try
-                        {
-                            cmd = new SqlCeCommand(sql, cn);
-                            cmd.Parameters.AddWithValue("@Consultant", sConsultantBox.Text);
-                            cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
-                            cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
-                            cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
-                            cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
-                            cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
-                            cmd.ExecuteNonQuery();
-                            cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Updated the database!\n");
-                            forceScroll();
-
-                        }
-                        catch (SqlCeException sqlexception)
-                        {
-                            MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        finally
-                        {
-                            cn.Close();
-                            SubmittalRefresh();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please select a submittal from the dropdown to edit.");
-                        sSubmittalDropdown.BackColor = Color.MistyRose;
-                    }
-                   
-                }
-                if (sYesRB.Checked)
-                {
-                    string sql = "";
-                    SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-                    Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
-                    if (cn.State == ConnectionState.Closed)
-                    {
-                        cn.Open();
-                    }
-
-                    SqlCeCommand cmd;
-
-
-                    if (sSubmittalDropdown.Text == "")
-                    {
-                        sql = "insert into Submittals "
-                         + "(Consultant, ToConsultantDate, DateDue, QuantityToConsultant, ConsultantVia, FromConsultantDate) "
-                         + "values (@Consultant, @ToConsultantDate, @DateDue, @QuantityToConsultant, @ConsultantVia, @FromConsultantDate) ";
-
-                        try
-                        {
-                            cmd = new SqlCeCommand(sql, cn);
-                            cmd.Parameters.AddWithValue("@Consultant", sConsultantBox.Text);
-                            cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
-                            cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
-                            cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
-                            cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
-                            cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
-                            cmd.ExecuteNonQuery();
-                            cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal Part 2 added to database!\n");
-                            forceScroll();
-
-                        }
-                        catch (SqlCeException sqlexception)
-                        {
-                            MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        finally
-                        {
-                            cn.Close();
-                            SubmittalRefresh();
-                        }
-                    }
-                    else
-                    {
-                        
-                        MessageBox.Show("Submittal Number dropdown needs to be blank if you are logging a new submittal. Try clicking clear form.");
-                    }
-                   
-                }
-        }
-        private void logSubmittalButtonPart3_Click(object sender, EventArgs e)
-        {
-            sSubmittalDropdown.BackColor = Color.White;
-            if (sNoRB.Checked)
-            {
-                string sql = "";
-                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-                Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
-                if (cn.State == ConnectionState.Closed)
-                {
-                    cn.Open();
-                }
-
-                SqlCeCommand cmd;
-
-
-                if (sSubmittalDropdown.Text != "")
-                {
-                    sql = "Update Submittals set ToContractorDate = @ToContractorDate, ContractorVia = @ContractorVia, Quantity = @Quantity, Action = @Action, Name = @Name, Comments = @Comments "
-                    + "where SubmittalNum = " + sSubmittalDropdown.Text;
-
-                    try
-                    {
-                        cmd = new SqlCeCommand(sql, cn);
-                        cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
-                        cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
-                        cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
-                        cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
-                        cmd.Parameters.AddWithValue("@Name", sNameBox.Text);
-                        cmd.Parameters.AddWithValue("@Comments", sCommentBox.Text);
-                        cmd.ExecuteNonQuery();
-                        cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Updated the database!\n");
-                        forceScroll();
-
-                    }
-                    catch (SqlCeException sqlexception)
-                    {
-                        MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        cn.Close();
-                        SubmittalRefresh();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Please select a submittal from the dropdown to edit.");
-                    sSubmittalDropdown.BackColor = Color.MistyRose;
-                }
-
-            }
-            if (sYesRB.Checked)
-            {
-                string sql = "";
-                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
-                Directory.SetCurrentDirectory(Globals.Projectfilepath);
-
-                if (cn.State == ConnectionState.Closed)
-                {
-                    cn.Open();
-                }
-
-                SqlCeCommand cmd;
-
-
-                if (sSubmittalDropdown.Text == "")
-                {
-                    sql = "insert into Submittals "
-                     + "(ToContractorDate, ContractorVia, Quantity, Action, Name, Comments) "
-                     + "values (@ToContractorDate, @ContractorVia, @Quantity, @Action, @Name, @Comments) ";
-
-                    try
-                    {
-                        cmd = new SqlCeCommand(sql, cn);
-                        cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
-                        cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
-                        cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
-                        cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
-                        cmd.Parameters.AddWithValue("@Name", sNameBox.Text);
-                        cmd.Parameters.AddWithValue("@Comments", sCommentBox.Text);
-                        cmd.ExecuteNonQuery();
-                        cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Submittal Part 3 added to database!\n");
-                        forceScroll();
-
-                    }
-                    catch (SqlCeException sqlexception)
-                    {
-                        MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        cn.Close();
-                        SubmittalRefresh();
-                    }
-                }
-                else
-                {
-
-                    MessageBox.Show("Submittal Number dropdown needs to be blank if you are logging a new submittal. Try clicking clear form.");
-                }
-
-            }
-        }
         private void sLogBTN_Click(object sender, EventArgs e)
         {
             sSubmittalDropdown.BackColor = Color.White;
@@ -1314,20 +978,43 @@ namespace Submittal_Tracking_System
 
                     try
                     {
-                        totaldays = calcTotalDays(sReturnedCBox.Text, sSubmittalDateBox.Text);
+                       // totaldays = calcTotalDays(sReturnedCBox.Text, sSubmittalDateBox.Text);
                         cmd = new SqlCeCommand(sql, cn);
                         cmd.Parameters.AddWithValue("@SpecSection", sSpecNumBox.Text);
                         cmd.Parameters.AddWithValue("@Description", sDescriptionBox.Text);
                         cmd.Parameters.AddWithValue("@ProjectTitle", Globals.ProjectTitle);
-                        cmd.Parameters.AddWithValue("@ReceivedDate", sSubmittalDateBox.Text);
+
+                       // if (sSubmittalDateBox.Text == "")
+                       //     cmd.Parameters.AddWithValue("@ReceivedDate", "07/09/1993");
+                       // else
+                            cmd.Parameters.AddWithValue("@ReceivedDate", sSubmittalDateBox.Text);
+
                         cmd.Parameters.AddWithValue("@NumReceived", sNumReceivedBox.Text);
                         cmd.Parameters.AddWithValue("@Consultant", sConsultantBox.Text);
-                        cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
-                        cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
+
+                      //  if (sConsultantDateDueBox.Text == "")
+                      //      cmd.Parameters.AddWithValue("@DateDue", "07/09/1993");
+                      //  else
+                            cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
+
+                       // if (sToConsultantDateBox.Text == "")
+                       //     cmd.Parameters.AddWithValue("@ToConsultantDate", "07/09/1993");
+                      //  else
+                            cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
+
                         cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
                         cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
-                        cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
-                        cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
+
+                       // if (sFromConsultantDateBox.Text == "")
+                      //      cmd.Parameters.AddWithValue("@FromConsultantDate", "07/09/1993");
+                      //  else
+                            cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
+
+                      //  if (sReturnedCBox.Text == "")
+                      //      cmd.Parameters.AddWithValue("@ToContractorDate", "07/09/1993");
+                      //  else
+                            cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
+
                         cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
                         cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
                         cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
@@ -1420,15 +1107,38 @@ namespace Submittal_Tracking_System
                         cmd.Parameters.AddWithValue("@SpecSection", sSpecNumBox.Text);
                         cmd.Parameters.AddWithValue("@Description", sDescriptionBox.Text);
                         cmd.Parameters.AddWithValue("@ProjectTitle", Globals.ProjectTitle);
-                        cmd.Parameters.AddWithValue("@ReceivedDate", sSubmittalDateBox.Text);
+
+                        //if (sSubmittalDateBox.Text == "")
+                        //    cmd.Parameters.AddWithValue("@ReceivedDate", "07/09/1993");
+                        //else
+                            cmd.Parameters.AddWithValue("@ReceivedDate", sSubmittalDateBox.Text);
+
                         cmd.Parameters.AddWithValue("@NumReceived", sNumReceivedBox.Text);
                         cmd.Parameters.AddWithValue("@Consultant", sConsultantBox.Text);
-                        cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
-                        cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
+
+                        //if (sConsultantDateDueBox.Text == "")
+                        //    cmd.Parameters.AddWithValue("@DateDue", "07/09/1993");
+                       // else
+                            cmd.Parameters.AddWithValue("@DateDue", sConsultantDateDueBox.Text);
+
+                       // if (sToConsultantDateBox.Text == "")
+                        //    cmd.Parameters.AddWithValue("@ToConsultantDate", "07/09/1993");
+                       // else
+                            cmd.Parameters.AddWithValue("@ToConsultantDate", sToConsultantDateBox.Text);
+
                         cmd.Parameters.AddWithValue("@QuantityToConsultant", sQuantityConsultantBox.Text);
                         cmd.Parameters.AddWithValue("@ConsultantVia", sConsultantViaBox.Text);
-                        cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
-                        cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
+
+                       // if (sFromConsultantDateBox.Text == "")
+                       //     cmd.Parameters.AddWithValue("@FromConsultantDate", "07/09/1993");
+                       // else
+                            cmd.Parameters.AddWithValue("@FromConsultantDate", sFromConsultantDateBox.Text);
+
+                       // if (sReturnedCBox.Text == "")
+                        //    cmd.Parameters.AddWithValue("@ToContractorDate", "07/09/1993");
+                       // else
+                            cmd.Parameters.AddWithValue("@ToContractorDate", sReturnedCBox.Text);
+
                         cmd.Parameters.AddWithValue("@ContractorVia", sContractorViaBox.Text);
                         cmd.Parameters.AddWithValue("@Quantity", sQuantityReturnedBox.Text);
                         cmd.Parameters.AddWithValue("@Action", sActionBox.Text);
@@ -1482,6 +1192,7 @@ namespace Submittal_Tracking_System
 
         private void sSubmittalDropdown_Click(object sender, EventArgs e)
         {
+            
             sSubmittalDropdown.Items.Clear();
             SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
             Directory.SetCurrentDirectory(Globals.Projectfilepath);
@@ -1524,22 +1235,27 @@ namespace Submittal_Tracking_System
 
 
         }
-        private void SubmittalsView_DoubleClick(object sender, EventArgs e)
+        private void SubmittalsView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
-            int yCoord = 0;
+            clearSubmittalForm();
+            this.sSubmittalDateBox.Format = DateTimePickerFormat.Short;
+            this.sToConsultantDateBox.Format = DateTimePickerFormat.Short;
+            this.sConsultantDateDueBox.Format = DateTimePickerFormat.Short;
+            this.sFromConsultantDateBox.Format = DateTimePickerFormat.Short;
+            this.sReturnedCBox.Format = DateTimePickerFormat.Short;
+            
             SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
             Directory.SetCurrentDirectory(Globals.Projectfilepath);
-            //string yCoord = ((DataGridView)sender).SelectedRows[0].Cells[0].Value.ToString();
 
             if (cn.State == ConnectionState.Closed)
             {
                 cn.Open();
             }
 
+            string yCoord = SubmittalsView.Rows[e.RowIndex].Cells[0].Value.ToString();
             SqlCeCommand cmd;
 
-            string sql = "SELECT * FROM Submittals where SubmittalNum = " + (yCoord + 1);
+            string sql = "SELECT * FROM Submittals where SubmittalNum = " + (yCoord);
 
             try
             {
@@ -1550,17 +1266,64 @@ namespace Submittal_Tracking_System
                 {
                     while (oReader.Read())
                     {
-                        sSubmittalDateBox.Text = oReader["ReceivedDate"].ToString();
+                        DateTime temp;
+                        sSpecNumBox.Text = oReader["SpecSection"].ToString();
+
+                        if (oReader["DateDue"].ToString() == " ")
+                        {
+                            this.sSubmittalDateBox.CustomFormat = " ";
+                            this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                            //sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
+                        }
+                        else if (DateTime.TryParse(oReader["DateDue"].ToString(), out temp) == true)
+                            sSubmittalDateBox.Text = temp.ToShortDateString();
+                        else
+                            sSubmittalDateBox.Text = oReader["ReceivedDate"].ToString();
+
                         sSubmittalDropdown.Text = oReader["SubmittalNum"].ToString();
                         sDescriptionBox.Text = oReader["Description"].ToString();
                         sNumReceivedBox.Text = oReader["NumReceived"].ToString();
                         sConsultantBox.Text = oReader["Consultant"].ToString();
-                        sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
-                        sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
+
+                        if (oReader["DateDue"].ToString() == " ")
+                        {
+                            this.sConsultantDateDueBox.CustomFormat = " ";
+                            this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                            //sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
+                        }
+                        else
+                            sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
+
+                        if (oReader["ToConsultantDate"].ToString() == " ")
+                        {
+                            this.sToConsultantDateBox.CustomFormat = " ";
+                            this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                            //sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
+                        }
+                        else
+                            sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
+
                         sQuantityConsultantBox.Text = oReader["QuantityToConsultant"].ToString();
                         sConsultantViaBox.Text = oReader["ConsultantVia"].ToString();
-                        sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
-                        sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
+
+                        if (oReader["FromConsultantDate"].ToString() == " ")
+                        {    
+                            this.sFromConsultantDateBox.CustomFormat = " ";
+                            this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                           // sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
+                        }
+                        else
+                            sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
+
+                        if (oReader["ToContractorDate"].ToString() == " ")
+                        {
+                            this.sReturnedCBox.CustomFormat = " ";
+                            this.sReturnedCBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                           // sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
+                        }
+                        else
+                            sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
+
                         sQuantityReturnedBox.Text = oReader["Quantity"].ToString();
                         sContractorViaBox.Text = oReader["ContractorVia"].ToString();
                         sActionBox.Text = oReader["Action"].ToString();
@@ -1586,6 +1349,7 @@ namespace Submittal_Tracking_System
             }
 
         }
+   
         private void sClearFormBTN_Click(object sender, EventArgs e)
         {
 
@@ -1640,6 +1404,13 @@ namespace Submittal_Tracking_System
         }
         private void sSubmittalDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            this.sSubmittalDateBox.Format = DateTimePickerFormat.Short;
+            this.sToConsultantDateBox.Format = DateTimePickerFormat.Short;
+            this.sConsultantDateDueBox.Format = DateTimePickerFormat.Short;
+            this.sFromConsultantDateBox.Format = DateTimePickerFormat.Short;
+            this.sReturnedCBox.Format = DateTimePickerFormat.Short;
+
             string yCoord = sSubmittalDropdown.Text;
             sSubmittalDropdown.BackColor = Color.White;
             SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
@@ -1664,17 +1435,61 @@ namespace Submittal_Tracking_System
                 {
                     while (oReader.Read())
                     {
-                        sSubmittalDateBox.Text = oReader["ReceivedDate"].ToString();
+                        sSpecNumBox.Text = oReader["SpecSection"].ToString();
+
+                        if (oReader["DateDue"].ToString() == " ")
+                        {
+                            this.sSubmittalDateBox.CustomFormat = " ";
+                            this.sSubmittalDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                            //sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
+                        }
+                        else
+                            sSubmittalDateBox.Text = oReader["ReceivedDate"].ToString();
+
                         sSubmittalDropdown.Text = oReader["SubmittalNum"].ToString();
                         sDescriptionBox.Text = oReader["Description"].ToString();
                         sNumReceivedBox.Text = oReader["NumReceived"].ToString();
                         sConsultantBox.Text = oReader["Consultant"].ToString();
-                        sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
-                        sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
+
+                        if (oReader["DateDue"].ToString() == " ")
+                        {
+                            this.sConsultantDateDueBox.CustomFormat = " ";
+                            this.sConsultantDateDueBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                            //sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
+                        }
+                        else
+                            sConsultantDateDueBox.Text = oReader["DateDue"].ToString();
+
+                        if (oReader["ToConsultantDate"].ToString() == " ")
+                        {
+                            this.sToConsultantDateBox.CustomFormat = " ";
+                            this.sToConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                            //sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
+                        }
+                        else
+                            sToConsultantDateBox.Text = oReader["ToConsultantDate"].ToString();
+
                         sQuantityConsultantBox.Text = oReader["QuantityToConsultant"].ToString();
                         sConsultantViaBox.Text = oReader["ConsultantVia"].ToString();
-                        sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
-                        sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
+
+                        if (oReader["FromConsultantDate"].ToString() == " ")
+                        {
+                            this.sFromConsultantDateBox.CustomFormat = " ";
+                            this.sFromConsultantDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                            // sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
+                        }
+                        else
+                            sFromConsultantDateBox.Text = oReader["FromConsultantDate"].ToString();
+
+                        if (oReader["ToContractorDate"].ToString() == " ")
+                        {
+                            this.sReturnedCBox.CustomFormat = " ";
+                            this.sReturnedCBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                            // sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
+                        }
+                        else
+                            sReturnedCBox.Text = oReader["ToContractorDate"].ToString();
+
                         sQuantityReturnedBox.Text = oReader["Quantity"].ToString();
                         sContractorViaBox.Text = oReader["ContractorVia"].ToString();
                         sActionBox.Text = oReader["Action"].ToString();
@@ -1715,6 +1530,7 @@ namespace Submittal_Tracking_System
         }
         private void SubmittalsView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+
             SubmittalsView.ClearSelection();
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.Button == MouseButtons.Right)
             {
@@ -1724,6 +1540,8 @@ namespace Submittal_Tracking_System
                 submittalMenuStrip.Show((Control)sender, r.Left + e.X, r.Top + e.Y);
 
             }
+            else
+                SubmittalsView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
         }
         private string calcTotalDays(string x, string y)
         {
@@ -2289,23 +2107,7 @@ namespace Submittal_Tracking_System
             this.sReturnedCBox.Format = DateTimePickerFormat.Short;
         }
 
- 
-
       
-
-
-    
-
-
-   
-
-     
-
-
-
- 
-
-     
 
         /*  private void ConsultantView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
           {

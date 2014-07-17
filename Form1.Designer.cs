@@ -147,10 +147,13 @@
             this.sSpecNumBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabAction = new System.Windows.Forms.TabPage();
+            this.aExport = new System.Windows.Forms.Button();
+            this.aPrint = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.actionBx = new System.Windows.Forms.ComboBox();
             this.actionview = new System.Windows.Forms.DataGridView();
+            this.tabOutstanding = new System.Windows.Forms.TabPage();
             this.consultantMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
@@ -179,7 +182,7 @@
             this.zgroupBox4.SuspendLayout();
             this.zgroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.tabAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actionview)).BeginInit();
             this.consultantMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -193,7 +196,7 @@
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1320, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -288,12 +291,13 @@
             this.tabControl1.Controls.Add(this.welcomeTab);
             this.tabControl1.Controls.Add(this.tabConsultant);
             this.tabControl1.Controls.Add(this.tabSubmittals);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabAction);
+            this.tabControl1.Controls.Add(this.tabOutstanding);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1314, 530);
+            this.tabControl1.Size = new System.Drawing.Size(1258, 530);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -334,14 +338,14 @@
             this.welcomeTab.Location = new System.Drawing.Point(4, 22);
             this.welcomeTab.Name = "welcomeTab";
             this.welcomeTab.Padding = new System.Windows.Forms.Padding(3);
-            this.welcomeTab.Size = new System.Drawing.Size(1306, 504);
+            this.welcomeTab.Size = new System.Drawing.Size(1250, 504);
             this.welcomeTab.TabIndex = 2;
             this.welcomeTab.Text = "Welcome";
             // 
             // wConSet
             // 
             this.wConSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wConSet.Location = new System.Drawing.Point(139, 467);
+            this.wConSet.Location = new System.Drawing.Point(573, 181);
             this.wConSet.Name = "wConSet";
             this.wConSet.Size = new System.Drawing.Size(76, 31);
             this.wConSet.TabIndex = 30;
@@ -351,7 +355,7 @@
             // 
             // wContact
             // 
-            this.wContact.Location = new System.Drawing.Point(139, 444);
+            this.wContact.Location = new System.Drawing.Point(573, 158);
             this.wContact.MaxLength = 200;
             this.wContact.Name = "wContact";
             this.wContact.Size = new System.Drawing.Size(367, 20);
@@ -361,7 +365,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(149, 295);
+            this.label31.Location = new System.Drawing.Point(583, 9);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(353, 42);
             this.label31.TabIndex = 15;
@@ -370,7 +374,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(50, 447);
+            this.label32.Location = new System.Drawing.Point(484, 161);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(83, 13);
             this.label32.TabIndex = 25;
@@ -379,7 +383,7 @@
             // 
             // wState
             // 
-            this.wState.Location = new System.Drawing.Point(311, 418);
+            this.wState.Location = new System.Drawing.Point(745, 132);
             this.wState.MaxLength = 2;
             this.wState.Name = "wState";
             this.wState.Size = new System.Drawing.Size(27, 20);
@@ -387,7 +391,7 @@
             // 
             // wZipcode
             // 
-            this.wZipcode.Location = new System.Drawing.Point(403, 418);
+            this.wZipcode.Location = new System.Drawing.Point(837, 132);
             this.wZipcode.MaxLength = 10;
             this.wZipcode.Name = "wZipcode";
             this.wZipcode.Size = new System.Drawing.Size(103, 20);
@@ -396,7 +400,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(270, 421);
+            this.label33.Location = new System.Drawing.Point(704, 135);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(35, 13);
             this.label33.TabIndex = 26;
@@ -405,7 +409,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(344, 421);
+            this.label34.Location = new System.Drawing.Point(778, 135);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(53, 13);
             this.label34.TabIndex = 27;
@@ -413,7 +417,7 @@
             // 
             // wName
             // 
-            this.wName.Location = new System.Drawing.Point(139, 340);
+            this.wName.Location = new System.Drawing.Point(573, 54);
             this.wName.MaxLength = 200;
             this.wName.Name = "wName";
             this.wName.Size = new System.Drawing.Size(367, 20);
@@ -422,7 +426,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(85, 369);
+            this.label35.Location = new System.Drawing.Point(519, 83);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(48, 13);
             this.label35.TabIndex = 19;
@@ -431,7 +435,7 @@
             // 
             // wAddress
             // 
-            this.wAddress.Location = new System.Drawing.Point(139, 366);
+            this.wAddress.Location = new System.Drawing.Point(573, 80);
             this.wAddress.MaxLength = 200;
             this.wAddress.Name = "wAddress";
             this.wAddress.Size = new System.Drawing.Size(367, 20);
@@ -439,7 +443,7 @@
             // 
             // wAddress2
             // 
-            this.wAddress2.Location = new System.Drawing.Point(139, 392);
+            this.wAddress2.Location = new System.Drawing.Point(573, 106);
             this.wAddress2.MaxLength = 200;
             this.wAddress2.Name = "wAddress2";
             this.wAddress2.Size = new System.Drawing.Size(367, 20);
@@ -448,7 +452,7 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(53, 395);
+            this.label36.Location = new System.Drawing.Point(487, 109);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(80, 13);
             this.label36.TabIndex = 21;
@@ -457,7 +461,7 @@
             // 
             // wCity
             // 
-            this.wCity.Location = new System.Drawing.Point(139, 418);
+            this.wCity.Location = new System.Drawing.Point(573, 132);
             this.wCity.MaxLength = 200;
             this.wCity.Name = "wCity";
             this.wCity.Size = new System.Drawing.Size(125, 20);
@@ -466,7 +470,7 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(106, 421);
+            this.label37.Location = new System.Drawing.Point(540, 135);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(27, 13);
             this.label37.TabIndex = 23;
@@ -476,7 +480,7 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(95, 343);
+            this.label38.Location = new System.Drawing.Point(529, 57);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(38, 13);
             this.label38.TabIndex = 17;
@@ -488,7 +492,7 @@
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(595, 260);
+            this.pictureBox2.Location = new System.Drawing.Point(539, 260);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(708, 241);
             this.pictureBox2.TabIndex = 14;
@@ -629,7 +633,7 @@
             this.tabConsultant.Location = new System.Drawing.Point(4, 22);
             this.tabConsultant.Name = "tabConsultant";
             this.tabConsultant.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConsultant.Size = new System.Drawing.Size(1306, 504);
+            this.tabConsultant.Size = new System.Drawing.Size(1250, 504);
             this.tabConsultant.TabIndex = 0;
             this.tabConsultant.Text = "Consultant";
             this.tabConsultant.UseVisualStyleBackColor = true;
@@ -666,15 +670,15 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ConsultantView);
-            this.splitContainer2.Size = new System.Drawing.Size(1296, 494);
-            this.splitContainer2.SplitterDistance = 477;
+            this.splitContainer2.Size = new System.Drawing.Size(1240, 494);
+            this.splitContainer2.SplitterDistance = 491;
             this.splitContainer2.TabIndex = 19;
             // 
             // cRowsCountLB
             // 
             this.cRowsCountLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cRowsCountLB.AutoSize = true;
-            this.cRowsCountLB.Location = new System.Drawing.Point(447, 471);
+            this.cRowsCountLB.Location = new System.Drawing.Point(461, 471);
             this.cRowsCountLB.Name = "cRowsCountLB";
             this.cRowsCountLB.Size = new System.Drawing.Size(0, 13);
             this.cRowsCountLB.TabIndex = 25;
@@ -683,7 +687,7 @@
             // 
             this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(381, 471);
+            this.label28.Location = new System.Drawing.Point(395, 471);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(59, 13);
             this.label28.TabIndex = 24;
@@ -885,7 +889,7 @@
             this.ConsultantView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ConsultantView.Location = new System.Drawing.Point(0, 0);
             this.ConsultantView.Name = "ConsultantView";
-            this.ConsultantView.Size = new System.Drawing.Size(815, 494);
+            this.ConsultantView.Size = new System.Drawing.Size(745, 494);
             this.ConsultantView.TabIndex = 1;
             this.ConsultantView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ConsultantView_CellMouseClick);
             // 
@@ -895,7 +899,7 @@
             this.tabSubmittals.Location = new System.Drawing.Point(4, 22);
             this.tabSubmittals.Name = "tabSubmittals";
             this.tabSubmittals.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSubmittals.Size = new System.Drawing.Size(1306, 504);
+            this.tabSubmittals.Size = new System.Drawing.Size(1250, 504);
             this.tabSubmittals.TabIndex = 1;
             this.tabSubmittals.Text = "Submittals";
             this.tabSubmittals.UseVisualStyleBackColor = true;
@@ -919,7 +923,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.SubmittalsView);
-            this.splitContainer3.Size = new System.Drawing.Size(1300, 498);
+            this.splitContainer3.Size = new System.Drawing.Size(1244, 498);
             this.splitContainer3.SplitterDistance = 334;
             this.splitContainer3.TabIndex = 17;
             // 
@@ -928,7 +932,7 @@
             this.sLogBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sLogBTN.Location = new System.Drawing.Point(1092, 258);
             this.sLogBTN.Name = "sLogBTN";
-            this.sLogBTN.Size = new System.Drawing.Size(141, 65);
+            this.sLogBTN.Size = new System.Drawing.Size(82, 65);
             this.sLogBTN.TabIndex = 19;
             this.sLogBTN.Text = "Log";
             this.sLogBTN.UseVisualStyleBackColor = true;
@@ -1389,29 +1393,50 @@
             this.SubmittalsView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.SubmittalsView.Location = new System.Drawing.Point(0, 0);
             this.SubmittalsView.Name = "SubmittalsView";
-            this.SubmittalsView.Size = new System.Drawing.Size(1300, 160);
+            this.SubmittalsView.Size = new System.Drawing.Size(1244, 160);
             this.SubmittalsView.StandardTab = true;
             this.SubmittalsView.TabIndex = 1;
             this.SubmittalsView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SubmittalsView_CellMouseClick);
-            this.SubmittalsView.DoubleClick += new System.EventHandler(this.SubmittalsView_DoubleClick);
+            this.SubmittalsView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SubmittalsView_CellMouseDoubleClick);
+
             // 
-            // tabPage1
+            // tabAction
             // 
-            this.tabPage1.Controls.Add(this.label29);
-            this.tabPage1.Controls.Add(this.actionBx);
-            this.tabPage1.Controls.Add(this.actionview);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1306, 504);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Action";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabAction.Controls.Add(this.aExport);
+            this.tabAction.Controls.Add(this.aPrint);
+            this.tabAction.Controls.Add(this.label29);
+            this.tabAction.Controls.Add(this.actionBx);
+            this.tabAction.Controls.Add(this.actionview);
+            this.tabAction.Location = new System.Drawing.Point(4, 22);
+            this.tabAction.Name = "tabAction";
+            this.tabAction.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAction.Size = new System.Drawing.Size(1250, 504);
+            this.tabAction.TabIndex = 3;
+            this.tabAction.Text = "Action";
+            this.tabAction.UseVisualStyleBackColor = true;
+            // 
+            // aExport
+            // 
+            this.aExport.Location = new System.Drawing.Point(369, 11);
+            this.aExport.Name = "aExport";
+            this.aExport.Size = new System.Drawing.Size(89, 23);
+            this.aExport.TabIndex = 17;
+            this.aExport.Text = "Export to Excel";
+            this.aExport.UseVisualStyleBackColor = true;
+            // 
+            // aPrint
+            // 
+            this.aPrint.Location = new System.Drawing.Point(277, 11);
+            this.aPrint.Name = "aPrint";
+            this.aPrint.Size = new System.Drawing.Size(86, 23);
+            this.aPrint.TabIndex = 16;
+            this.aPrint.Text = "Print this view";
+            this.aPrint.UseVisualStyleBackColor = true;
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(123, 16);
+            this.label29.Location = new System.Drawing.Point(16, 16);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(40, 13);
             this.label29.TabIndex = 15;
@@ -1427,7 +1452,7 @@
             "Revise and Resubmit",
             "Not Accepted",
             "Resubmittal Received"});
-            this.actionBx.Location = new System.Drawing.Point(169, 13);
+            this.actionBx.Location = new System.Drawing.Point(62, 13);
             this.actionBx.Name = "actionBx";
             this.actionBx.Size = new System.Drawing.Size(173, 21);
             this.actionBx.TabIndex = 14;
@@ -1442,6 +1467,16 @@
             this.actionview.Size = new System.Drawing.Size(1300, 461);
             this.actionview.TabIndex = 0;
             this.actionview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.actionview_CellDoubleClick);
+            // 
+            // tabOutstanding
+            // 
+            this.tabOutstanding.Location = new System.Drawing.Point(4, 22);
+            this.tabOutstanding.Name = "tabOutstanding";
+            this.tabOutstanding.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOutstanding.Size = new System.Drawing.Size(1250, 504);
+            this.tabOutstanding.TabIndex = 4;
+            this.tabOutstanding.Text = "Outstanding";
+            this.tabOutstanding.UseVisualStyleBackColor = true;
             // 
             // consultantMenuStrip
             // 
@@ -1464,7 +1499,7 @@
             this.cErrorBox.ForeColor = System.Drawing.Color.Red;
             this.cErrorBox.Location = new System.Drawing.Point(3, 539);
             this.cErrorBox.Name = "cErrorBox";
-            this.cErrorBox.Size = new System.Drawing.Size(1314, 89);
+            this.cErrorBox.Size = new System.Drawing.Size(1258, 89);
             this.cErrorBox.TabIndex = 17;
             this.cErrorBox.Text = "";
             // 
@@ -1481,7 +1516,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1320, 631);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1264, 631);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // submittalMenuStrip
@@ -1502,7 +1537,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 655);
+            this.ClientSize = new System.Drawing.Size(1264, 655);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1541,8 +1576,8 @@
             this.zgroupBox2.ResumeLayout(false);
             this.zgroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabAction.ResumeLayout(false);
+            this.tabAction.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actionview)).EndInit();
             this.consultantMenuStrip.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -1643,7 +1678,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteRowToolStripMenuItem;
         private System.Windows.Forms.Label cRowsCountLB;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabAction;
         private System.Windows.Forms.DataGridView actionview;
         private System.Windows.Forms.Button sClearFormBTN;
         private System.Windows.Forms.Button wNumberBTN;
@@ -1682,6 +1717,9 @@
         private System.Windows.Forms.ToolStripMenuItem submittalsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultantToolStripMenuItem;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button aExport;
+        private System.Windows.Forms.Button aPrint;
+        private System.Windows.Forms.TabPage tabOutstanding;
     }
 }
 
