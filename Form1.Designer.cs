@@ -148,12 +148,14 @@
             this.label14 = new System.Windows.Forms.Label();
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
             this.tabAction = new System.Windows.Forms.TabPage();
+            this.label39 = new System.Windows.Forms.Label();
             this.aExport = new System.Windows.Forms.Button();
             this.aPrint = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.actionBx = new System.Windows.Forms.ComboBox();
             this.actionview = new System.Windows.Forms.DataGridView();
             this.tabOutstanding = new System.Windows.Forms.TabPage();
+            this.label41 = new System.Windows.Forms.Label();
             this.consultantMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cErrorBox = new System.Windows.Forms.RichTextBox();
@@ -161,8 +163,6 @@
             this.submittalMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
@@ -1433,6 +1433,16 @@
             this.tabAction.Text = "Action";
             this.tabAction.UseVisualStyleBackColor = true;
             // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(464, 8);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(335, 24);
+            this.label39.TabIndex = 18;
+            this.label39.Text = "<- These buttons don\'t do anything yet.";
+            // 
             // aExport
             // 
             this.aExport.Location = new System.Drawing.Point(369, 11);
@@ -1441,6 +1451,7 @@
             this.aExport.TabIndex = 17;
             this.aExport.Text = "Export to Excel";
             this.aExport.UseVisualStyleBackColor = true;
+            this.aExport.Click += new System.EventHandler(this.aExport_Click);
             // 
             // aPrint
             // 
@@ -1497,6 +1508,16 @@
             this.tabOutstanding.Text = "Outstanding";
             this.tabOutstanding.UseVisualStyleBackColor = true;
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(377, 217);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(396, 37);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "Tab intentionally left blank.";
+            // 
             // consultantMenuStrip
             // 
             this.consultantMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1551,26 +1572,6 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem1.Text = "Delete Row";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(464, 8);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(335, 24);
-            this.label39.TabIndex = 18;
-            this.label39.Text = "<- These buttons don\'t do anything yet.";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(377, 217);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(396, 37);
-            this.label41.TabIndex = 0;
-            this.label41.Text = "Tab intentionally left blank.";
             // 
             // Form1
             // 

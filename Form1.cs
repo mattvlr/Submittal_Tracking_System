@@ -129,7 +129,9 @@ namespace Submittal_Tracking_System
             string sql2 = "create table ProjectInfo ( "
             + "Num INT IDENTITY(1,1) PRIMARY KEY, "
             + "Title nvarchar (200), "
-            + "Number nvarchar (40) )";
+            + "Number nvarchar (40), "
+            + "ConsultantPath nvarchar (200) ) ";
+
 
 
             SubmittalsCMD = new SqlCeCommand(sql, cn);
@@ -490,6 +492,8 @@ namespace Submittal_Tracking_System
                                     tabControl1.Visible = true;
                                     cErrorBox.Visible = true;
                                     ConsultantRefresh();
+                                    setConsultantPath(Globals.Consultantfilepath);
+                                    MessageBox.Show(getConsultantPath());
                                     //RC();
                                 }
                                 else
@@ -568,77 +572,133 @@ namespace Submittal_Tracking_System
         }
         private void consultantDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (setDirectory.ShowDialog() == DialogResult.OK)
-                Globals.Consultantfilepath = setDirectory.SelectedPath;
 
-            wConsultantLoc.Text = Globals.Consultantfilepath;
-            try
+
+            if (setDirectory.ShowDialog() == DialogResult.OK)
             {
-                if (File.Exists("ConsultantDB.sdf"))
+                Globals.Consultantfilepath = setDirectory.SelectedPath;
+                Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                if (File.Exists("ConsultantDB.sdf") == false)
                 {
-                    MessageBox.Show("ConsultantDB.sdf already exists in " + Globals.Consultantfilepath + " please pick another location.");
+
+                    Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
+
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: 'ConsultantDB.sdf' created in: " + Globals.Consultantfilepath + "\n");
+                    forceScroll();
+                    createConsultantDatabase();
+
+                    tabControl1.Visible = true;
+                    cErrorBox.Visible = true;
+                    wConsultantLoc.Text = Globals.Consultantfilepath;   
+
+                    if(Globals.Projectfilepath != null)
+                        setConsultantPath(Globals.Consultantfilepath);
                 }
                 else
                 {
-                    Directory.SetCurrentDirectory(Globals.Consultantfilepath);
-                    tabControl1.Visible = true;
-                    cErrorBox.Visible = true;
-                    createConsultantDatabase();
+                    MessageBox.Show("Could not find 'DB.sdf' in that location, please browse again or create a new one.");
+                    Globals.Consultantfilepath = "";
+                }
+            }
+                /*if (setDirectory.ShowDialog() == DialogResult.OK)
+                    Globals.Consultantfilepath = setDirectory.SelectedPath;
+
+
+                try
+                {
+                    if (File.Exists("ConsultantDB.sdf"))
+                    {
+                        MessageBox.Show("ConsultantDB.sdf already exists in " + Globals.Consultantfilepath + " please pick another location.");
+                    }
+                    else
+                    {
+                        Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                        tabControl1.Visible = true;
+                        cErrorBox.Visible = true;
+                        createConsultantDatabase();
+                        wConsultantLoc.Text = Globals.Consultantfilepath;
+                        setConsultantPath(Globals.Consultantfilepath);
+                    }
 
                 }
-
-            }
-            catch (DirectoryNotFoundException err)
-            {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: The specified directory does not exist. {0}");
-                forceScroll();
-            }
+                catch (DirectoryNotFoundException err)
+                {
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: The specified directory does not exist. {0}");
+                    forceScroll();
+                }*/
+          //  }
         }
         private void submittalDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            Globals.ProjectTitle = Microsoft.VisualBasic.Interaction.InputBox("Set Project Title: ", "Project Title");
-            Globals.ProjectNum = Microsoft.VisualBasic.Interaction.InputBox("Set Project Number: ", "Project Number");
-
 
             if (setDirectory.ShowDialog() == DialogResult.OK)
-                Globals.Projectfilepath = setDirectory.SelectedPath;
-
-            wProjectLoc.Text = Globals.Projectfilepath;
-            try
             {
-                if (File.Exists("DB.sdf"))
+                Globals.Projectfilepath = setDirectory.SelectedPath;
+                Directory.SetCurrentDirectory(Globals.Projectfilepath);
+                if (File.Exists("DB.sdf") == false)
                 {
-                    MessageBox.Show("DB.sdf already exists in " + Globals.Projectfilepath + " please pick another location.");
-                }
-                else
-                {
-                    Directory.SetCurrentDirectory(Globals.Projectfilepath);
+                    Globals.ProjectTitle = Microsoft.VisualBasic.Interaction.InputBox("Set Project Title: ", "Project Title");
+                    Globals.ProjectNum = Microsoft.VisualBasic.Interaction.InputBox("Set Project Number: ", "Project Number");
+                    wProjectLoc.Text = Globals.Projectfilepath;
+                     
                     tabControl1.Visible = true;
                     cErrorBox.Visible = true;
                     createProjectDatabase();
-                    if (Globals.Consultantfilepath == "")
+
+                    if (Globals.Consultantfilepath == null)
                     {
                         zlabel29.Text = "Please browse to ConsultantDB.sdf or make a new one.";
                         wConsultantLoc.Focus();
                         wConsultantLoc.BackColor = Color.MistyRose;
                     }
+                    else
+                        setConsultantPath(Globals.Consultantfilepath);
+
                     tabControl1.SelectedIndex = 0;
+                    SubmittalRefresh();
 
                     if (Globals.ProjectTitle != "" && Globals.ProjectNum != "")
                         SetProjectInfoDataBase();
 
                 }
+                else
+                {
+                    MessageBox.Show("DB.sdf already exists in " + Globals.Projectfilepath + " please pick another location.");
 
-            }
-            catch (DirectoryNotFoundException err)
+                }
+
+                /*
+                 *   if (setDirectory.ShowDialog() == DialogResult.OK)
             {
-                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Error: the specified directory does not exist. {0}");
-                forceScroll();
+                Globals.Consultantfilepath = setDirectory.SelectedPath;
+                Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                if (File.Exists("ConsultantDB.sdf") == false)
+                {
+
+                    Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
+
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: 'ConsultantDB.sdf' created in: " + Globals.Consultantfilepath + "\n");
+                    forceScroll();
+                    createConsultantDatabase();
+
+                    tabControl1.Visible = true;
+                    cErrorBox.Visible = true;
+                    wConsultantLoc.Text = Globals.Consultantfilepath;   
+
+                    if(Globals.Projectfilepath != null)
+                        setConsultantPath(Globals.Consultantfilepath);
+                }
+                else
+                {
+                    MessageBox.Show("Could not find 'DB.sdf' in that location, please browse again or create a new one.");
+                    Globals.Consultantfilepath = "";
+                }
+            }*/
             }
-
-
         }
+
+
+        
      
         private void wBrowseConsultant_Click(object sender, EventArgs e)
         {
@@ -650,7 +710,8 @@ namespace Submittal_Tracking_System
                 {
                     wConsultantLoc.Text = Globals.Consultantfilepath;
                     Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
-                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'ConsultantDB.sdf' is now: " + Globals.Projectfilepath + "\n");
+                    setConsultantPath(Globals.Consultantfilepath);
+                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'ConsultantDB.sdf' is now: " + Globals.Consultantfilepath + "\n");
                     forceScroll();
                     ConsultantRefresh();
                     //RC();
@@ -670,14 +731,15 @@ namespace Submittal_Tracking_System
                 Directory.SetCurrentDirectory(Globals.Projectfilepath);
                 if (File.Exists("DB.sdf") == true)
                 {
-                   // Globals.Projectfilepath = setDirectory.SelectedPath;
-                   // Directory.SetCurrentDirectory(Globals.Projectfilepath);
+                    Globals.connectionStringProject = "DataSource=\"DB.sdf\"; Password=\"password\"";
                     wProjectLoc.Text = Globals.Projectfilepath;
                     cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Location of 'DB.sdf' is now: " + Globals.Projectfilepath + "\n");
                     forceScroll();
-                    SubmittalRefresh();
                     GetProjectInfoDataBase();
                     GetContractorInfoDataBase();
+                    SubmittalRefresh();
+                    if (Globals.Consultantfilepath != null)
+                        setConsultantPath(Globals.Consultantfilepath);
                 }
                 else
                 {
@@ -775,7 +837,6 @@ namespace Submittal_Tracking_System
                 this.Text = "Submittal Tracking System | " + Globals.ProjectNum + " | " + Globals.ProjectTitle;
             }
         }
-
         private void wConSet_Click(object sender, EventArgs e)
         {
             SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
@@ -914,6 +975,148 @@ namespace Submittal_Tracking_System
             else
                 MessageBox.Show("Please open a Consultant file first.");
         }
+
+
+
+        private void setConsultantPath(string path)
+        {
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+            Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+            SqlCeCommand cmd;
+
+
+            string sql = "Update ProjectInfo set ConsultantPath = @ConsultantPath "
+            + "where Num = 1";
+            try
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Saving Consultant Path to database.\n");
+                forceScroll();
+                cmd = new SqlCeCommand(sql, cn);
+
+                cmd.Parameters.AddWithValue("@ConsultantPath", path);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: Data written!\n");
+                forceScroll();
+            }
+        }
+        private string getConsultantPath()
+        {
+            string path = "";
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+            Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+
+            string sql = "SELECT ConsultantPath FROM ProjectInfo";
+
+            try
+            {
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Retrieving ConsultantPath from database.\n");
+                forceScroll();
+                SqlCeCommand cmd = new SqlCeCommand(sql, cn);
+                cmd.CommandType = CommandType.Text;
+                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
+
+
+                if (rs.HasRows)
+                {
+                    int ordPath = rs.GetOrdinal("ConsultantPath");
+
+                    rs.ReadFirst();
+                    path = rs.GetString(ordPath);
+
+                }
+
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+                cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Success: ConsultantPath retrieved!\n");
+                forceScroll();
+            }
+            return path;
+        }
+        private bool checkConsultantPath()
+        {
+            bool test = false;
+            string path = "";
+            SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+            Directory.SetCurrentDirectory(Globals.Projectfilepath);
+
+            if (cn.State == ConnectionState.Closed)
+            {
+                cn.Open();
+            }
+
+
+            string sql = "SELECT ConsultantPath FROM ProjectInfo";
+
+            try
+            {
+                SqlCeCommand cmd = new SqlCeCommand(sql, cn);
+                cmd.CommandType = CommandType.Text;
+                SqlCeResultSet rs = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
+
+
+                if (rs.HasRows)
+                {
+                    int ordPath = rs.GetOrdinal("ConsultantPath");
+
+                    rs.ReadFirst();
+                    path = rs.GetString(ordPath);
+
+                    if (path != "")
+                        test = true;
+                }
+
+            }
+            catch (SqlCeException sqlexception)
+            {
+                MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Close();
+            }
+            return test;
+        }
+
+
         //Submittal Tab methods
         private void consultantBox_Click(object sender, EventArgs e)
         {
@@ -2125,6 +2328,12 @@ namespace Submittal_Tracking_System
         private void sReturnedCBox_ValueChanged(object sender, EventArgs e) //d
         {
             this.sReturnedCBox.Format = DateTimePickerFormat.Short;
+        }
+
+        private void aExport_Click(object sender, EventArgs e)
+        {
+            string test = getConsultantPath();
+            MessageBox.Show(test);
         }
 
       
