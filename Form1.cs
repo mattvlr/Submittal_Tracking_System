@@ -467,7 +467,34 @@ namespace Submittal_Tracking_System
                     SubmittalRefresh();
                     GetProjectInfoDataBase();
                     GetContractorInfoDataBase();
-                    if (Globals.connectionStringConsultant == null)
+
+                    if (checkConsultantPath() == true)
+                    {
+                        Globals.Consultantfilepath = getConsultantPath();
+                        Globals.connectionStringConsultant = "DataSource=\"ConsultantDB.sdf\"; Password=\"password\"";
+                        wConsultantLoc.Text = Globals.Consultantfilepath;
+                        Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+
+
+                         if (File.Exists("ConsultantDB.sdf"))
+                                {
+                                    cErrorBox.AppendText(DateTime.Now.ToLongTimeString() + " | Path set for ConsultantDB.sdf  " + Globals.Consultantfilepath + "\n");
+                                    forceScroll();
+                                    tabControl1.Visible = true;
+                                    cErrorBox.Visible = true;
+                                    ConsultantRefresh();
+                                    //RC();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Could not locate the saved Consultant Database, please browse or create a new one.");
+                                    tabControl1.Visible = true;
+                                    cErrorBox.Visible = true;
+                                    wConsultantLoc.Text = "";
+                                    wConsultantLoc.BackColor = Color.MistyRose;
+                                }
+                    }
+                    else if (checkConsultantPath() == false)
                     {
                         string messageBoxText1 = "The path for ConsultantDB.sdf has not been set, would you like to browse for it now?";
                         string caption1 = "Path to ConsultantDB.sdf";
@@ -493,7 +520,6 @@ namespace Submittal_Tracking_System
                                     cErrorBox.Visible = true;
                                     ConsultantRefresh();
                                     setConsultantPath(Globals.Consultantfilepath);
-                                    MessageBox.Show(getConsultantPath());
                                     //RC();
                                 }
                                 else
@@ -520,6 +546,7 @@ namespace Submittal_Tracking_System
                                                 cErrorBox.Visible = true;
                                                 createConsultantDatabase();
                                                 ConsultantRefresh();
+                                                setConsultantPath(Globals.Consultantfilepath);
                                                 //RC();
                                             }
 
@@ -568,7 +595,9 @@ namespace Submittal_Tracking_System
                 {
                     MessageBox.Show("Error: 'DB.sdf' was not found, please try another location.\n");
                 } 
+            
             }
+        
         }
         private void consultantDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -697,9 +726,6 @@ namespace Submittal_Tracking_System
             }
         }
 
-
-        
-     
         private void wBrowseConsultant_Click(object sender, EventArgs e)
         {
             if (setDirectory.ShowDialog() == DialogResult.OK)
@@ -887,8 +913,8 @@ namespace Submittal_Tracking_System
         {
             if (Globals.Projectfilepath != null)
             {
-                var wb = new ClosedXML.Excel.XLWorkbook();
-
+               /* var wb = new ClosedXML.Excel.XLWorkbook();
+                
                 Directory.SetCurrentDirectory(Globals.Projectfilepath);
                 SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
                 if (cn.State == ConnectionState.Closed)
@@ -935,7 +961,50 @@ namespace Submittal_Tracking_System
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }*/
+                Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                var workbook = new ClosedXML.Excel.XLWorkbook("Template.xlsm");
+                var ws = workbook.Worksheet(1);
+
+                //Project Number and Title
+                ws.Cell(1, 6).Value = Globals.ProjectNum;
+                ws.Cell(2, 6).Value = Globals.ProjectTitle;
+                ws.Cell(4, 6).Value = Globals.cName;
+                //Submittals
+                SqlCeConnection cn = new SqlCeConnection(Globals.connectionStringProject);
+                Directory.SetCurrentDirectory(Globals.Projectfilepath);
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
                 }
+
+                try
+                {
+                    
+                    SqlCeCommand cmd = new SqlCeCommand("Submittals", cn);
+                    cmd.CommandType = CommandType.TableDirect;
+
+                    DataTable Submittals = new DataTable();
+                    SqlCeDataReader reader = cmd.ExecuteReader();
+                    Submittals.Load(reader);
+
+                    var rangeWithData = ws.Cell(9, 1).InsertData(Submittals.AsEnumerable());
+
+                    //workbook.Worksheets.Add(Submittals);
+
+                }
+                  catch (SqlCeException sqlexception)
+                {
+                    MessageBox.Show(sqlexception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                string date = DateTime.Now.ToShortDateString();
+                string date2 = date.Replace('/', '-');
+                Directory.SetCurrentDirectory(Globals.Consultantfilepath);
+                workbook.SaveAs(date2 + "_" + wNumberTxT.Text + "_" + wTitleTxT.Text + ".xlsm");
             }
             else
                 MessageBox.Show("Please open a Submittal file first.");
@@ -2332,8 +2401,7 @@ namespace Submittal_Tracking_System
 
         private void aExport_Click(object sender, EventArgs e)
         {
-            string test = getConsultantPath();
-            MessageBox.Show(test);
+
         }
 
       
