@@ -36,45 +36,50 @@
             this.submittalDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultantDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toExcelSubmittals = new System.Windows.Forms.ToolStripMenuItem();
             this.submittalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setDirectory = new System.Windows.Forms.FolderBrowserDialog();
+            this.consultantMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cErrorBox = new System.Windows.Forms.RichTextBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
+            this.wCon = new System.Windows.Forms.Button();
             this.wConSet = new System.Windows.Forms.Button();
             this.wContact = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
             this.wState = new System.Windows.Forms.TextBox();
             this.wZipcode = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
             this.wName = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
             this.wAddress = new System.Windows.Forms.TextBox();
             this.wAddress2 = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
             this.wCity = new System.Windows.Forms.TextBox();
+            this.wNumberTxT = new System.Windows.Forms.TextBox();
+            this.wTitleTxT = new System.Windows.Forms.TextBox();
+            this.wProjectLoc = new System.Windows.Forms.TextBox();
+            this.wConsultantLoc = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.wNumberBTN = new System.Windows.Forms.Button();
             this.wTitleBTN = new System.Windows.Forms.Button();
-            this.wNumberTxT = new System.Windows.Forms.TextBox();
-            this.wTitleTxT = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.zlabel30 = new System.Windows.Forms.Label();
             this.zlabel29 = new System.Windows.Forms.Label();
             this.wBrowseProject = new System.Windows.Forms.Button();
             this.wBrowseConsultant = new System.Windows.Forms.Button();
-            this.wProjectLoc = new System.Windows.Forms.TextBox();
             this.zlabel28 = new System.Windows.Forms.Label();
-            this.wConsultantLoc = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.tabConsultant = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -148,22 +153,17 @@
             this.label14 = new System.Windows.Forms.Label();
             this.SubmittalsView = new System.Windows.Forms.DataGridView();
             this.tabAction = new System.Windows.Forms.TabPage();
-            this.label39 = new System.Windows.Forms.Label();
+            this.Arefreshtable = new System.Windows.Forms.Button();
             this.aExport = new System.Windows.Forms.Button();
-            this.aPrint = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.actionBx = new System.Windows.Forms.ComboBox();
             this.actionview = new System.Windows.Forms.DataGridView();
-            this.tabOutstanding = new System.Windows.Forms.TabPage();
-            this.label41 = new System.Windows.Forms.Label();
-            this.consultantMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cErrorBox = new System.Windows.Forms.RichTextBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.submittalMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.menuStrip1.SuspendLayout();
+            this.consultantMenuStrip.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.welcomeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -186,9 +186,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.SubmittalsView)).BeginInit();
             this.tabAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actionview)).BeginInit();
-            this.tabOutstanding.SuspendLayout();
-            this.consultantMenuStrip.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.submittalMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -208,7 +205,6 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newMenu,
             this.openMenu,
-            this.printToolStripMenuItem,
             this.closeMenu});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -244,13 +240,6 @@
             this.openMenu.Text = "Open DB.sdf";
             this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
             // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.printToolStripMenuItem.Text = "Print";
-            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
-            // 
             // closeMenu
             // 
             this.closeMenu.Name = "closeMenu";
@@ -270,7 +259,8 @@
             // 
             this.toExcelSubmittals.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.submittalsToolStripMenuItem,
-            this.consultantToolStripMenuItem});
+            this.consultantToolStripMenuItem,
+            this.projectToolStripMenuItem});
             this.toExcelSubmittals.Name = "toExcelSubmittals";
             this.toExcelSubmittals.Size = new System.Drawing.Size(100, 22);
             this.toExcelSubmittals.Text = "Excel";
@@ -289,13 +279,60 @@
             this.consultantToolStripMenuItem.Text = "Consultant";
             this.consultantToolStripMenuItem.Click += new System.EventHandler(this.consultantToolStripMenuItem_Click);
             // 
+            // projectToolStripMenuItem
+            // 
+            this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.projectToolStripMenuItem.Text = "Project";
+            this.projectToolStripMenuItem.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
+            // 
+            // consultantMenuStrip
+            // 
+            this.consultantMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteRowToolStripMenuItem});
+            this.consultantMenuStrip.Name = "contextMenuStrip1";
+            this.consultantMenuStrip.Size = new System.Drawing.Size(134, 26);
+            // 
+            // deleteRowToolStripMenuItem
+            // 
+            this.deleteRowToolStripMenuItem.Name = "deleteRowToolStripMenuItem";
+            this.deleteRowToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.deleteRowToolStripMenuItem.Text = "Delete Row";
+            this.deleteRowToolStripMenuItem.Click += new System.EventHandler(this.deleteRowToolStripMenuItem_Click);
+            // 
+            // cErrorBox
+            // 
+            this.cErrorBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cErrorBox.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cErrorBox.ForeColor = System.Drawing.Color.Red;
+            this.cErrorBox.Location = new System.Drawing.Point(3, 539);
+            this.cErrorBox.Name = "cErrorBox";
+            this.cErrorBox.Size = new System.Drawing.Size(1258, 89);
+            this.cErrorBox.TabIndex = 17;
+            this.cErrorBox.Text = "";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoScroll = true;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.cErrorBox, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1264, 631);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.welcomeTab);
             this.tabControl1.Controls.Add(this.tabConsultant);
             this.tabControl1.Controls.Add(this.tabSubmittals);
             this.tabControl1.Controls.Add(this.tabAction);
-            this.tabControl1.Controls.Add(this.tabOutstanding);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
@@ -307,36 +344,37 @@
             // welcomeTab
             // 
             this.welcomeTab.BackColor = System.Drawing.Color.DarkGray;
+            this.welcomeTab.Controls.Add(this.wCon);
             this.welcomeTab.Controls.Add(this.wConSet);
             this.welcomeTab.Controls.Add(this.wContact);
-            this.welcomeTab.Controls.Add(this.label31);
-            this.welcomeTab.Controls.Add(this.label32);
             this.welcomeTab.Controls.Add(this.wState);
             this.welcomeTab.Controls.Add(this.wZipcode);
-            this.welcomeTab.Controls.Add(this.label33);
-            this.welcomeTab.Controls.Add(this.label34);
             this.welcomeTab.Controls.Add(this.wName);
-            this.welcomeTab.Controls.Add(this.label35);
             this.welcomeTab.Controls.Add(this.wAddress);
             this.welcomeTab.Controls.Add(this.wAddress2);
-            this.welcomeTab.Controls.Add(this.label36);
             this.welcomeTab.Controls.Add(this.wCity);
+            this.welcomeTab.Controls.Add(this.wNumberTxT);
+            this.welcomeTab.Controls.Add(this.wTitleTxT);
+            this.welcomeTab.Controls.Add(this.wProjectLoc);
+            this.welcomeTab.Controls.Add(this.wConsultantLoc);
+            this.welcomeTab.Controls.Add(this.label31);
+            this.welcomeTab.Controls.Add(this.label32);
+            this.welcomeTab.Controls.Add(this.label33);
+            this.welcomeTab.Controls.Add(this.label34);
+            this.welcomeTab.Controls.Add(this.label35);
+            this.welcomeTab.Controls.Add(this.label36);
             this.welcomeTab.Controls.Add(this.label37);
             this.welcomeTab.Controls.Add(this.label38);
             this.welcomeTab.Controls.Add(this.pictureBox2);
             this.welcomeTab.Controls.Add(this.wNumberBTN);
             this.welcomeTab.Controls.Add(this.wTitleBTN);
-            this.welcomeTab.Controls.Add(this.wNumberTxT);
-            this.welcomeTab.Controls.Add(this.wTitleTxT);
             this.welcomeTab.Controls.Add(this.label30);
             this.welcomeTab.Controls.Add(this.label40);
             this.welcomeTab.Controls.Add(this.zlabel30);
             this.welcomeTab.Controls.Add(this.zlabel29);
             this.welcomeTab.Controls.Add(this.wBrowseProject);
             this.welcomeTab.Controls.Add(this.wBrowseConsultant);
-            this.welcomeTab.Controls.Add(this.wProjectLoc);
             this.welcomeTab.Controls.Add(this.zlabel28);
-            this.welcomeTab.Controls.Add(this.wConsultantLoc);
             this.welcomeTab.Controls.Add(this.label27);
             this.welcomeTab.Location = new System.Drawing.Point(4, 22);
             this.welcomeTab.Name = "welcomeTab";
@@ -344,6 +382,17 @@
             this.welcomeTab.Size = new System.Drawing.Size(1250, 504);
             this.welcomeTab.TabIndex = 2;
             this.welcomeTab.Text = "Welcome";
+            // 
+            // wCon
+            // 
+            this.wCon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wCon.Location = new System.Drawing.Point(871, 181);
+            this.wCon.Name = "wCon";
+            this.wCon.Size = new System.Drawing.Size(75, 31);
+            this.wCon.TabIndex = 31;
+            this.wCon.Text = "Set";
+            this.wCon.UseVisualStyleBackColor = true;
+            this.wCon.Click += new System.EventHandler(this.wCon_Click);
             // 
             // wConSet
             // 
@@ -365,6 +414,91 @@
             this.wContact.Name = "wContact";
             this.wContact.Size = new System.Drawing.Size(367, 20);
             this.wContact.TabIndex = 24;
+            // 
+            // wState
+            // 
+            this.wState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.wState.Location = new System.Drawing.Point(1043, 132);
+            this.wState.MaxLength = 2;
+            this.wState.Name = "wState";
+            this.wState.Size = new System.Drawing.Size(27, 20);
+            this.wState.TabIndex = 28;
+            // 
+            // wZipcode
+            // 
+            this.wZipcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.wZipcode.Location = new System.Drawing.Point(1135, 132);
+            this.wZipcode.MaxLength = 10;
+            this.wZipcode.Name = "wZipcode";
+            this.wZipcode.Size = new System.Drawing.Size(103, 20);
+            this.wZipcode.TabIndex = 29;
+            // 
+            // wName
+            // 
+            this.wName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.wName.Location = new System.Drawing.Point(871, 54);
+            this.wName.MaxLength = 200;
+            this.wName.Name = "wName";
+            this.wName.Size = new System.Drawing.Size(367, 20);
+            this.wName.TabIndex = 16;
+            // 
+            // wAddress
+            // 
+            this.wAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.wAddress.Location = new System.Drawing.Point(871, 80);
+            this.wAddress.MaxLength = 200;
+            this.wAddress.Name = "wAddress";
+            this.wAddress.Size = new System.Drawing.Size(367, 20);
+            this.wAddress.TabIndex = 18;
+            // 
+            // wAddress2
+            // 
+            this.wAddress2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.wAddress2.Location = new System.Drawing.Point(871, 106);
+            this.wAddress2.MaxLength = 200;
+            this.wAddress2.Name = "wAddress2";
+            this.wAddress2.Size = new System.Drawing.Size(367, 20);
+            this.wAddress2.TabIndex = 20;
+            // 
+            // wCity
+            // 
+            this.wCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.wCity.Location = new System.Drawing.Point(871, 132);
+            this.wCity.MaxLength = 200;
+            this.wCity.Name = "wCity";
+            this.wCity.Size = new System.Drawing.Size(125, 20);
+            this.wCity.TabIndex = 22;
+            // 
+            // wNumberTxT
+            // 
+            this.wNumberTxT.Location = new System.Drawing.Point(197, 53);
+            this.wNumberTxT.MaxLength = 40;
+            this.wNumberTxT.Name = "wNumberTxT";
+            this.wNumberTxT.Size = new System.Drawing.Size(100, 20);
+            this.wNumberTxT.TabIndex = 11;
+            // 
+            // wTitleTxT
+            // 
+            this.wTitleTxT.Location = new System.Drawing.Point(197, 27);
+            this.wTitleTxT.MaxLength = 200;
+            this.wTitleTxT.Name = "wTitleTxT";
+            this.wTitleTxT.Size = new System.Drawing.Size(100, 20);
+            this.wTitleTxT.TabIndex = 10;
+            // 
+            // wProjectLoc
+            // 
+            this.wProjectLoc.Location = new System.Drawing.Point(26, 194);
+            this.wProjectLoc.Name = "wProjectLoc";
+            this.wProjectLoc.Size = new System.Drawing.Size(352, 20);
+            this.wProjectLoc.TabIndex = 3;
+            // 
+            // wConsultantLoc
+            // 
+            this.wConsultantLoc.Location = new System.Drawing.Point(26, 127);
+            this.wConsultantLoc.Name = "wConsultantLoc";
+            this.wConsultantLoc.Size = new System.Drawing.Size(352, 20);
+            this.wConsultantLoc.TabIndex = 1;
+            this.wConsultantLoc.TextChanged += new System.EventHandler(this.wConsultantLoc_TextChanged);
             // 
             // label31
             // 
@@ -388,24 +522,6 @@
             this.label32.Text = "Contact Person:";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // wState
-            // 
-            this.wState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.wState.Location = new System.Drawing.Point(1043, 132);
-            this.wState.MaxLength = 2;
-            this.wState.Name = "wState";
-            this.wState.Size = new System.Drawing.Size(27, 20);
-            this.wState.TabIndex = 28;
-            // 
-            // wZipcode
-            // 
-            this.wZipcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.wZipcode.Location = new System.Drawing.Point(1135, 132);
-            this.wZipcode.MaxLength = 10;
-            this.wZipcode.Name = "wZipcode";
-            this.wZipcode.Size = new System.Drawing.Size(103, 20);
-            this.wZipcode.TabIndex = 29;
-            // 
             // label33
             // 
             this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -426,15 +542,6 @@
             this.label34.TabIndex = 27;
             this.label34.Text = "Zip Code:";
             // 
-            // wName
-            // 
-            this.wName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.wName.Location = new System.Drawing.Point(871, 54);
-            this.wName.MaxLength = 200;
-            this.wName.Name = "wName";
-            this.wName.Size = new System.Drawing.Size(367, 20);
-            this.wName.TabIndex = 16;
-            // 
             // label35
             // 
             this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -446,24 +553,6 @@
             this.label35.Text = "Address:";
             this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // wAddress
-            // 
-            this.wAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.wAddress.Location = new System.Drawing.Point(871, 80);
-            this.wAddress.MaxLength = 200;
-            this.wAddress.Name = "wAddress";
-            this.wAddress.Size = new System.Drawing.Size(367, 20);
-            this.wAddress.TabIndex = 18;
-            // 
-            // wAddress2
-            // 
-            this.wAddress2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.wAddress2.Location = new System.Drawing.Point(871, 106);
-            this.wAddress2.MaxLength = 200;
-            this.wAddress2.Name = "wAddress2";
-            this.wAddress2.Size = new System.Drawing.Size(367, 20);
-            this.wAddress2.TabIndex = 20;
-            // 
             // label36
             // 
             this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -474,15 +563,6 @@
             this.label36.TabIndex = 21;
             this.label36.Text = "Address Line 2:";
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // wCity
-            // 
-            this.wCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.wCity.Location = new System.Drawing.Point(871, 132);
-            this.wCity.MaxLength = 200;
-            this.wCity.Name = "wCity";
-            this.wCity.Size = new System.Drawing.Size(125, 20);
-            this.wCity.TabIndex = 22;
             // 
             // label37
             // 
@@ -536,22 +616,6 @@
             this.wTitleBTN.Text = "Update";
             this.wTitleBTN.UseVisualStyleBackColor = true;
             this.wTitleBTN.Click += new System.EventHandler(this.wTitleBTN_Click);
-            // 
-            // wNumberTxT
-            // 
-            this.wNumberTxT.Location = new System.Drawing.Point(197, 53);
-            this.wNumberTxT.MaxLength = 40;
-            this.wNumberTxT.Name = "wNumberTxT";
-            this.wNumberTxT.Size = new System.Drawing.Size(100, 20);
-            this.wNumberTxT.TabIndex = 11;
-            // 
-            // wTitleTxT
-            // 
-            this.wTitleTxT.Location = new System.Drawing.Point(197, 27);
-            this.wTitleTxT.MaxLength = 200;
-            this.wTitleTxT.Name = "wTitleTxT";
-            this.wTitleTxT.Size = new System.Drawing.Size(100, 20);
-            this.wTitleTxT.TabIndex = 10;
             // 
             // label30
             // 
@@ -614,13 +678,6 @@
             this.wBrowseConsultant.UseVisualStyleBackColor = true;
             this.wBrowseConsultant.Click += new System.EventHandler(this.wBrowseConsultant_Click);
             // 
-            // wProjectLoc
-            // 
-            this.wProjectLoc.Location = new System.Drawing.Point(26, 194);
-            this.wProjectLoc.Name = "wProjectLoc";
-            this.wProjectLoc.Size = new System.Drawing.Size(352, 20);
-            this.wProjectLoc.TabIndex = 3;
-            // 
             // zlabel28
             // 
             this.zlabel28.AutoSize = true;
@@ -628,14 +685,6 @@
             this.zlabel28.Name = "zlabel28";
             this.zlabel28.Size = new System.Drawing.Size(0, 13);
             this.zlabel28.TabIndex = 2;
-            // 
-            // wConsultantLoc
-            // 
-            this.wConsultantLoc.Location = new System.Drawing.Point(26, 127);
-            this.wConsultantLoc.Name = "wConsultantLoc";
-            this.wConsultantLoc.Size = new System.Drawing.Size(352, 20);
-            this.wConsultantLoc.TabIndex = 1;
-            this.wConsultantLoc.TextChanged += new System.EventHandler(this.wConsultantLoc_TextChanged);
             // 
             // label27
             // 
@@ -1419,9 +1468,8 @@
             // 
             // tabAction
             // 
-            this.tabAction.Controls.Add(this.label39);
+            this.tabAction.Controls.Add(this.Arefreshtable);
             this.tabAction.Controls.Add(this.aExport);
-            this.tabAction.Controls.Add(this.aPrint);
             this.tabAction.Controls.Add(this.label29);
             this.tabAction.Controls.Add(this.actionBx);
             this.tabAction.Controls.Add(this.actionview);
@@ -1433,34 +1481,25 @@
             this.tabAction.Text = "Action";
             this.tabAction.UseVisualStyleBackColor = true;
             // 
-            // label39
+            // Arefreshtable
             // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(464, 8);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(335, 24);
-            this.label39.TabIndex = 18;
-            this.label39.Text = "<- These buttons don\'t do anything yet.";
+            this.Arefreshtable.Location = new System.Drawing.Point(336, 11);
+            this.Arefreshtable.Name = "Arefreshtable";
+            this.Arefreshtable.Size = new System.Drawing.Size(93, 23);
+            this.Arefreshtable.TabIndex = 18;
+            this.Arefreshtable.Text = "Refresh View";
+            this.Arefreshtable.UseVisualStyleBackColor = true;
+            this.Arefreshtable.Click += new System.EventHandler(this.Arefreshtable_Click);
             // 
             // aExport
             // 
-            this.aExport.Location = new System.Drawing.Point(369, 11);
+            this.aExport.Location = new System.Drawing.Point(241, 11);
             this.aExport.Name = "aExport";
             this.aExport.Size = new System.Drawing.Size(89, 23);
             this.aExport.TabIndex = 17;
             this.aExport.Text = "Export to Excel";
             this.aExport.UseVisualStyleBackColor = true;
             this.aExport.Click += new System.EventHandler(this.aExport_Click);
-            // 
-            // aPrint
-            // 
-            this.aPrint.Location = new System.Drawing.Point(277, 11);
-            this.aPrint.Name = "aPrint";
-            this.aPrint.Size = new System.Drawing.Size(86, 23);
-            this.aPrint.TabIndex = 16;
-            this.aPrint.Text = "Print this view";
-            this.aPrint.UseVisualStyleBackColor = true;
             // 
             // label29
             // 
@@ -1497,68 +1536,6 @@
             this.actionview.TabIndex = 0;
             this.actionview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.actionview_CellDoubleClick);
             // 
-            // tabOutstanding
-            // 
-            this.tabOutstanding.Controls.Add(this.label41);
-            this.tabOutstanding.Location = new System.Drawing.Point(4, 22);
-            this.tabOutstanding.Name = "tabOutstanding";
-            this.tabOutstanding.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOutstanding.Size = new System.Drawing.Size(1250, 504);
-            this.tabOutstanding.TabIndex = 4;
-            this.tabOutstanding.Text = "Outstanding";
-            this.tabOutstanding.UseVisualStyleBackColor = true;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(377, 217);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(396, 37);
-            this.label41.TabIndex = 0;
-            this.label41.Text = "Tab intentionally left blank.";
-            // 
-            // consultantMenuStrip
-            // 
-            this.consultantMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteRowToolStripMenuItem});
-            this.consultantMenuStrip.Name = "contextMenuStrip1";
-            this.consultantMenuStrip.Size = new System.Drawing.Size(134, 26);
-            // 
-            // deleteRowToolStripMenuItem
-            // 
-            this.deleteRowToolStripMenuItem.Name = "deleteRowToolStripMenuItem";
-            this.deleteRowToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.deleteRowToolStripMenuItem.Text = "Delete Row";
-            this.deleteRowToolStripMenuItem.Click += new System.EventHandler(this.deleteRowToolStripMenuItem_Click);
-            // 
-            // cErrorBox
-            // 
-            this.cErrorBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cErrorBox.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cErrorBox.ForeColor = System.Drawing.Color.Red;
-            this.cErrorBox.Location = new System.Drawing.Point(3, 539);
-            this.cErrorBox.Name = "cErrorBox";
-            this.cErrorBox.Size = new System.Drawing.Size(1258, 89);
-            this.cErrorBox.TabIndex = 17;
-            this.cErrorBox.Text = "";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.cErrorBox, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1264, 631);
-            this.tableLayoutPanel1.TabIndex = 2;
-            // 
             // submittalMenuStrip
             // 
             this.submittalMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1588,6 +1565,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.consultantMenuStrip.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.welcomeTab.ResumeLayout(false);
             this.welcomeTab.PerformLayout();
@@ -1619,10 +1598,6 @@
             this.tabAction.ResumeLayout(false);
             this.tabAction.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actionview)).EndInit();
-            this.tabOutstanding.ResumeLayout(false);
-            this.tabOutstanding.PerformLayout();
-            this.consultantMenuStrip.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.submittalMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1638,132 +1613,130 @@
         private System.Windows.Forms.ToolStripMenuItem closeMenu;
         private System.Windows.Forms.FolderBrowserDialog setDirectory;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabConsultant;
-        private System.Windows.Forms.TextBox cZipcodeText;
-        private System.Windows.Forms.TextBox cStateText;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox cContactText;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox cCityText;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox cAddress2Text;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox cAddress1Text;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox cNameText;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabSubmittals;
-        private System.Windows.Forms.Button cAddButton;
         private System.Windows.Forms.RichTextBox cErrorBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox sDescriptionBox;
-        private System.Windows.Forms.TextBox sNumReceivedBox;
-        private System.Windows.Forms.TextBox sSpecNumBox;
-        private System.Windows.Forms.ComboBox sConsultantBox;
-        private System.Windows.Forms.TextBox sQuantityConsultantBox;
-        private System.Windows.Forms.ComboBox sConsultantViaBox;
-        private System.Windows.Forms.DateTimePicker sToConsultantDateBox;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DateTimePicker sSubmittalDateBox;
-        private System.Windows.Forms.ComboBox sContractorViaBox;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox sCommentBox;
-        private System.Windows.Forms.TextBox sNameBox;
-        private System.Windows.Forms.ComboBox sActionBox;
-        private System.Windows.Forms.TextBox sQuantityReturnedBox;
-        private System.Windows.Forms.DateTimePicker sReturnedCBox;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.DateTimePicker sConsultantDateDueBox;
-        private System.Windows.Forms.DateTimePicker sFromConsultantDateBox;
-        private System.Windows.Forms.DataGridView SubmittalsView;
-        private System.Windows.Forms.DataGridView ConsultantView;
         private System.Windows.Forms.ToolStripMenuItem consultantDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem submittalDatabaseToolStripMenuItem;
-        private System.Windows.Forms.ComboBox sSubmittalDropdown;
-        private System.Windows.Forms.Button cClearButton;
-        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.ContextMenuStrip consultantMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem deleteRowToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip submittalMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toExcelSubmittals;
+        private System.Windows.Forms.ToolStripMenuItem submittalsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultantToolStripMenuItem;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage welcomeTab;
+        private System.Windows.Forms.Button wCon;
+        private System.Windows.Forms.Button wConSet;
+        private System.Windows.Forms.TextBox wContact;
+        private System.Windows.Forms.TextBox wState;
+        private System.Windows.Forms.TextBox wZipcode;
+        private System.Windows.Forms.TextBox wName;
+        private System.Windows.Forms.TextBox wAddress;
+        private System.Windows.Forms.TextBox wAddress2;
+        private System.Windows.Forms.TextBox wCity;
+        private System.Windows.Forms.TextBox wNumberTxT;
+        private System.Windows.Forms.TextBox wTitleTxT;
+        private System.Windows.Forms.TextBox wProjectLoc;
+        private System.Windows.Forms.TextBox wConsultantLoc;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button wNumberBTN;
+        private System.Windows.Forms.Button wTitleBTN;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label zlabel30;
         private System.Windows.Forms.Label zlabel29;
         private System.Windows.Forms.Button wBrowseProject;
         private System.Windows.Forms.Button wBrowseConsultant;
-        private System.Windows.Forms.TextBox wProjectLoc;
         private System.Windows.Forms.Label zlabel28;
-        private System.Windows.Forms.TextBox wConsultantLoc;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.GroupBox zgroupBox3;
-        private System.Windows.Forms.GroupBox zgroupBox2;
-        private System.Windows.Forms.GroupBox zgroupBox4;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.RadioButton cYesRB;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton cNoRB;
-        private System.Windows.Forms.ContextMenuStrip consultantMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem deleteRowToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabConsultant;
+        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label cRowsCountLB;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TabPage tabAction;
-        private System.Windows.Forms.DataGridView actionview;
-        private System.Windows.Forms.Button sClearFormBTN;
-        private System.Windows.Forms.Button wNumberBTN;
-        private System.Windows.Forms.Button wTitleBTN;
-        private System.Windows.Forms.TextBox wNumberTxT;
-        private System.Windows.Forms.TextBox wTitleTxT;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton cNoRB;
+        private System.Windows.Forms.RadioButton cYesRB;
+        private System.Windows.Forms.TextBox cContactText;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox cStateText;
+        private System.Windows.Forms.Button cAddButton;
+        private System.Windows.Forms.TextBox cZipcodeText;
+        private System.Windows.Forms.Button cClearButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox cNameText;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox cAddress1Text;
+        private System.Windows.Forms.TextBox cAddress2Text;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox cCityText;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView ConsultantView;
+        private System.Windows.Forms.TabPage tabSubmittals;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.Button sLogBTN;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox sSubmittalDropdown;
         private System.Windows.Forms.RadioButton sNoRB;
         private System.Windows.Forms.RadioButton sYesRB;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ContextMenuStrip submittalMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.Button sClearFormBTN;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox zgroupBox3;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DateTimePicker sConsultantDateDueBox;
+        private System.Windows.Forms.ComboBox sConsultantBox;
+        private System.Windows.Forms.DateTimePicker sFromConsultantDateBox;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox sQuantityConsultantBox;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox sConsultantViaBox;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.DateTimePicker sToConsultantDateBox;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.GroupBox zgroupBox4;
+        private System.Windows.Forms.TextBox sCommentBox;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox sNameBox;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox sActionBox;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox sQuantityReturnedBox;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.DateTimePicker sReturnedCBox;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox sContractorViaBox;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.GroupBox zgroupBox2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker sSubmittalDateBox;
+        private System.Windows.Forms.TextBox sDescriptionBox;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox sNumReceivedBox;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox sSpecNumBox;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.DataGridView SubmittalsView;
+        private System.Windows.Forms.TabPage tabAction;
+        private System.Windows.Forms.Button Arefreshtable;
+        private System.Windows.Forms.Button aExport;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox actionBx;
-        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toExcelSubmittals;
-        private System.Windows.Forms.Button sLogBTN;
-        private System.Windows.Forms.Button wConSet;
-        private System.Windows.Forms.TextBox wContact;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox wState;
-        private System.Windows.Forms.TextBox wZipcode;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox wName;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox wAddress;
-        private System.Windows.Forms.TextBox wAddress2;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TextBox wCity;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.ToolStripMenuItem submittalsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultantToolStripMenuItem;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.Button aExport;
-        private System.Windows.Forms.Button aPrint;
-        private System.Windows.Forms.TabPage tabOutstanding;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.DataGridView actionview;
     }
 }
 
